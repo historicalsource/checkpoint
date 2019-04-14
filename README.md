@@ -9,7 +9,7 @@ Further information on Checkpoint:
 
 __What is this Repository?__
 
-This repository is a directory of source code for the Infocom game "Starcross", including a variety of files both used and discarded in the production of the game. It is written in ZIL (Zork Implementation Language), a refactoring of MDL (Muddle), itself a dialect of LISP created by MIT students and staff.
+This repository is a directory of source code for the incomplete Infocom game "Checkpoint", including a variety of files both used and discarded in the production of the game. It is written in ZIL (Zork Implementation Language), a refactoring of MDL (Muddle), itself a dialect of LISP created by MIT students and staff.
 
 The source code was contributed anonymously and represents a snapshot of the Infocom development system at time of shutdown - there is no remaining way to compare it against any official version as of this writing, and so it should be considered canonical, but not necessarily the exact source code arrangement for production.
 
@@ -36,4 +36,4 @@ After finishing Seastalker, (Galley) had the idea to write a Cold War espionage 
 -- From "Moonmist", an article by Jimmy Maher (https://www.filfre.net/2015/03/moonmist/)
 
 * The working title was "Spy", and this was also the working title of Border Zone. Therefore it is often reported that Border Zone is a refashioning of Spy/Checkpoint, but Marc Blank's cold-war thriller game was written entirely separate.
-* Stu Galley turned his attention from this project to what would eventually become "Moonmist".
+* Stu Galley turned his attention from this project to a game that would eventually become "Moonmist".
