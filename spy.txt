@@ -1,0 +1,92 @@
+;"The opening scene..."
+
+"The business deal behind you, you wish only to be out of this bleak
+corner of Eastern Europe. The border to the West is now only a few
+hours away at Gola, and from there its a quick flight to Trieste, and then
+back to civilization...|
+|
+The ride is interminable, and it seems you're dozing off again. The wheels of
+the train are ticking like a clock, ticking off the segments of track you're
+passing, and the compartment is rocking you back and forth, back and forth,
+slowly closing your eyelids.|
+|
+Your slumber is cut short as a man staggers into your compartment, panting 
+strangely. From his demeanor, you would guess he'd been drinking heavily.
+Before you can dismiss him, though, you notice a dark red spot beneath his
+coat which he grasps tightly. He speaks softly, but hurriedly.|
+|
+\"I've only got a moment, so listen carefully! Since you were reading a copy
+of the International Herald over lunch, I'll assume you're an American. I am
+an agent of our government and I've been sent to pick up <a vital microfilm>
+in Frbz and pass it along to our special agent in Gola. An enemy agent
+spotted me on the train, and I only barely managed to escape.\" He groans
+softly, examining his wound.|
+|
+\"The best I can do now is throw the enemy off the scent, but I need you, your
+country needs you, to carry out my assignment.\" You start to interrupt,
+a thousand questions racing through your mind. \"There's no time! My
+contact in Frbz is <an old man reading a newspaper> and I was to offer
+him a <light>, then say the words <'Fromzi remax uzbuz'>. He was to hand
+over the <film> and I was to take it to our contact in Gola, <a woman in
+white> who was to greet me at the station with the words <'Have you a
+train schedule?'>. Here! Take my briefcase - there are things you might
+find useful inside. And be careful! Our enemies are all around us!\" Before
+you can respond, he checks the corridor and races out."
+
+;"Problems: 
+  1) Cleaning off the floor (blood stains will lead the enemy agents to
+     you)
+
+  2) Checking out the briefcase and what's in it.
+
+  3) Finding the pass object (other compartments, making them out of
+     crude devices, buying it, etc.)
+
+  4) Making the first rendezvous successfully. This will involve getting
+     off the train, meeting the correct person, saying the magic words,
+     and getting that person to meet you in a shop, w.c., etc. for the
+     exchange. >SIT DOWN NEXT TO OLD MAN  >OFFER HIM A LIGHT >SAY 'FRNZI
+     BRNZI UZBUZ' >OLD MAN, MEET ME AT THE COFFEE SHOP >GIVE ME THE
+     MICROFILM
+     
+  5) Hiding the MacGuffin during the trip and especially at the border
+     when your stuff is searched.
+
+  6) Avoiding the enemy agent(s) and delivering the goods to the contact
+     at Gola
+"
+
+;"Combinations of pass object and action on the part of the contact
+
+	Object			Action
+
+	Lighter			Pulls out a cigarette
+
+	Cigarette		Feels within jacket for something
+
+        Dollar Bill		Reaching on ground for something
+
+"
+
+;"Ways of getting the pass object:
+
+1) From another character or that character's compartment (stealing)
+
+2) Consing up a makeshift equivalent of the object
+
+3) Buying the object at one of the train stations. 
+
+"
+
+;"Complications:
+
+1) The contact might be replaced by someone else (as you have replaced
+   the original spy. The code word/object would remain the same, of course.
+   There might be some giveaway (like someone with an unlighted cigarette
+   in his mouth or searching the ground for something). Showing the pass
+   object to the wrong people would arouse the suspicion of an enemy
+   agent (guard) at the station.
+
+2) The pass object might have to be manufactured, rather than obtained
+   (stolen).
+"

@@ -1,0 +1,1020 @@
+[Automatic transcript: User is SWG]
+
+Copyright (c) 1985 Infocom, Inc. All rights reserved.
+
+Welcome to CHECKPOINT (TM) - interactive fiction from Infocom!
+
+[Note to testers: this story has the command GO TO, and the concept of not
+being able to see things behind your back. The unit of currency in this story
+is the Frotzian slimpuk, whose symbol is "*".
+
+Messages in square brackets [] will not be in the final release. 
+Remember: you can shorten your words only to NINE (9) letters.
+But you can use C for COMPARTMENT, V for VESTIBULE, and F for FORWARD.]
+
+Do you want the viewpoint of the traveler or the spy? >T
+
+Do you want the short variation or the long one? >SHORT
+
+Then let the story begin!
+With your business deal behind you, you want only to get out of this bleak
+corner of Eastern Europe. The frontier is now only a few hours away, and from
+there it's not far to Vienna, and civilization....
+
+The ride seems endless, and you're dozing off again. The wheels of the train
+are ticking like a clock, ticking off the segments of track you're passing, and
+the compartment is rocking you back and forth, back and forth, making your
+eyelids slowly close.
+
+Your slumber is cut short as a man staggers into your compartment, panting
+strangely. From his demeanor, you guess that he has drunk too much. But before
+you can dismiss him, you notice that he's grasping a bright red spot on his
+shirt. He speaks quietly, but in a hurry.
+
+"I've got only a moment, so listen carefully! Since you were reading the
+International Herald over lunch, I assume you're an American. I am an agent of
+our government, and I've been sent to deliver a document to our special agent
+in Gola. An enemy agent spotted me on the train, and I only barely managed to
+escape." He groans softly, examining his wound.
+
+"The best I can do now is throw the enemy off the scent, but I need you, and
+your country needs you, to carry out my assignment." You start to interrupt, a
+thousand questions racing through your mind. "There's no time! Here! Take my
+briefcase, but be careful with it! Our enemies are all around us! My contact in
+Gola is an old woman, and I was to display a pen, then use the words 'red
+handkerchief' ...." Then he stops and listens. Before you can say anything, he
+checks the corridor and races out.
+
+CHECKPOINT
+Infocom interactive fiction - a story of intrigue
+Copyright (c) 1985 by Infocom, Inc. All rights reserved.
+CHECKPOINT is a trademark of Infocom, Inc.
+Release 15 / Serial number 850405 / Traveler's viewpoint, short variation
+
+(third compartment)
+This is a once-luxurious first-class compartment on the Znuk-Potrzebie Express.
+The plush red upholstery on the two facing seats, shiny and worn in spots, and
+the greasy lace on the headrests, give the car an air of faded elegance. A red
+handle is hanging by a short length of cord from the ceiling, swinging in time
+to the train's rocking motion. The corridor is outside, past a window with a
+red curtain on it.
+The train is rocketing along a barren stubble-plain.
+A thin man and an old man are just outside.
+Sitting on the train seat is a briefcase.
+
+
+Okay, what do you want to do now?
+>OPEN THE CASE
+
+The train lurches a bit.
+The latch is closed.
+You hear some kind of noise from the roof of the train.
+
+What next?
+>OPEN IT
+
+(I assume you mean: the briefcase latch.)
+The metal latch snaps open.
+
+What next?
+>OPEN CASE
+
+Opening it reveals a document, a miniature camera, a cassette of film, a
+magnifying glass, and a scrap of newsprint.
+Something outside the window catches your eye. It looks like the stranger
+falling off the roof of the train.
+
+What next?
+>EXAMINE DOCUMENT
+
+The train lurches a bit.
+It's not a very handsome document, scrawled in a hurry by a hand that wouldn't
+win any prizes under the best of conditions. But it seems to contain crucial
+information -- times, places, a crude map, even code words -- about a plan to
+kidnap some high-ranking official. Were the plan to succeed, several
+governments would be embarrassed, if not in mortal danger, and the balance of
+power would become precarious.
+
+What next?
+>PICK UP CAMERA AND FILM
+
+miniature camera: You are now holding it.
+cassette of film: You are now holding it.
+
+What next?
+>EXAMINE CAMERA
+
+Ah! Is this the masterwork of some paranoid genius in "Q" Section? A product of
+years of technological innovation, bordering on magic? Nah, it's just an
+ordinary miniature camera -- no weapons, no motors, nothing to break down. And
+it's closed.
+
+What next?
+>OPEN IT
+
+(I assume you mean: the miniature camera.)
+Okay, it is now open.
+
+What next?
+>PUT FILM IN IT
+
+(I assume you mean: the miniature camera.)
+Okay.
+
+(You won't see "What next?" any more.)
+
+>CLOSE IT
+
+(I assume you mean: the cassette of film.)
+(You can't close it.)
+
+>CLOSE CAMERA
+
+Okay, it is now closed.
+
+>TAKE PICTURE OF DOCUMENT
+
+You push the button, but it won't move.
+
+>EXAMINE CAMERA
+
+It looks as if it needs to be cocked.
+
+>COCK IT
+
+(I assume you mean: the miniature camera.)
+Okay.
+
+>TAKE PICTURE OF DOCUMENT
+
+"Click!"
+Just outside an old couple appear from the rear middle.
+
+>CLOSE THE CASE
+
+Closed.
+The old couple, just outside, disappear to the front.
+Just outside a fat man appears from the rear middle.
+Just outside an attractive man appears from the forward middle.
+
+>SEARCH THE ROOM
+
+(You stand up first.)
+(It's better to examine or search one thing at a time. It would take a long
+time to search a whole room or area thoroughly. A brief search would take 3
+minutes, and it might not reveal much. Would you like to do it anyway?) >YES
+
+The fat man enters, looks around, and sits down.
+Then he notices the briefcase and takes it.
+The attractive man, just outside, disappears to the rear.
+Do you want to continue what you were doing? >NO
+
+Your brief search reveals nothing exciting.
+
+>TAKE CASE
+
+The fat man holds it more tightly and looks at you defiantly.
+Just outside the conductor appears from the forward middle.
+The conductor, just outside, stops to punch tickets.
+The fat man, carrying it, opens the compartment door for a moment and leaves.
+
+>FIND MY TICKET
+
+You have it.
+The conductor punches the fat man's ticket.
+The fat man, just outside, disappears to the rear.
+
+>INVENTORY
+
+(Sorry, but the word "inventory" is not in the vocabulary that you can use.)
+
+>INVENT
+
+You're holding a miniature camera.
+And there's something in your pocket.
+The conductor punches the thin man's ticket.
+
+>LOOK IN MY POCKET
+
+Your pocket contains your ticket, a timetable, a traveler's check, and your
+passport.
+And some money.
+The conductor punches the old man's ticket.
+
+>LOOK AT TICKET
+
+The train lurches a bit.
+All you can make out is the destination: Gola.
+
+The conductor appears and makes a gesture, asking for your ticket.
+
+>GIVE HIM IT
+
+(I assume you mean: your ticket.)
+(I assume you mean: the conductor.)
+The conductor punches your ticket and then gives it back to you.
+He touches a finger to his cap and opens the compartment door for a moment and
+leaves.
+He disappears to the rear.
+
+>SEARCH THE ROOM
+
+(It's better to examine or search one thing at a time. It would take a long
+time to search a whole room or area thoroughly. A brief search would take 3
+minutes, and it might not reveal much. Would you like to do it anyway?) >Y
+
+Your brief search reveals nothing exciting.
+
+>EXAMINE FLOOR
+
+The train lurches a bit.
+Something catches your eye: it's a spot of blood.
+
+>EXAMINE CEILING
+
+(Sorry, but this story doesn't recognize the word "ceiling".)
+
+>LOOK UP
+
+The ceiling has seen better years, but a little soot removal would do wonders.
+
+>PUT ALL IN POCKET
+
+your ticket: Okay.
+miniature camera: Okay.
+
+>LEAVE
+
+(You open the compartment door and close it again.)
+(middle)
+[You're facing to the right side of the train.]
+This is the middle of the corridor. The floor and walls are covered with
+cream-colored linoleum, worn away in spots to reveal the original hardwood
+finish. A long series of windows, still framed by wood, runs along the corridor
+on the right-hand side of the train.
+A girl is off to the rear.
+A regal woman is off to the front.
+The thin man is here, smoking a cigarette.
+The old man is here, reading a newspaper.
+
+>GO TO THE REAR END
+
+(rear end)
+[You're facing to the rear.]
+This is the rear end of the corridor. On the left side of the train, behind a
+windowed door, lies the fifth compartment.
+A young woman is in the fifth compartment.
+
+>EXAMINE HER
+
+(Be specific: what thing do you want to examine?)
+
+>THE YOUNG WOMAN
+
+She is dressed for a long trip, in shades of blue, with a strange odor. 
+
+>REAR
+
+(You open the swinging door and close it again.)
+(rear vestibule)
+This is a small vestibule at the rear end of the car. There's a short flight of
+metal steps on the left side of the train leading down off the train, and a
+narrow metal ladder leading up to the roof. A small door leads to a restroom,
+and a big window is open to the outside. A red handle is hanging by a short
+length of cord from the ceiling, swinging in time to the train's rocking
+motion. The train is speeding along a barren stubble-plain.
+The clatter of the wheels on the track is almost deafening.
+
+>R
+
+[Debugging info: you are entering car #3.]
+(forward vestibule)
+This is a small vestibule at the forward end of the car. It's just like the
+rear vestibule, but with no steps or ladder.
+
+>R
+
+(You open the swinging door and close it again.)
+The relative quiet here is welcome. The smell of food is unmistakable.
+(forward end)
+This is the forward end of the corridor. On the left side of the train lies the
+first booth.
+
+>ENTER
+
+(first booth)
+[You're facing to the left side of the train.]
+This is a diner booth on the Znuk-Potrzebie Express. In fact, it looks as if
+the railway company just converted a first-class coach into a diner by removing
+the door and adding a table to each compartment.
+The train is speeding along a barren stubble-plain.
+
+>FIND A MENU
+
+The train lurches a bit.
+It's right here.
+The train is now speeding past a dark, violent river.
+
+>READ IT
+
+(I assume you mean: the menu.)
+A sign on the wall has a long list of mysterious Frotzian phrases, printed in
+ornate letters. All you can decipher is unpleasant things like fish heads and
+lice, or rumpled stilt's skin. Wait! There's an American phrase: Eggs McGuffin!
+
+>COUNT MONEY
+
+You are carrying *49.
+
+>EXAMINE THE CHECK
+
+It's your last $10 Mariners' Trust traveler's check, "accepted and even revered
+the world over."
+A waiter enters, ready to take your order.
+
+>ASK HIM FOR A PEN
+
+(I assume you mean: the waiter.)
+"E davnisnap qwamrk?"
+
+>SHOW HIM THE CHECK
+
+(I assume you mean: the waiter.)
+He nods and displays a pen.
+
+>TAKE IT
+
+(I assume you mean: the traveler's check.)
+You are now holding it.
+
+>TAKE THE PEN
+
+You are now holding it.
+
+>THANK THE WAITER
+
+He acknowledges your thanks.
+He leaves.
+
+>LOOK AT TIMETABLE
+
+(You'll find the timetable in your CHECKPOINT package.)
+
+[It should include:
+Glrp-Wien Express: 11.22 Frbz, 12.42 Knut, 13.37 Hrng, 14.39 Wien, 
+Znuk-Potrzebie Express: 13.00 Knut, 14.25 Grnz, 15.55 Gola, 17.07 Potrzebie, 
+]
+
+>PUT ALL IN POCKET
+
+pen: Okay.
+traveler's check: Okay.
+
+>LOOK THRU WINDOW
+
+The train is rocketing past a dark, violent river.
+
+>EXAMINE RIVER
+
+The train lurches a bit.
+The river splashes and swirls around huge granite boulders. In the center a
+dark current carries bits of foam swiftly along.
+
+>GO TO KITCHEN
+
+(galley)
+The galley is crowded with supplies and equipment. The locked cabinets are
+probably filled with food, kettles, and kitchen tools. There's a crowded
+counter for preparing food. If you want to find something, you'll have to
+search for it.
+There's a cook here, cooking.
+He makes a pushing motion with one hand and points forward with the other. He
+seems angry that you're invading his space.
+
+>SAY "HELLO"
+
+(I assume you mean: say to the cook.)
+He makes a pushing motion with one hand and points forward with the other. He
+seems angry that you're invading his space.
+
+(I assume you mean: hello cook.)
+He makes a pushing motion with one hand and points forward with the other. He
+seems angry that you're invading his space.
+
+>GIVE HIM MONEY
+
+(I assume you mean: the cook.)
+(Please be more specific.)
+
+>GIVE HIM *10
+
+(I assume you mean: the cook.)
+He accepts your gift and smiles broadly.
+
+>ASK HIM FOR A KNIFE
+
+(I assume you mean: the cook.)
+"O vubbobnets cho fim mush lizulpstevstu?"
+
+>FIND A KNIFE
+
+You find a knife in short order and take it.
+
+>POCKET IT
+
+(I assume you mean: the knife.)
+There's not enough room.
+
+>LOOK IN POCKET
+
+Your pocket contains a traveler's check, a pen, a miniature camera, your
+ticket, a timetable, and your passport.
+And some money.
+
+>FIND THE WAITER
+
+The train lurches a bit.
+(Who knows where he is now?)
+
+>LEAVE
+
+(rear end)
+[You're facing to the right side of the train.]
+This is the rear end of the corridor.
+The train is now steaming along the edge of a rocky precipice.
+
+>GO FORWARD
+
+(rear middle)
+[You're facing to the front.]
+This is the rear middle of the corridor. On the left side of the train lies the
+pantry.
+The waiter is in the pantry.
+
+>ENTER
+
+(pantry)
+[You're facing to the left side of the train.]
+The pantry is crowded with supplies and equipment. The locked cabinets are
+probably filled with dishes, tableware, and napkins. If you want to find
+something, you'll have to search for it.
+The waiter is here, chewing gum.
+He makes a pushing motion with one hand and points forward with the other. He
+seems angry that you're invading his space.
+
+>CASH CHECK
+
+The waiter gives you *20 in exchange for the check.
+He makes a pushing motion with one hand and points forward with the other. He
+seems angry that you're invading his space.
+
+>EXIT
+
+(rear middle)
+[You're facing to the right side of the train.]
+
+>PUT ALL IN POCKET
+
+knife: Okay.
+
+>GO TO RESTROOM
+
+(rear restroom)
+As you'd expect, the restroom is tidy but small, almost too small for comfort.
+But it does have the usual fixtures.
+
+>WASH
+
+(Sorry, but this story doesn't recognize the word "wash".)
+
+>SIT
+
+(on the toilet)
+The train lurches a bit.
+You're now sitting on it.
+
+>LOCK THE DOOR
+
+[You're facing to the left side of the train.]
+Okay, it is now locked.
+
+>WAIT
+
+(I assume you mean: wait 10 minutes.)
+Time passes...
+The train begins to slow down a bit.
+Do you want to keep waiting? >YES
+
+The time is now 14.35.
+
+>LEAVE THE ROOM
+
+You're not in here!
+
+>LEAVE
+
+(You stand up first.)
+(You unlock and open the restroom door and close it again.)
+(rear vestibule)
+A middle-aged couple are off to the rear.
+A cigarette machine stands in one corner, waiting to be either used or
+discarded -- it's hard to say which.
+
+The conductor cries, "Grnz," and the train glides to a halt in the station.
+
+>LEAVE THE TRAIN
+
+You notice a pair of customs inspectors boarding the train to search it.
+(platform)
+You are standing on the concrete platform of the Grnz railway station. A
+cantilevered roof looms overhead, with occasional drops of rain water falling
+from its edge. To the west is the entrance to the station house. To the east is
+a passenger train, the Znuk-Potrzebie Express, hissing and blowing off steam.
+The place is crowded with people milling about, searching for a certain
+passenger or the right car, or simply waiting.
+A customs agent is off to the north.
+The conductor is here, walking to the front of the train. He heads off to the
+north.
+
+>FOLLOW HIM
+
+(I assume you mean: the conductor.)
+[Debugging info: you are entering platform #2.]
+(platform)
+[You're facing to the north.]
+The customs agent is here, inspecting luggage and passports.
+A sign on the wall announces something in large, unfriendly letters.
+The conductor is here, still walking to the front of the train. He heads off to
+the north.
+He stops walking.
+
+>READ THE SIGN
+
+If you could read the language, it would say:
+"This is the CHECKPOINT. All passengers who are crossing the frontier must pass
+through customs inspection before boarding the train.
+CHECKPOINT is also a trademark and product of Infocom, Inc., with some
+narration by Bruce Schechter."
+
+>AGAIN
+
+If you could read the language, it would say:
+"This is the CHECKPOINT. All passengers who are crossing the frontier must pass
+through customs inspection before boarding the train.
+CHECKPOINT is also a trademark and product of Infocom, Inc., proofed by the
+Infocom Quality Assurance Dept."
+
+>AGAIN
+
+If you could read the language, it would say:
+"This is the CHECKPOINT. All passengers who are crossing the frontier must pass
+through customs inspection before boarding the train.
+CHECKPOINT is also a trademark and product of Infocom, Inc., dedicated to the
+late Sir Alfred Hitchcock."
+The fat man shows his passport and the briefcase to the customs agent.
+
+>AGAIN
+
+If you could read the language, it would say:
+"This is the CHECKPOINT. All passengers who are crossing the frontier must pass
+through customs inspection before boarding the train.
+CHECKPOINT is also a trademark and product of Infocom, Inc., written and
+directed by Stu Galley, with a little help from his friends."
+The fat man, carrying the briefcase, heads off to the north.
+He disappears up the steps.
+
+>BOARD THE TRAIN
+
+You have to pass the customs agent first.
+
+>PASS THE AGENT
+
+The customs agent makes a gesture, asking for your passport.
+
+>GIVE HIM IT
+
+(I assume you mean: your passport.)
+(I assume you mean: the customs agent.)
+The customs agent looks at you and your passport, barely suppresses a smirk,
+stamps it, and then gives it back to you.
+
+>PASS HIM
+
+(I assume you mean: the customs agent.)
+The customs agent makes a gesture, as if to say, "Empty your pocket."
+
+>EMPTY MY POCKET
+
+You are now holding the knife, the pen, the miniature camera, your ticket, and
+the timetable. 
+
+>PASS HIM
+
+(I assume you mean: the customs agent.)
+[Debugging info: you are entering platform #1.]
+He smiles approvingly.
+(platform)
+One part of the crowd catches your eye: There's a guard here, re-arranging
+luggage.
+
+>PUT ALL IN POCKET
+
+(Which pocket do you mean, the conductor's pocket or your pocket?)
+
+>MY
+
+timetable: Okay.
+your ticket: Okay.
+miniature camera: Okay.
+pen: Okay.
+knife: Okay.
+your passport: Okay.
+
+>EXAMINE CONDUCTOR
+
+He's helpful but suspicious, and doesn't want trouble in HIS jurisdiction.
+
+>EXAMINE GUARD
+
+She wears a military-style uniform proudly, even though it fits her poorly. She
+seems to be watching for suspicious activities, such as people looking at her
+or at other people too much.
+
+>BOARD THE TRAIN
+
+(rear vestibule)
+[You're facing to the right side of the train.]
+Okay.
+The train whistle blows once, and the conductor cries, "Gormnash floogle
+nomnets!"
+
+>FIND THE FAT MAN
+
+(Who knows where he is now?)
+
+>REAR
+
+[Debugging info: you are entering car #2.]
+(forward vestibule)
+[You're facing to the rear.]
+
+>REAR
+
+(You open the swinging door and close it again.)
+(forward end)
+This is the forward end of the corridor. On the left side of the train, behind
+a windowed door, lies the first compartment.
+The thin man and an old man are off to the rear.
+The regal woman is here, gazing out the window.
+A girl is off to the rear, heading toward you.
+
+>GO TO REAR VESTIBULE
+
+You have just started walking, when the girl gets in your way.
+(forward middle)
+This is the forward middle of the corridor. On the left side of the train,
+behind a windowed door, lies the second compartment.
+The thin man and the old man are off to the rear.
+The train slowly pulls out of Grnz station.
+There's a girl here, gazing out the window.
+She opens the compartment door for a moment and enters the second compartment.
+
+>AGAIN
+
+You have just started walking, when a thin man gets in your way.
+(middle)
+The thin man is here, reading a newspaper.
+There's an old man here, gazing out the window.
+Off to the rear the young man appears.
+
+>AGAIN
+
+You have just started walking, when the young man gets in your way.
+(rear middle)
+This is the rear middle of the corridor. On the left side of the train, behind
+a windowed door, lies the fourth compartment.
+The young man is here, still walking along. He heads off to the rear.
+The train is now speeding past a small town.
+
+>AGAIN
+
+You have just started walking, when the young man gets in your way.
+(rear end)
+A young couple and a young woman are in the fifth compartment.
+The young man is here, still walking along. He opens the swinging door for a
+moment and heads off to the rear.
+
+>R
+
+(You open the swinging door and close it again.)
+(rear vestibule)
+The young man is here, still walking along. He heads off to the rear.
+
+>R
+
+[Debugging info: you are entering car #3.]
+(forward vestibule)
+The young man is here, still walking along. He opens the swinging door for a
+moment and heads off to the rear.
+
+>R
+
+(You open the swinging door and close it again.)
+The relative quiet here is welcome. 
+(forward end)
+The young man is here, gazing out the window.
+He enters the first booth.
+
+>GO TO R VESTIB
+
+(I don't know the word "vestib".)
+
+>GO TO R VESTIBULE
+
+(rear vestibule)
+A middle-aged couple are off to the rear.
+A cigarette machine stands in one corner, waiting to be either used or
+discarded -- it's hard to say which.
+
+>R
+
+[Debugging info: you are entering car #4.]
+(forward vestibule)
+You notice a worn spot on the floor.
+The middle-aged couple are here, looking at you with suspicion.
+
+>HELLO
+
+You can't make yourself heard above the noise.
+
+>LISTEN
+
+(What do you want to listen to?)
+
+>NOISE
+
+(You don't need to use the word "noise" to finish this story.)
+
+>LISTEN TO TRAIN
+
+The clatter of the wheels on the track is almost deafening.
+
+>R
+
+(You open the swinging door and close it again.)
+The relative quiet here is welcome. 
+(forward end)
+
+>GO TO R END
+
+(rear end)
+
+>R
+
+(You open the swinging door and close it again.)
+(rear vestibule)
+
+>R
+
+[Debugging info: you are entering car #5.]
+(forward vestibule)
+
+>R
+
+(You open the swinging door and close it again.)
+The relative quiet here is welcome. 
+(forward end)
+The fat man, off to the rear, opens the compartment door for a moment and
+enters the fifth compartment.
+(The briefcase is already open!)
+
+>GO TO FIFTH COMPARTMENT
+
+Too bad, but the compartment door is locked.
+
+(rear end)
+[You're facing to the left side of the train.]
+The fat man is in the fifth compartment.
+
+>KNOCK 
+
+(What do you want to knock on?)
+
+>DOOR
+
+(Which door do you mean, the compartment door or the swinging door?)
+
+>C
+
+Someone shouts, "U quidglip jef nom jonjernashzrk glob floo?"
+
+>ANSWER "YES"
+
+Nobody seems to be waiting for an answer.
+
+>FIND THE OLD WOMAN
+
+(Who knows where she is now?)
+
+>LOOK AT TABLE
+
+(You'll find the timetable in your CHECKPOINT package.)
+
+[It should include:
+Glrp-Wien Express: 11.22 Frbz, 12.42 Knut, 13.37 Hrng, 14.39 Wien, 
+Znuk-Potrzebie Express: 13.00 Knut, 14.25 Grnz, 15.55 Gola, 17.07 Potrzebie, 
+]
+
+>R
+
+(You open the swinging door and close it again.)
+(rear vestibule)
+[You're facing to the rear.]
+There's an attractive woman here, gazing out the window.
+The train is now rocketing through a mysterious forest.
+
+>R
+
+The train lurches a bit.
+(This is the last car of the train.)
+
+>KISS HER
+
+(I assume you mean: the attractive woman.)
+She slaps you right back. Wow, is your face red!
+
+>F
+
+(You open the swinging door and close it again.)
+The relative quiet here is welcome. 
+(rear end)
+[You're facing to the front.]
+The fat man is in the fifth compartment.
+Off to the front a boy appears.
+
+>FOLLOW HIM
+
+(Be specific: what thing do you want to follow?)
+
+>BOY
+
+(rear middle)
+The boy is here, walking along. He heads off to the front.
+
+>BOY!
+
+He turns toward you.
+The boy is off to the front, heading away from you.
+
+>GO TO HIM
+
+(Be specific: what thing do you want to go?)
+
+>BOY
+
+(forward middle)
+The boy is here, walking along. He heads off to the front.
+
+>BOY, STOP!
+
+He looks around fearfully but says nothing.
+
+>F
+
+(forward end)
+An old couple are in the first compartment.
+The boy is here, still walking along. 
+>ASK BOY FOR HELP
+
+(Sorry, but I don't understand the word "help" when you use it that way.)
+
+>ASK BOY FOR A NEWSPAPER
+
+"I frobzitfrppro bri?"
+
+>ANSWER "YES"
+
+Nobody seems to be waiting for an answer.
+
+>GO TO MIDDLE
+
+The train lurches a bit.
+(middle)
+[You're facing to the rear.]
+
+>WAIT FOR FAT MAN
+
+Time passes...
+The train is now rocketing along a barren stubble-plain.
+The conductor stops here to punch tickets.
+Do you want to keep waiting? >Y
+
+He makes a gesture, asking for your ticket.
+A girl opens the compartment door for a moment and walks past you.
+Do you want to keep waiting? >Y
+
+He makes a gesture again, asking for your ticket.
+She heads off to the front.
+Do you want to keep waiting? >Y
+
+He makes a gesture strongly, asking for your ticket.
+Do you want to keep waiting? >NO
+
+The time is now 15.41.
+
+>GIVE HIM THE TICKET
+
+(I assume you mean: the conductor.)
+The conductor punches your ticket and then gives it back to you.
+
+>WAIT FOR FAT MAN
+
+Time passes...
+The conductor, off to the rear, stops to punch tickets.
+Do you want to keep waiting? >Y
+
+The train begins to slow down a bit.
+Do you want to keep waiting? >Y
+
+The conductor cries, "Gola," and the train glides to a halt in the station.
+Do you want to keep waiting? >NO
+
+The time is now 15.55.
+
+>GO TO REAR END
+
+(rear end)
+The fat man is in the fifth compartment.
+
+>ENTER
+
+Too bad, but the compartment door is locked.
+
+>LEAVE THE TRAIN
+
+(rear vestibule)
+[You're facing to the rear.]
+The attractive woman is here, still gazing out the window.
+(platform)
+You are standing at the south end of the concrete platform of the Gola railway
+station. A cantilevered roof looms overhead, with occasional drops of rain
+water falling from its edge. To the west is the luggage room. To the east is a
+passenger train, the Znuk-Potrzebie Express, hissing and blowing off steam. The
+place is crowded with people milling about, searching for a certain passenger
+or the right car, or simply waiting.
+One part of the crowd catches your eye: There's an old man here, chewing gum.
+
+>FIND THE OLD WOMAN
+
+(Who knows where she is now?)
+
+>WALK NORTH
+
+[Debugging info: you are entering platform #4.]
+(platform)
+[You're facing to the north.]
+One part of the crowd catches your eye: There's an old couple here, looking at
+you with suspicion.
+The conductor stops walking.
+
+>AGAIN
+
+[Debugging info: you are entering platform #3.]
+(platform)
+One part of the crowd catches your eye: There's a young man here, checking a
+timetable.
+
+>AGAIN
+
+[Debugging info: you are entering platform #2.]
+(platform)
+One part of the crowd catches your eye: There's an old woman here, looking up
+and down the platform.
+
+>SHOW THE PEN TO HER
+
+(I assume you mean: the old woman.)
+A guard seems to notice your actions.
+The old woman listens to you expectantly.
+
+>SAY "RED HANDKERCHIEF"
+
+The guard approaches you and makes a gesture, asking for your passport.
+The old woman whispers, "I was expecting someone else, but you must be the
+courier. Please give me the document now."
+
+>GIVE THE CAMERA TO THE OLD WOMAN
+
+The guard makes a gesture strongly, asking for your passport.
+The old woman quickly inspects the cassette of film and then pumps your hand
+with obvious gratitude. "Only a few people will ever know the great value of
+the service you've just performed. Probably even you don't know the full
+implications. But be assured that you deserve the thanks of the whole world."
+
+
+Would you like to:
+   RESTORE your place from where you saved it,
+   RESTART the story from the beginning, or
+   QUIT for now?
+>QUIT
+

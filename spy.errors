@@ -1,0 +1,27 @@
+Assembling SPY.XZAP.7 on Wednesday, July 24, 1985 14:52:05
+Release: 17
+
+    64	Inserting SPYFREQ.XZAP.3	   (646 bytes)
+   710	Inserting SPYDAT.ZAP.17	 (30388 bytes)
+ 31098	Inserting MACROS.ZAP.1	   (906 bytes)
+ 32004	Inserting SYNTAX.ZAP.1	     (0 bytes)
+ 32004	Inserting MAIN.ZAP.1	  (3737 bytes)
+ 35741	Inserting PARSER.ZAP.2	 (10731 bytes)
+ 46472	Inserting THINGS.ZAP.1	  (5208 bytes)
+ 51680	Inserting PEOPLE.ZAP.1	  (6659 bytes)
+ 58339	Inserting PLACES.ZAP.1	   (636 bytes)
+ 58975	Inserting GLOBAL.ZAP.1	  (3788 bytes)
+ 62763	Inserting CLOCK.ZAP.1	   (214 bytes)
+ 62977	Inserting VERBS.ZAP.1	 (19170 bytes)
+ 82147	Inserting TRAIN.ZAP.1	 (11501 bytes)
+ 93648	Inserting CARS.ZAP.1	  (1590 bytes)
+ 95238	Inserting STATION.ZAP.1	  (2166 bytes)
+ 97404	Inserting GOAL.ZAP.1	  (9810 bytes)
+107214	Inserting SPIES.ZAP.1	 (11651 bytes)
+118865	Inserting SPYSTR.ZAP.17	  (6035 bytes)
+301 objects.
+233 globals.
+882 word vocabulary.
+
+124900 bytes (122K).
+ 29862 bytes of preload.

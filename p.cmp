@@ -1,0 +1,248 @@
+**** FILE PS:<S5>PARSER.ZIL.30, 1-1 (0)
+**** FILE PS:<SWG>PARSER.ZIL.85, 1-1 (0)
+<GLOBAL P-DIR 0> 
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 1-89 (1651)
+**** FILE PS:<SWG>PARSER.ZIL.85, 2-56 (1976)
+<GLOBAL P-WON <>>
+<ROUTINE VERB-ALL-TEST (OBJ1 OBJ)	;"OBJ1=PRSO OBJ=PRSI"
+ <COND (<VERB? DROP GIVE>
+	<COND (<EQUAL? .OBJ1 ,POCKET>
+	       <RFALSE>)
+	      (<OR <IN? .OBJ1 ,WINNER> ;<IN? ,P-IT-OBJECT ,WINNER>>
+	       <RTRUE>)
+	      ;(T <RFALSE>)>)
+       (<VERB? PUT PUT-IN>
+	<COND (<EQUAL? .OBJ1 ,POCKET>
+	       <RFALSE>)
+	      (<NOT <HELD? .OBJ1 .OBJ>>
+	       <RTRUE>)
+	      ;(T <RFALSE>)>)
+       (<VERB? TAKE>
+	<COND (<AND <NOT <FSET? .OBJ1 ,TAKEBIT>>
+		    <NOT <FSET? .OBJ1 ,TRYTAKEBIT>>>
+	       <RFALSE>)
+	      (<NOT <ZERO? .OBJ>>
+	       <COND (<IN? .OBJ1 .OBJ>
+		      <RTRUE>)
+		     ;(T <RFALSE>)>)
+	      (<EQUAL? <LOC .OBJ1> ,WINNER ,HERE>
+	       <RTRUE>)
+	      (<FSET? <LOC .OBJ1> ,SURFACEBIT>
+	       <RTRUE>)
+	      ;(T <RFALSE>)>)
+       (<NOT <ZERO? .OBJ>>
+	<COND (<NOT <==? .OBJ1 .OBJ>>
+	       <RTRUE>)
+	      ;(T <RFALSE>)>)
+       (T <RTRUE>)>>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 2-7 (2236)
+**** FILE PS:<SWG>PARSER.ZIL.85, 4-122 (20094)
+	<SETG P-NUMBER -1>
+	<SETG P-NAM <>>
+	<SETG P-ADJ <>>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 2-154 (6879)
+	<COND (,P-OFLAG
+	       <ORPHAN-MERGE>)>
+	<SETG P-WALK-DIR <>>>
+**** FILE PS:<SWG>PARSER.ZIL.85, 4-317 (26593)
+	<SETG P-WALK-DIR <>>
+	<COND (<AND ,P-OFLAG
+		    <ORPHAN-MERGE>>
+	       <SETG WINNER .OWINNER>)>
+	<COND (<==? <GET ,P-ITBL ,P-VERB> 0>
+	       <PUT ,P-ITBL ,P-VERB ,ACT?$CALL>)>>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 2-220 (9379)
+			     ;"This next clause was 2 clauses further down"
+			     ;"This attempts to fix EDDIE, TURN ON COMPUTER"
+			     (<AND .ANDFLG
+				   <EQUAL? <GET ,P-ITBL ,P-VERB> 0>>
+**** FILE PS:<SWG>PARSER.ZIL.85, 5-63 (29606)
+			     ;"3/16/83: This clause used to be later."
+			     (<AND .ANDFLG
+				   <OR ;"3/25/83: next statement added."
+				       <EQUAL? <GET ,P-ITBL ,P-VERBN> 0>
+				       ;"10/26/84: next stmt changed"
+				       <VERB-DIR-ONLY? .WRD>>>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 2-245 (10269)
+			     ;(<AND <OR ,P-MERGED
+**** FILE PS:<SWG>PARSER.ZIL.85, 5-90 (30506)
+			     (<AND <OR ,P-MERGED
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 2-252 (10536)
+			     (<OR <WT? .WRD ,PS?ADJECTIVE>
+				  <WT? .WRD ,PS?BUZZ-WORD>>)
+**** FILE PS:<SWG>PARSER.ZIL.85, 5-95 (30685)
+			     (<AND .ANDFLG
+				   <EQUAL? <GET ,P-ITBL ,P-VERB> 0>>
+			      <SET PTR <- .PTR 4>>
+			      <PUT ,P-LEXV <+ .PTR 2> ,W?THEN>
+			      <SETG P-LEN <+ ,P-LEN 2>>)
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 2-270 (11096)
+**** FILE PS:<SWG>PARSER.ZIL.85, 5-123 (31557)
+<GLOBAL P-DIRECTION 0>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 3-18 (12217)
+**** FILE PS:<SWG>PARSER.ZIL.85, 6-23 (33526)
+	 (<AND ,P-CONT
+	       <==? .VERB ,ACT?TELL>>
+	  <RFALSE>)
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 3-23 (12370)
+			<PUT ,P-OTBL ,P-NC1 <REST ,P-LEXV 2>>
+			<COND (<0? <GET ,P-ITBL ,P-NC1L>>
+			       <PUT ,P-ITBL ,P-NC1L <REST ,P-LEXV 6>>)>
+			<COND (<0? ,P-NCN> <SETG P-NCN 1>)>)
+		       (T
+			<PUT ,P-OTBL ,P-NC1 <GET ,P-ITBL ,P-NC1>>)>
+**** FILE PS:<SWG>PARSER.ZIL.85, 6-31 (33742)
+			<PUT ,P-OTBL ,P-NC1 <REST ,P-LEXV 2>>)
+		       (T
+			<PUT ,P-OTBL ,P-NC1 <GET ,P-ITBL ,P-NC1>>)>
+		 <COND (<0? <GET ,P-ITBL ,P-NC1L>>
+			<PUT ,P-ITBL ,P-NC1L <REST ,P-LEXV 6>>)>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 3-37 (12873)
+			<PUT ,P-ITBL ,P-NC1 <REST ,P-LEXV 2>>
+			<COND (<0? <GET ,P-ITBL ,P-NC1L>>
+			       <PUT ,P-ITBL ,P-NC1L <REST ,P-LEXV 6>>)>)>
+		 <PUT ,P-OTBL ,P-NC2 <GET ,P-ITBL ,P-NC1>>
+**** FILE PS:<SWG>PARSER.ZIL.85, 6-43 (34155)
+			<PUT ,P-ITBL ,P-NC1 <REST ,P-LEXV 2>>)>
+		 <PUT ,P-OTBL ,P-NC2 <GET ,P-ITBL ,P-NC1>>
+		 <COND (<0? <GET ,P-ITBL ,P-NC1L>>
+			<PUT ,P-ITBL ,P-NC1L <REST ,P-LEXV 6>>)>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 3-82 (14311)
+   ;<AND <NOT <==? <GET ,P-OTBL ,P-NC2> 0>> <SETG P-NCN 2>>
+**** FILE PS:<SWG>PARSER.ZIL.85, 6-88 (35577)
+   <COND (<NOT <==? <GET ,P-OTBL ,P-NC2> 0>> <SETG P-NCN 2>)
+	 (T <SETG P-NCN 1>)>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 5-47 (17784)
+	      (<NOT <==? ,WINNER ,PROTAGONIST>>
+	       <CANT-ORPHAN>)
+	      (T
+	       <ORPHAN .DRIVE1 .DRIVE2>
+	       <TELL "What do you want to ">
+	       <SET TMP <GET ,P-OTBL ,P-VERBN>>
+	       <COND (<EQUAL? .TMP 0>
+		      <TELL "tell">)
+**** FILE PS:<SWG>PARSER.ZIL.85, 8-50 (40244)
+	      (T
+	       <COND (<EQUAL? ,WINNER ,PLAYER>
+		      <ORPHAN .DRIVE1 .DRIVE2>
+		      <TELL "(Wh"
+			    <COND (<EQUAL? .VERB ,ACT?WALK ,ACT?FACE> "ere")
+				  (T "at")>
+			    " do you want to ">)
+		     (T
+		      <TELL
+"(Your command was not complete. Next time, type wh"
+<COND (<EQUAL? .VERB ,ACT?WALK ,ACT?FACE> "ere") (T "at")>
+" you want" THE ,WINNER " to ">)>
+	       <VERB-PRINT>
+	       <COND (.DRIVE2
+		      <CLAUSE-PRINT ,P-NC1 ,P-NC1L>)>
+	       <PREP-PRINT <COND (.DRIVE1 <GETB .DRIVE1 ,P-SPREP1>)
+				 (T <GETB .DRIVE2 ,P-SPREP2>)>>
+	       <COND (<EQUAL? ,WINNER ,PLAYER>
+		      <SETG P-OFLAG T>
+		      <TELL "?)" CR>)
+		     (T
+		      <SETG P-OFLAG <>>
+		      <TELL ".)" CR>)>
+	       <RFALSE>)>>
+<ROUTINE DONT-UNDERSTAND ()
+	<TELL
+"(Sorry, but I don't understand. Please reword that or try something else.)"
+CR>>
+<ROUTINE VERB-PRINT ("AUX" TMP)
+	<SET TMP <GET ,P-ITBL ,P-VERBN>>	;"? ,P-OTBL?"
+	<COND (<==? .TMP 0> <TELL "tell">)
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 5-62 (18271)
+		      <PUTB ,P-VTBL 2 0>)>
+	       <COND (.DRIVE2
+		      <CLAUSE-PRINT ,P-NC1 ,P-NC1L>)>
+	       <SETG P-OFLAG T>
+	       <PREP-PRINT <COND (.DRIVE1 <GETB .DRIVE1 ,P-SPREP1>)
+				 (T <GETB .DRIVE2 ,P-SPREP2>)>>
+	       <TELL "?" CR>
+	       <RFALSE>)>>
+**** FILE PS:<SWG>PARSER.ZIL.85, 8-90 (41487)
+	       <PUTB ,P-VTBL 2 0>)>>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 8-19 (23978)
+**** FILE PS:<SWG>PARSER.ZIL.85, 11-20 (48448)
+<GLOBAL P-ADJN <>>  
+<GLOBAL P-XADJN <>>    
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 9-3 (24357)
+<ROUTINE SNARFEM (...)
+**** FILE PS:<SWG>PARSER.ZIL.85, 12-2 (48905)
+<ROUTINE SNARFEM (... WV)
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 9-46 (25706)
+			(<AND <WT? .WRD ,PS?ADJECTIVE>
+			      <NOT ,P-ADJ>>
+			 <SETG P-ADJ .WRD>)>)>>>		
+**** FILE PS:<SWG>PARSER.ZIL.85, 12-54 (50492)
+			(<AND <SET WV <WT? .WRD ,PS?ADJECTIVE ,P1?ADJECTIVE>>
+			      <NOT ,P-ADJ>>
+			 <SETG P-ADJ .WV>
+			 <SETG P-ADJN .WRD>)>)>>>   
+ 
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 9-79 (26371)
+<ROUTINE GET-OBJECT (TBL "OPTIONAL" (VRB T)
+		       "AUX" GEN BITS LEN XBITS TLEN (GCHECK <>) (OLEN 0) OBJ)
+	 ...
+	 <COND (<AND <NOT ,P-NAM> ,P-ADJ <WT? ,P-ADJ ,PS?OBJECT>>
+		<SETG P-NAM ,P-ADJ>
+		<SETG P-ADJ <>>)>
+**** FILE PS:<SWG>PARSER.ZIL.85, 13-2 (50989)
+<ROUTINE GET-OBJECT (TBL
+		    "OPTIONAL" (VRB T)
+		    "AUX" BTS LEN XBITS TLEN (GCHECK <>) (OLEN 0) OBJ ADJ)
+ ...
+ <SET ADJ ,P-ADJN>
+ <COND (<AND <NOT ,P-NAM> ,P-ADJ>
+	<COND (<WT? ,P-ADJN ,PS?OBJECT>
+	       <SETG P-NAM ,P-ADJN>
+	       <SETG P-ADJ <>>)
+	      (<SET BTS <WT? ,P-ADJN ,PS?DIRECTION ,P1?DIRECTION>>
+	       <SETG P-ADJ <>>
+	       <PUT .TBL ,P-MATCHLEN 1>
+	       <PUT .TBL 1 ,INTDIR>
+	       <SETG P-DIRECTION .BTS>
+	       <RTRUE>)>)>
+***************
+
+**** FILE PS:<S5>PARSER.ZIL.30, 9-170 (29350)
+**** FILE PS:<SWG>PARSER.ZIL.85, 13-96 (53976)
+		       <SETG P-XADJN ,P-ADJN>
+		       <SETG P-ADJN <>>
+***************

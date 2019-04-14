@@ -1,0 +1,614 @@
+"STATION for CHECKPOINT
+Copyright (C) 1985 Infocom, Inc.  All rights reserved."
+
+<ROUTINE ON-PLATFORM? (RM)
+ <COND (<OR <EQUAL? .RM ,PLATFORM-A ,PLATFORM-B ,PLATFORM-C>
+	    <EQUAL? .RM ,PLATFORM-D ,PLATFORM-E>>
+	<GETP .RM ,P?CAR>)>>
+
+<OBJECT PLATFORM-GLOBAL
+	(LOC GLOBAL-OBJECTS)
+	(DESC "platform")
+	(SYNONYM PLATFORM)
+	(ACTION PLATFORM-GLOBAL-F)>
+
+<ROUTINE PLATFORM-GLOBAL-F ("AUX" P)
+ <COND (<AND <VERB? WALK-TO> ,ON-TRAIN>
+	<PERFORM ,V?LEAVE ,TRAIN>
+	<RTRUE>)
+       (<ON-PLATFORM? ,HERE>
+	<DO-INSTEAD-OF ,HERE ,PLATFORM-GLOBAL>
+	<RTRUE>)
+       (<ZMEMQ ,HERE ,STATION-ROOMS>
+	<DO-INSTEAD-OF <GET ,STATION-ROOMS <GETP ,HERE ,P?CAR>>
+		       ,PLATFORM-GLOBAL>
+	<RTRUE>)
+       (<AND ,ON-TRAIN ,IN-STATION <GLOBAL-IN? ,SCENERY-LEFT ,HERE>>
+	<DO-INSTEAD-OF <GET ,STATION-ROOMS ,CAR-HERE>
+		       ,PLATFORM-GLOBAL>
+	<RTRUE>)>>
+
+<ROOM PLATFORM-A
+	(LOC ROOMS)
+	(CAR 1)
+	(FLAGS ONBIT SURFACEBIT)
+	(DESC "platform")
+	(SYNONYM PLATFORM)
+	;(LDESC "You are standing on the platform of the railway station.")
+	(UP PER EMBARK-F)
+	(EAST PER EMBARK-F)
+	(NORTH SORRY "This is the end of the platform.")
+	(SOUTH PER UNPASS-CUSTOMS-F)
+	(WEST	TO REST-ROOM-MEN ;"ENTER-STATION-F")
+	(IN	TO REST-ROOM-MEN ;"ENTER-STATION-F")
+	(GLOBAL ;WINDOW-0 WINDOW-1 WINDOW-2 WINDOW-3
+		WINDOW-4 WINDOW-5 ;WINDOW-N CROWD)
+	(CORRIDOR 4)
+	(LINE 4)
+	(STATION PLATFORM-A)
+	(DESCFCN PLATFORM-F)
+	(ACTION PLATFORM-F)>
+
+<ROUTINE PASS-CUSTOMS-F ()
+ <COND (<NOT ,CUSTOMS-SWEEP>
+	<NEXT-CAR-SWITCHEROO ,CAR-HERE <GETP ,PLATFORM-A ,P?CAR>>
+	,PLATFORM-A)
+       (<FSET? ,PASSPORT ,LOCKED>
+	<TELL
+CTHE ,CUSTOMS-AGENT " makes a gesture, asking for " D ,PASSPORT "." CR>
+	<THIS-IS-IT ,PASSPORT>
+	<THIS-IS-IT ,CUSTOMS-AGENT>
+	<RFALSE>)
+       (<AND <NOT ,BRIEFCASE-PASSED> <IN? ,BRIEFCASE ,PLAYER>>
+	<TELL CTHE ,CUSTOMS-AGENT " makes a gesture, ">
+	<COND (<FSET? ,BRIEFCASE ,OPENBIT>
+	       <TELL "pointing at" HIM ,BRIEFCASE "." CR>)
+	      (T
+	       <TELL "as if to say, \"Open" HIM ,BRIEFCASE ".\"" CR>)>
+	<THIS-IS-IT ,BRIEFCASE>
+	<THIS-IS-IT ,CUSTOMS-AGENT>
+	<RFALSE>)
+       (<FIRST? ,POCKET>
+	<TELL
+CTHE ,CUSTOMS-AGENT " makes a gesture, as if to say, \"Empty " D ,POCKET ".\""
+CR>
+	<THIS-IS-IT ,POCKET>
+	<THIS-IS-IT ,CUSTOMS-AGENT>
+	<RFALSE>)
+       (<IN? ,MCGUFFIN ,PLAYER>
+	<START-SENTENCE ,CUSTOMS-AGENT>
+	<TELL " confiscates" HIM ,MCGUFFIN " and arrests you!" CR>
+	<FINISH>)
+       (<IN? ,GUN ,PLAYER>
+	<START-SENTENCE ,CUSTOMS-AGENT>
+	<TELL " confiscates" HIM ,GUN " and arrests you!" CR>
+	<FINISH>)
+       (T
+	<FLUSH? ,CAR-ROOMS <>		<> <>>
+	<FLUSH? ,CAR-ROOMS T		<> <>>
+	<FLUSH? ,CAR-ROOMS-DINER <>	<> <>>
+	<FLUSH? ,CAR-ROOMS-FANCY <>	<> <>>
+	;<COND (<NOT <FSET? <LOC ,BRIEFCASE> ,PERSONBIT>>
+	       <NOT <IN? ,BRIEFCASE ,PLAYER>>
+	       <MOVE ,BRIEFCASE ,LIMBO-FWD>)>
+	<ENABLE <QUEUE I-DEPART-WARNING 5 ;<GETP ,SCENERY-OBJ ,P?SIZE>>>
+	<NEXT-CAR-SWITCHEROO ,CAR-HERE <GETP ,PLATFORM-A ,P?CAR>>
+	<TELL CHE ,CUSTOMS-AGENT smile " approvingly." CR>
+	,PLATFORM-A)>>
+
+<ROUTINE UNPASS-CUSTOMS-F ()
+ <COND (<AND ,CUSTOMS-SWEEP ,IN-STATION>
+	<TELL CTHE ,GUARD " prevents you and points to the train." CR>
+	<RFALSE>)
+       (T
+	<NEXT-CAR-SWITCHEROO ,CAR-HERE <GETP ,PLATFORM-B ,P?CAR>>
+	,PLATFORM-B)>>
+
+<ROOM PLATFORM-B
+	(LOC ROOMS)
+	(CAR 2)
+	(FLAGS ONBIT SURFACEBIT)
+	(DESC "platform")
+	(SYNONYM PLATFORM)
+	;(LDESC "You are standing on the platform of the railway station.")
+	(UP PER EMBARK-F)
+	(EAST PER EMBARK-F)
+	(NORTH PER PASS-CUSTOMS-F)
+	(SOUTH PER NEXT-PLATFORM-TO-REAR-F)
+	(WEST	TO REST-ROOM-WOMEN ;"ENTER-STATION-F")
+	(IN	TO REST-ROOM-WOMEN ;"ENTER-STATION-F")
+	(GLOBAL ;WINDOW-0 WINDOW-1 WINDOW-2 WINDOW-3
+		WINDOW-4 WINDOW-5 ;WINDOW-N CROWD)
+	(CORRIDOR 4 ;*14*)
+	(LINE 4)
+	(STATION PLATFORM-B)
+	(DESCFCN PLATFORM-F)
+	(ACTION PLATFORM-F)>
+
+<ROUTINE NEXT-PLATFORM-TO-REAR-F () <NEXT-PLATFORM-F +1>>
+
+<ROUTINE NEXT-PLATFORM-TO-FWD-F  () <NEXT-PLATFORM-F -1>>
+
+<ROUTINE NEXT-PLATFORM-F (D "AUX" N)
+	<SET N <+ .D <GETP ,HERE ,P?CAR> ;<ZMEMQ ,HERE ,STATION-ROOMS>>>
+	<NEXT-CAR-SWITCHEROO ,CAR-HERE .N>
+	<GET ,STATION-ROOMS .N>>
+
+<ROOM PLATFORM-C
+	(LOC ROOMS)
+	(CAR 3)
+	(FLAGS ONBIT SURFACEBIT)
+	(DESC "platform")
+	(SYNONYM PLATFORM)
+	;(LDESC "You are standing on the platform of the railway station.")
+	(UP PER EMBARK-F)
+	(EAST PER EMBARK-F)
+	(NORTH PER NEXT-PLATFORM-TO-FWD-F)
+	(SOUTH PER NEXT-PLATFORM-TO-REAR-F)
+	(WEST TO WAITING-ROOM ;"ENTER-STATION-F")
+	(IN TO WAITING-ROOM ;"ENTER-STATION-F")
+	(GLOBAL ;WINDOW-0 WINDOW-1 WINDOW-2 WINDOW-3
+		WINDOW-4 WINDOW-5 ;WINDOW-N CROWD)
+	(CORRIDOR *24* ;*34*)
+	(LINE 4)
+	(STATION PLATFORM-C)
+	(DESCFCN PLATFORM-F)
+	(ACTION PLATFORM-F)>
+
+<ROOM PLATFORM-D
+	(LOC ROOMS)
+	(CAR 4)
+	(FLAGS ONBIT SURFACEBIT)
+	(DESC "platform")
+	(SYNONYM PLATFORM)
+	;(LDESC "You are standing on the platform of the railway station.")
+	(UP PER EMBARK-F)
+	(EAST PER EMBARK-F)
+	(NORTH PER NEXT-PLATFORM-TO-FWD-F)
+	(SOUTH PER NEXT-PLATFORM-TO-REAR-F)
+	;(WEST PER ENTER-STATION-F)
+	;(IN PER ENTER-STATION-F)
+	(GLOBAL ;WINDOW-0 WINDOW-1 WINDOW-2 WINDOW-3
+		WINDOW-4 WINDOW-5 ;WINDOW-N CROWD)
+	(CORRIDOR *20* ;*30*)
+	(LINE 4)
+	(STATION PLATFORM-D)
+	(DESCFCN PLATFORM-F)
+	(ACTION PLATFORM-F)>
+
+<ROOM PLATFORM-E
+	(LOC ROOMS)
+	(CAR 5)
+	(FLAGS ONBIT SURFACEBIT)
+	(DESC "platform")
+	(SYNONYM PLATFORM)
+	(UP PER EMBARK-F)
+	(EAST PER EMBARK-F)
+	(NORTH PER NEXT-PLATFORM-TO-FWD-F)
+	(SOUTH SORRY "This is the end of the platform.")
+	(WEST TO LUGGAGE-ROOM ;"ENTER-STATION-F")
+	(IN TO LUGGAGE-ROOM ;"ENTER-STATION-F")
+	(GLOBAL ;WINDOW-0 WINDOW-1 WINDOW-2 WINDOW-3
+		WINDOW-4 WINDOW-5 ;WINDOW-N CROWD)
+	(CORRIDOR *20*)
+	(LINE 4)
+	(STATION PLATFORM-E)
+	(DESCFCN PLATFORM-F)
+	(ACTION PLATFORM-F)>
+
+<CONSTANT PLATFORM-MIN 1>
+<CONSTANT PLATFORM-STA 3>
+<CONSTANT PLATFORM-MAX 5>
+
+<ROUTINE PLATFORM-F ("OPTIONAL" (RARG <>) P)
+ <COND (<EQUAL? .RARG ,M-LOOK>
+	<FSET ,PLATFORM-A ,TOUCHBIT>
+	<FSET ,PLATFORM-B ,TOUCHBIT>
+	<FSET ,PLATFORM-C ,TOUCHBIT>
+	<FSET ,PLATFORM-D ,TOUCHBIT>
+	<FSET ,PLATFORM-E ,TOUCHBIT>
+	<TELL "You are standing ">
+	<COND (<==? ,HERE ,PLATFORM-A>
+	       <TELL "at the north end of ">)
+	      (<==? ,HERE ,PLATFORM-E>
+	       <TELL "at the south end of ">)
+	      (T <TELL "on ">)>
+	<TELL
+"the concrete platform of the " D ,SCENERY-OBJ " railway station. A
+cantilevered roof looms overhead, with occasional drops of rain water
+falling from its edge. To the west is the ">
+	<COND (<==? ,HERE ,PLATFORM-A>
+	       <PRINTD ,REST-ROOM-MEN>)
+	      (<==? ,HERE ,PLATFORM-B>
+	       <PRINTD ,REST-ROOM-WOMEN>)
+	      (<==? ,HERE ,PLATFORM-E>
+	       <PRINTD ,LUGGAGE-ROOM>)
+	      (T
+	       <COND (<==? ,HERE ,PLATFORM-C>
+		      <TELL "entrance to ">)
+		     (T <TELL "wall of ">)>
+	       <TELL "the station house">)>
+	<TELL ". To the east ">
+	<COND (,IN-STATION
+	       <TELL "is a passenger train, the " ,TRAIN-NAME>
+	       <COND (T ;<==? ,HERE ,PLATFORM-A>
+		      <TELL ", hissing and blowing off steam">)>)
+	      (T <TELL "are the train tracks">)>
+	<TELL
+". The place is crowded with people milling about, searching
+for a certain passenger or the right car, or simply waiting." CR>)
+       (<EQUAL? .RARG ,M-BEG>
+	<COND (<EXIT-VERB?>
+	       <COND (<HARD?>
+		      <SET P <FIND-FLAG-HERE ,PERSONBIT
+					     ,PLAYER>>)
+		     (T
+		      <SET P <FIND-FLAG-HERE ,PERSONBIT
+					     ,PLAYER ,CONTACT ,BAD-SPY>>)>
+	       <COND (<AND .P
+			   <NOT <IN-MOTION? .P T>>
+			   ;<==? ,EXTRA-C <GETP .P ,P?CHARACTER>>>
+		      <COND (<AND <EQUAL? .P ,GUARD>
+				  <NOT <ZERO? ,GUARD-SUSPICION>>
+				  <FSET? ,GUARD ,TOUCHBIT>>
+			     <FCLEAR ,GUARD ,TOUCHBIT>
+			     <PUTP ,GUARD ,P?LDESC 10 ;"looking up and down">
+			     <TELL "You lose the guard in the crowd." CR>)>
+		      <FSET .P ,NDESCBIT>)>
+	       <RFALSE>)>)
+       (<EQUAL? .RARG ,M-END>
+	<CROWD-F T>
+	<RFALSE>)
+       (<EQUAL? .RARG ,M-ENTER>
+	<COND (<AND ,CUSTOMS-SWEEP
+		    ,IN-STATION
+		    <NOT <ON-PLATFORM? <LOC ,CONDUCTOR>>>
+		    <NOT <QUEUED? ,I-TRAIN-ARREST>>>
+	       <CONDUCTOR-OFF <GET ,GOAL-TABLES ,CONDUCTOR-C> <>>
+	       <RFALSE>)>)
+       (.RARG <RFALSE>)
+       (<VERB? EXAMINE ;LOOK-INSIDE>
+	<COND (<NOT <IN? ,CONTACT ,HERE>>
+	       <CALL-FOR-EXTRA ,HERE>)>
+	<RFALSE>)>>
+
+<ROUTINE NO-EMBARK-TEST ()
+  <COND (<NOT ,IN-STATION>		<RFALSE>)
+	(<NOT ,CUSTOMS-SWEEP>		<RFALSE>)
+	(<FSET? ,PASSPORT ,LOCKED>	<RTRUE>)
+	;(<FIRST? ,POCKET>		<RTRUE>)
+	(<NOT <==? ,HERE ,PLATFORM-A>>	<RTRUE>)
+	(,BRIEFCASE-PASSED		<RFALSE>)
+	(<IN? ,BRIEFCASE ,WINNER>
+	 ;<==? ,HERE <META-LOC ,BRIEFCASE>>
+	 <RTRUE>)>>
+
+<ROUTINE EMBARK-F ()
+ <COND (<NO-EMBARK-TEST>
+	<TELL "You have to pass" HIM ,CUSTOMS-AGENT " first." CR>
+	<RFALSE>)
+       (<OR ,IN-STATION <==? ,HERE ,BESIDE-TRACKS>>
+	<SETG ON-TRAIN T>
+	<COND (,PULLED-STOP-CORD	;"JIGS-UP!"
+	       <I-TRAIN-ARREST>)>
+	<COND (<NOT <FSET? ,PEN ,TOUCHBIT>>
+	       <FSET ,PEN ,NDESCBIT>
+	       ;<MOVE ,PEN ,WAITER>)>
+	;<COND (,IN-STATION
+	       <NEXT-CAR-SWITCHEROO ,CAR-HERE <GETP ,HERE ,P?CAR>>)>
+	<RETURN <V-REAR ,CAR-HERE>>)
+       (T 
+	<TELL "Walking on the tracks looks too dangerous!" CR>
+	<RFALSE>)>>
+
+<OBJECT CROWD
+	(LOC LOCAL-GLOBALS)
+	(DESC "crowd of people")
+	(SYNONYM CROWD PEOPLE PASSENGER)
+	(LDESC "The place is crowded with people.")
+	(ACTION CROWD-F)>
+
+<ROUTINE CROWD-F ("OPTIONAL" (ARG <>) "AUX" OBJ)
+ <COND (<OR .ARG <VERB? EXAMINE LOOK-INSIDE LOOK-THROUGH SEARCH SEARCH-FOR>>
+	<COND (<OR <AND <IN? <SET OBJ ,CONTACT> ,HERE>
+			<FSET? .OBJ ,NDESCBIT>>
+		   <AND <IN? <SET OBJ ,GUARD> ,HERE>
+			<FSET? .OBJ ,NDESCBIT>>
+		   <SET OBJ <CALL-FOR-EXTRA ,HERE <>>>>
+	       <FCLEAR .OBJ ,NDESCBIT>
+	       <TELL "One part of the crowd catches your eye: ">
+	       <DESCRIBE-PERSON .OBJ>
+	       <THIS-IS-IT .OBJ>
+	       <RTRUE>)>)
+       (<VERB? THROUGH>
+	<TELL
+"You do your best to mingle with the crowd, but you can't help feeling
+like a conspicuous foreigner." CR>)
+       (<VERB? LISTEN>
+	<TELL
+"Familiar crowd noises: the buzz of conversations, the clunk of luggage
+and parcels, and echoes from the bare surfaces." CR>)>>
+
+<ROOM WAITING-ROOM
+	(LOC ROOMS)
+	(CAR 3)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "waiting room")
+	(ADJECTIVE WAITING)
+	(SYNONYM ROOM AREA)
+	(LDESC
+"You are standing in the railway station. You can see a cafe on the
+north side and the ticket counter on the south. The street is west.
+The place is crowded with people.")
+	(NORTH TO CAFE)
+	(WEST TO SIDEWALK)
+	(SOUTH TO TICKET-AREA)
+	(EAST TO PLATFORM-C)
+	(OUT TO PLATFORM-C)
+	(GLOBAL CROWD CHAIR)
+	(LINE 5)
+	(STATION WAITING-ROOM)
+	;(ACTION WAITING-ROOM-F)>
+
+;<OBJECT SEAT-WAITING-ROOM
+	(LOC WAITING-ROOM)
+	(SYNONYM SEAT CHAIR BENCH)
+	(GENERIC GENERIC-SEAT-F)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+	(CAPACITY 100)
+        (DESC "bench")>
+
+<ROOM LUGGAGE-ROOM
+	(LOC ROOMS)
+	(CAR 5)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "luggage room")
+	(ADJECTIVE LUGGAGE)
+	(SYNONYM ROOM)
+	(EAST TO PLATFORM-E)
+	(OUT TO PLATFORM-E)
+	(LINE 4)
+	(STATION PLATFORM-E)
+	(ACTION LUGGAGE-ROOM-F)>
+
+<ROUTINE LUGGAGE-ROOM-F ("OPTIONAL" (RARG <>))
+ <COND (<==? .RARG ,M-ENTER>
+	<MOVE ,CLERK ,LUGGAGE-ROOM>
+	<RFALSE>)>>
+
+<OBJECT ROOM-LUGGAGE
+	(LOC LUGGAGE-ROOM)
+	(DESC "bunch of luggage")
+	(SYNONYM BUNCH LUGGAGE)
+	(FLAGS NDESCBIT)>
+
+<ROOM REST-ROOM-MEN
+	(LOC ROOMS)
+	(CAR 1)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "men's restroom")
+	(LDESC
+"This restroom is impressively tidy. That's a good thing, because it's
+one of the only pair in the whole station.")
+	(ADJECTIVE REST MALE MEN\'S)
+	(SYNONYM RESTROOM BATHROOM LAVATORY TOILET ROOM)
+	(GENERIC GENERIC-REST-ROOM-F)
+	(EAST TO PLATFORM-A)
+	(OUT TO PLATFORM-A)
+	(GLOBAL TOILET SINK TOWEL-FIXTURE TOWEL-LOOP MIRROR ;PAPER-FIXTURE)
+	(LINE 4)
+	(STATION PLATFORM-A)
+	(ACTION REST-ROOM-STATION-F)>
+
+<ROOM REST-ROOM-WOMEN
+	(LOC ROOMS)
+	(CAR 2)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "women's restroom")
+	(LDESC
+"This restroom is impressively tidy. That's a good thing, because it's
+one of the only pair in the whole station.")
+	(ADJECTIVE REST FEMALE WOMEN\'S)
+	(SYNONYM RESTROOM BATHROOM LAVATORY TOILET ROOM)
+	(GENERIC GENERIC-REST-ROOM-F)
+	(EAST TO PLATFORM-B)
+	(OUT TO PLATFORM-B)
+	(GLOBAL TOILET SINK TOWEL-FIXTURE TOWEL-LOOP MIRROR ;PAPER-FIXTURE)
+	(LINE 4)
+	(STATION PLATFORM-B)
+	(ACTION REST-ROOM-STATION-F)>
+
+<ROUTINE REST-ROOM-STATION-TEST (RARG)
+ <COND (<NOT <EQUAL? <LOC ,CONTACT> ,REST-ROOM-MEN ,REST-ROOM-WOMEN>>
+	<RFALSE>)
+       (<SPY?>
+	<COND (<==? .RARG ,M-OTHER> <RTRUE>)
+	      (T <RFALSE>)>)
+       (T ;<ZERO? ,EGO>
+	<COND (<==? .RARG ,M-FLASH> <RTRUE>)
+	      (T <RFALSE>)>)
+       ;(T <RFALSE>)>>
+
+<ROUTINE REST-ROOM-STATION-F ("OPTIONAL" (RARG <>) "AUX" X Y N V)
+ <COND (<==? .RARG ,M-ENTER>
+	<MOVE ,PAPER-FIXTURE ,HERE>
+	<RFALSE>)
+       (<REST-ROOM-STATION-TEST .RARG>
+	<SET X <GET ,EXTRA-TABLE <RANDOM-PER-VAR ,CONTACT-MAX>>>
+	<COND (<NOT <MOVE-EXTRA? .X ,LIMBO-FWD 1>>
+	       <SET N ,CONTACT-MAX>
+	       <REPEAT ()
+		       <SET X <GET ,EXTRA-TABLE .N>>
+		       <COND (<MOVE-EXTRA? .X ,LIMBO-FWD 1>
+			      <RETURN>)
+			     (<DLESS? N 1>
+			      <V-FOO>)>>)>
+	<SET V <VISIBLE? ,CONTACT>>
+	<COND (<==? .RARG ,M-FLASH> ;<AND ,PASSOBJECT-GIVEN ,PASSWORD-GIVEN>
+	       <GUARD-NOTICES>
+	       <FCLEAR ,MCGUFFIN ,NDESCBIT>
+	       <MOVE ,MCGUFFIN ,PLAYER>
+	       <SET-PASSES 3>
+	       <FSET ,MCGUFFIN ,TAKEBIT>
+	       <TELL CHE ,CONTACT give " you the " D ,MCGUFFIN>)
+	      (T
+	       <SETG TRAVELER-CHECKED-CASE <>>
+	       <SET N 0>
+	       <SET Y <GET ,BRIEFCASE-TBL 0>>
+	       <REPEAT ()
+		 <COND (<IGRTR? N .Y>
+			<MOVE ,MCGUFFIN ,BAD-SPY>
+			<RETURN>)
+		       (<ZERO? <GET ,BRIEFCASE-TBL .N>>
+			<PUT ,BRIEFCASE-TBL .N ,MCGUFFIN>
+			<RETURN>)>>
+	       <SET-PASSES 2>
+	       <COND (.V
+		      <TELL
+CTHE ,BAD-SPY " enters, looking very nervous. " CTHE ,CONTACT " gives
+something to">
+		      <THIS-IS-IT ,BAD-SPY>
+		      <TELL HIM ,BAD-SPY>)>)>
+	<COND (.V
+	       <TELL " and whispers, ">
+	       <COND (<SPY?> ;<NOT <ZERO? ,EGO>>
+		      <PRODUCE-GIBBERISH 4>
+		      <TELL
+"(Fortunately, you can translate two phrases: \"" D ,PASSWORD "\" and \""
+D ,PASSOBJECT ".\")" CR>)
+		     (T
+		      <TELL
+"\"No time. Meet agent, "A .X ", in Gola; display " A ,PASSOBJECT "; use word">
+		      <COND (<EQUAL? ,PASSWORD ,CAMERA ,HANKY ,SCARF>
+			     <TELL "s">)>
+		      <TELL " '" D ,PASSWORD "'.\" ">)>
+	       <TELL "Then" HE ,CONTACT " is gone." CR>)>
+	<NEW-CONTACT .X>
+	<COND (<OR <==? .RARG ,M-FLASH> .V>
+	       <RTRUE>)>)>>
+
+<ROUTINE NEW-CONTACT (X)
+	<FCLEAR ,CONTACT ,TOUCHBIT>
+	<PUTP ,CONTACT ,P?LDESC 0>
+	<MOVE ,CONTACT ,LIMBO-FWD>
+	;<MOVE ,CONTACT ,GLOBAL-OBJECTS>
+	<PUTP ,CONTACT ,P?ACTION ,CONTACT-DEFAULT-F>
+	<SETG CONTACT .X>
+	<SETG CONTACT-DEFAULT-F <GETP ,CONTACT ,P?ACTION>>
+	<PUTP ,CONTACT ,P?ACTION ,CONTACT-F>>
+
+<ROOM CAFE
+	(LOC ROOMS)
+	(CAR 3)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "cafe")
+	(SYNONYM CAFE)
+	(LDESC
+"Through a blue haze of cigarette smoke, you can see travelers
+sipping their food while waiting for their trains."
+;"The place is crowded with people. But you can see a few items for sale
+besides food.")
+	(SOUTH TO WAITING-ROOM)
+	(OUT TO WAITING-ROOM)
+	(GLOBAL CROWD MENU ITEMS CHAIR)
+	(LINE 5)
+	(STATION CAFE)
+	;(ACTION CAFE-F)>
+
+;<ROUTINE CAFE-F ("OPTIONAL" (RARG <>))
+ <COND (<==? .RARG ,M-END>
+	<RFALSE>)
+       ;(<VERB? BUY>
+	<COND (<DOBJ? DRINK-GLOBAL FOOD FOOD-GLOBAL FOOD-1 FOOD-2 FOOD-CAFE>
+	       <RFALSE>)
+	      ;(<ZMEMQ ,PRSO ,PASS-TABLE> <RFALSE>)
+	      (T <TELL "You can't buy " A ,PRSO " here." CR>)>)>>
+
+<OBJECT COUNTER-CAFE
+	(LOC CAFE)
+	(DESC "counter")
+	(SYNONYM COUNTER)
+	(FLAGS SEARCHBIT SURFACEBIT OPENBIT NDESCBIT ;VEHBIT)
+	(CAPACITY 200)
+	(ACTION COUNTER-CAFE-F)>
+
+<ROUTINE COUNTER-CAFE-F ()
+ <COND (<VERB? SIT-AT>
+	<PERFORM ,V?SIT ,CHAIR ;,SEAT-CAFE>
+	<RTRUE>)>>
+
+;<OBJECT SEAT-CAFE
+	(LOC CAFE)
+	(SYNONYM SEAT CHAIR BENCH STOOL)
+	(GENERIC GENERIC-SEAT-F)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+	(CAPACITY 100)
+        (DESC "stool")>
+
+<ROOM TICKET-AREA
+	(LOC ROOMS)
+	(CAR 3)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "ticket area")
+	(ADJECTIVE TICKET)
+	(SYNONYM AREA COUNTER WINDOW PLACE)
+	;(LDESC "")
+	(NORTH TO WAITING-ROOM)
+	(OUT TO WAITING-ROOM)
+	(LINE 5)
+	(STATION WAITING-ROOM)
+	(ACTION TICKET-AREA-F)>
+
+<ROUTINE TICKET-AREA-F ("OPTIONAL" (RARG <>))
+ <COND (<==? .RARG ,M-ENTER>
+	<MOVE ,CLERK ,TICKET-AREA>
+	<RFALSE>)>>
+
+<OBJECT COUNTER-TICKET
+	(LOC TICKET-AREA)
+	(DESC "counter")
+	(SYNONYM COUNTER)
+	(FLAGS SURFACEBIT NDESCBIT)
+	(CAPACITY 200)>
+
+<ROOM SIDEWALK
+	(LOC ROOMS)
+	(CAR 3)
+	(FLAGS ONBIT ;RLANDBIT)
+	(DESC "sidewalk")
+	(SYNONYM SIDEWALK STREET)
+	(LDESC "The station faces a small square, crowded with people.")
+	(NORTH PER TOWN-F)
+	(WEST PER TOWN-F)
+	(SOUTH PER TOWN-F)
+	(EAST TO WAITING-ROOM)
+	(IN TO WAITING-ROOM)
+	(GLOBAL CROWD)
+	(LINE 5)
+	(STATION WAITING-ROOM)
+	(ACTION SIDEWALK-F)>
+
+<ROUTINE TOWN-F ()
+	<TELL "As you start to venture into the town," HE ,OFFICER>
+	<THIS-IS-IT ,OFFICER>
+	<TELL
+" recognizes you as an unauthorized foreigner and takes a step in your
+direction. As you stop walking, so does" HE ,OFFICER "." CR>
+	<FSET ,OFFICER ,SEENBIT>
+	<RFALSE>>
+
+<ROUTINE SIDEWALK-F ("OPTIONAL" (RARG <>))
+ <COND (<EQUAL? .RARG ,M-END>
+	<CROWD-F T>
+	<RFALSE>)
+       (.RARG <RFALSE>)
+       (<VERB? EXAMINE ;LOOK-INSIDE>
+	<COND (<NOT <IN? ,CONTACT ,HERE>>
+	       <CALL-FOR-EXTRA ,HERE>)>
+	<RFALSE>)>>
+
+<GLOBAL STATION-ROOMS
+	<PLTABLE PLATFORM-A PLATFORM-B PLATFORM-C PLATFORM-D PLATFORM-E
+		PLATFORM-E PLATFORM-E ;"for last cars on long train"
+		WAITING-ROOM CAFE TICKET-AREA SIDEWALK
+		LUGGAGE-ROOM REST-ROOM-MEN REST-ROOM-WOMEN>>

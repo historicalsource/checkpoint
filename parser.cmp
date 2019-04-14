@@ -1,0 +1,910 @@
+
+;COMPARISON OF PS:<CHECKPOINT>PARSER.ZIL.151 AND PS:<CHECKPOINT>PARSER.ZIL.170
+;OPTIONS ARE    /3
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 1-8 (222)
+<SETG SIBREAKS ".,\"!?">
+"<GLOBAL GWIM-DISABLE <>>" 
+<GLOBAL PRSA 0>
+<GLOBAL PRSI 0>
+<GLOBAL PRSO 0>
+"<GLOBAL P-TABLE 0>
+<GLOBAL P-ONEOBJ 0>" 
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-8 (222)
+<SETG SIBREAKS ".,\"!?"> 
+<GLOBAL PRSA 0>
+<GLOBAL PRSI 0>
+<GLOBAL PRSO 0> 
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 1-34 (564)
+"INBUF - Input buffer for READ"
+<GLOBAL P-INBUF <ITABLE BYTE 100>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-26 (483)
+<GLOBAL AGAIN-LEXV <ITABLE BYTE 120>>
+<GLOBAL RESERVE-LEXV <ITABLE BYTE 120>>
+<GLOBAL RESERVE-PTR <>>
+"INBUF - Input buffer for READ"
+<GLOBAL P-INBUF <ITABLE BYTE 60>>
+<GLOBAL OOPS-INBUF <ITABLE BYTE 60>>
+<GLOBAL OOPS-TABLE <TABLE <> <> <> <>>>
+<CONSTANT O-PTR 0>
+<CONSTANT O-START 1>
+<CONSTANT O-LENGTH 2>
+<CONSTANT O-END 3>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 1-56 (926)
+"Parser variables and temporaries"
+"<CONSTANT P-PHRLEN 3>
+<CONSTANT P-ORPHLEN 7>
+<CONSTANT P-RTLEN 3>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-58 (1115)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-14 (1292)
+<CONSTANT P-PSOFF 6 ;4>
+"Offset to first part of speech"
+<CONSTANT P-P1OFF 7 ;5>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-70 (1371)
+<CONSTANT P-PSOFF %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE> 6) (T 4)>>
+"Offset to first part of speech"
+<CONSTANT P-P1OFF %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE> 7) (T 5)>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-58 (1980)
+"<GLOBAL P-WHAT-IGNORED <>>
+<GLOBAL P-WON <>>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-114 (2165)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-77 (2349)
+<GLOBAL L-PRSA <>>
+<GLOBAL L-PRSO <>>
+<GLOBAL L-PRSI <>>
+<GLOBAL L-WINNER <>>
+<ROUTINE MAIN-LOOP ("AUX" ICNT OCNT NUM CNT OBJ TBL V PTBL OBJ1 TMP X)
+   ;#DECL((CNT OCNT ICNT NUM) FIX (V) <OR 'T FIX FALSE> (OBJ)<OR FALSE OBJECT>
+	  (OBJ1) OBJECT (TBL) TABLE (PTBL) <OR FALSE ATOM>)
+   <REPEAT ()
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-130 (2483)
+<ROUTINE MAIN-LOOP ("AUX" X) <REPEAT () <SET X <MAIN-LOOP-1>>>>
+<ROUTINE MAIN-LOOP-1 ("AUX" ICNT OCNT NUM CNT OBJ TBL V PTBL OBJ1 TMP X)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-98 (3028)
+			   <COND (<G? <SET CNT <+ .CNT 1>> .ICNT>
+				  <RETURN>)
+				 (T
+				  <COND (<EQUAL? <GET ,P-PRSI .CNT> ,IT>
+					 <PUT ,P-PRSI .CNT ,P-IT-OBJECT>
+					 <TELL ,I-ASSUME THE ,P-IT-OBJECT ".)" CR>
+					 <SET TMP T>
+					 <RETURN>)>)>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-145 (2998)
+			   <COND (<IGRTR? CNT .ICNT>
+				  <RETURN>)>
+			   <COND (<EQUAL? <GET ,P-PRSI .CNT> ,IT>
+				  <PUT ,P-PRSI .CNT ,P-IT-OBJECT>
+				  <TELL ,I-ASSUME THE ,P-IT-OBJECT ".)" CR>
+				  <SET TMP T>
+				  <RETURN>)>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-109 (3333)
+			   <COND (<G? <SET CNT <+ .CNT 1>> .OCNT>
+				  <RETURN>)
+				 (T
+				  <COND (<EQUAL? <GET ,P-PRSO .CNT> ,IT>
+					 <PUT ,P-PRSO .CNT ,P-IT-OBJECT>
+					 <TELL ,I-ASSUME THE ,P-IT-OBJECT ".)" CR>
+					 <RETURN>)>)>>)>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-155 (3280)
+			   <COND (<IGRTR? CNT .OCNT>
+				  <RETURN>)>
+			   <COND (<EQUAL? <GET ,P-PRSO .CNT> ,IT>
+				  <PUT ,P-PRSO .CNT ,P-IT-OBJECT>
+				  <TELL ,I-ASSUME THE ,P-IT-OBJECT ".)" CR>
+				  <RETURN>)>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-163 (4830)
+		    <COND (<G? <SET CNT <+ .CNT 1>> .NUM>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-208 (4754)
+		    <COND (<IGRTR? CNT .NUM>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-207 (6192)
+	    <COND (<GAME-VERB?> T)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-252 (6103)
+	    ;<COND (<GAME-VERB?> T)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-219 (6493)
+	    <COND (<AND <NOT <VERB? SAVE RESTORE>>
+			<GAME-VERB?>> T)
+		  (<AND <VERB? AGAIN>
+			<NOT <EQUAL? ,L-PRSA ,V?SAVE ,V?RESTORE>>
+			<GAME-VERB? ,L-PRSA>>
+		   T)
+		  (T
+		   <SET V <CLOCKER>>)>)>>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-264 (6405)
+	    <COND (<OR <VERB? SAVE RESTORE>
+		       <NOT <GAME-VERB?>>>
+		   <SET V <CLOCKER>>)>)>
+     <SETG PRSA <>>
+     <SETG PRSO <>>
+     <SETG PRSI <>>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-268 (7797)
+	      (<EQUAL? .V ,V?$AGAIN ,V?$QUEUE ,V?$STATION>	<RTRUE>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-311 (7659)
+	      (<EQUAL? .V ;,V?$AGAIN ,V?$QUEUE ,V?$STATION>	<RTRUE>)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-293 (8828)
+		       <SETG L-WINNER ,WINNER>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-336 (8691)
+		       ;<SETG L-WINNER ,WINNER>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 2-311 (9347)
+	<RTRUE>)>
+ <COND (<AND <VERB? WALK FACE> <==? .OBJ ,PRSO>>
+	<RTRUE>)>
+ <COND (<NOT <FSET? .OBJ ,PERSONBIT>>
+	<COND (<NOT <EQUAL? .OBJ ,GLOBAL-HERE ,INTDIR>>
+	       <FSET ,IT ,TOUCHBIT>	;"to cause pronoun 'it' in output"
+	       <SETG P-IT-OBJECT .OBJ>)>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 1-354 (9211)
+	<RTRUE>)
+       (<EQUAL? .OBJ ,INTDIR ,GLOBAL-HERE>
+	<RTRUE>)
+       (<AND <VERB? WALK WALK-TO FACE> <==? .OBJ ,PRSO>>
+	<RTRUE>)>
+ <COND (<NOT <FSET? .OBJ ,PERSONBIT>>
+	<FSET ,IT ,TOUCHBIT>	;"to cause pronoun 'it' in output"
+	<SETG P-IT-OBJECT .OBJ>)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-17 (10550)
+<GLOBAL NOW-PRSI <>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-17 (10410)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-48 (11630)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-46 (11466)
+<GLOBAL NOW-PRSI <>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-65 (12130)
+	<COND (<NOT <EQUAL? .A ,V?WALK ,V?FACE>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-65 (11990)
+	<COND ;(<AND <NOT ,LIT>
+		    <SEE-VERB?>>
+	       <TOO-DARK>
+	       <RFATAL>)
+	      (<NOT <EQUAL? .A ,V?WALK ,V?FACE>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-121 (14238)
+	      (<AND <SET O ,PRSO>
+		    <SET V <THIS-IS-IT ,PRSO>>
+		    <SET I ,PRSI>
+		    <SET V <THIS-IS-IT ,PRSI>>
+		    <SET V <THIS-IS-IT ,PRSO>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-125 (14183)
+	      (<AND <SET V <THIS-IS-IT ,PRSI>>
+		    <SET V <THIS-IS-IT ,PRSO>>
+		    <SET O ,PRSO>
+		    <SET I ,PRSI>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-143 (14925)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-146 (14836)
+	      (<AND .I	;"This new clause applies CONTFCN to PRSI, BM 2/85"
+		    <SETG NOW-PRSI T>
+		    <NOT <EQUAL? .A ,V?WALK>>
+		    <LOC .I>
+		    <SET V <GETP <LOC .I> ,P?CONTFCN>>
+		    <SET V <APPLY .V ,M-CONT>>>
+	       .V)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-152 (15181)
+		    <SET V <APPLY .V ,M-CONT>>
+		    ;<SET V <DD-APPLY "Container" <LOC .O>
+				    <GETP <LOC .O> ,P?CONTFCN>>>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-162 (15325)
+		    <SET V <APPLY .V ,M-CONT>>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 3-174 (15802)
+;"<ROUTINE DD-APPLY (STR OBJ FCN)
+	<COND (,DEBUG
+	       <PRINTC %<ASCII !\[>>
+	       <TELL D .OBJ '=]'>)>
+	<D-APPLY .STR .FCN>>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 2-182 (15862)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-16 (17116)
+ <RFALSE>
+ ;<COND (<NOT <ZERO? ,P-PROMPT>>
+	<ENABLE <QUEUE I-PROMPT 9>>
+	<RFALSE>)
+       (T
+	<TELL "|
+(You won't see \"What next?\" any more.)" CR>
+	<COND (<VERB? ;WAIT WAIT-FOR WAIT-UNTIL> <CRLF>)>
+	<DISABLE <INT I-PROMPT>>
+	<RFALSE>)>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-16 (17038)
+ <RFALSE>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-67 (18978)
+	       <COND (<G? ,QUESTION-WORD-COUNT 9>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-58 (18663)
+	       <COND (<G? ,QUESTION-WORD-COUNT 4 ;9>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-76 (19282)
+Now you can try again.)" CR>)
+		     (T <TELL ", not statements or questions.)" CR>)>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-67 (18970)
+Now you can try again">)
+		     (T <TELL ", not statements or questions">)>
+	       <TELL ".)" CR>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-101 (20351)
+	PISS SCREW SHIT CRAP SUCK>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-93 (20053)
+	PISS SCREW SHIT CRAP SUCK
+	FUCKED GODDAMN ASSHOLE CUNT SHITHEAD SUCKS DAMNED PEE COCKSUCKER BITCH>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-108 (20605)
+	    <EQUAL? .WORD ,W?BASTARD ,W?SCREW ,W?CRAP>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-101 (20380)
+	    <EQUAL? .WORD ,W?BASTARD ,W?SCREW ,W?CRAP>
+	    <EQUAL? .WORD ,W?FUCKED ,W?GODDAMN ,W?ASSHOLE>
+	    <EQUAL? .WORD ,W?CUNT ,W?SHITHEAD ,W?SUCKS>
+	    <EQUAL? .WORD ,W?DAMNED ,W?PEE ,W?COCKSUCKER>
+	    <EQUAL? .WORD ,W?BITCH>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-116 (20781)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-113 (20741)
+		"What charming language!"
+		"Computers aren't impressed by naughty words!"
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-121 (20933)
+<ROUTINE PARSER ("AUX" (PTR ,P-LEXSTART) WRD (VAL 0) (VERB <>) (OF-FLAG <>)
+		       LEN (DIR <>) (NW 0) (LW 0) NUM SCNT (CNT -1) OWINNER) 
+	<REPEAT ()
+		<COND (<G? <SET CNT <+ .CNT 1>> ,P-ITBLLEN> <RETURN>)
+		      (T <PUT ,P-ITBL .CNT 0>)>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-120 (20972)
+<BUZZ AGAIN G OOPS>
+<ROUTINE PARSER ("AUX" (PTR ,P-LEXSTART) WRD (VAL 0) (VERB <>) (OF-FLAG <>)
+		       LEN (DIR <>) (NW 0) (LW 0) (CNT -1) OMERGED OWINNER
+		       OLEN) 
+	<REPEAT ()
+		<COND (<G? <SET CNT <+ .CNT 1>> ,P-ITBLLEN> <RETURN>)
+		      (T
+		       <COND (<NOT ,P-OFLAG>
+			      <PUT ,P-OTBL .CNT <GET ,P-ITBL .CNT>>)>
+		       <PUT ,P-ITBL .CNT 0>)>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-130 (21259)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-135 (21427)
+	<SET OMERGED ,P-MERGED>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-138 (21504)
+	       <SETG L-WINNER ,WINNER>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-144 (21698)
+	       ;<SETG L-WINNER ,WINNER>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-144 (21734)
+	<COND (<NOT <ZERO? ,P-CONT>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-150 (21929)
+	<COND (,RESERVE-PTR
+	       <SET PTR ,RESERVE-PTR>
+	       <STUFF ,P-LEXV ,RESERVE-LEXV>
+	       <COND (<AND <EQUAL? ,VERBOSE 1 2>
+			   <==? ,PLAYER ,WINNER>>
+		      <CRLF>)>
+	       <SETG RESERVE-PTR <>>
+	       <SETG P-CONT <>>)
+	      (<NOT <ZERO? ,P-CONT>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-153 (21999)
+	       <SETG L-WINNER ,WINNER>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-167 (22436)
+	       ;<SETG L-WINNER ,WINNER>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-171 (22689)
+			     ;<==? <SETG P-PROMPT <- ,P-PROMPT 1>> 0>
+			     <TELL "(You won't see \"What next?\" any more.)|
+">
+			     ;<COND (<VERB? ;WAIT WAIT-FOR WAIT-UNTIL>
+				    <CRLF>)>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-185 (23127)
+			     <TELL
+"(You won't see \"What next?\" any more.)|
+">)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-179 (22951)
+	       <STATUS-LINE>
+	       <TELL ">">
+	       <READ ,P-INBUF ,P-LEXV>)>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-191 (23271)
+	       %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+		       '<PROG ()
+			      <STATUS-LINE>
+			      <TELL ">">>)
+		      (T
+		       '<TELL ">">)>
+	       <READ ,P-INBUF ,P-LEXV>
+	       <SET OLEN <GETB ,P-LEXV ,P-LEXWORDS>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-196 (23742)
+	<COND (<0? ,P-LEN> <TELL "I beg your pardon?" CR> <RFALSE>)>
+	<SET LEN ,P-LEN>
+	<SETG P-DIR <>>
+	<SETG P-NCN 0>
+	<SETG P-GETFLAGS 0>
+	;"3/25/83: Next statement added."
+	<PUT ,P-ITBL ,P-VERBN 0>
+	<REPEAT ()
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-213 (24226)
+	<COND (<0? ,P-LEN> <TELL "I beg your pardon?" CR> <RFALSE>)
+	      (<EQUAL? <GET ,P-LEXV .PTR> ,W?OOPS>
+	       <COND (<NOT <G? ,P-LEN 1>>
+		      <TELL "I can't help your clumsiness." CR>
+		      <RFALSE>)
+		     (<GET ,OOPS-TABLE ,O-PTR>
+		      <PUT ,AGAIN-LEXV <GET ,OOPS-TABLE ,O-PTR>
+			   <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>>
+		      <INBUF-ADD <GETB ,P-LEXV <+ <* .PTR ,P-LEXELEN> 6>>
+				 <GETB ,P-LEXV <+ <* .PTR ,P-LEXELEN> 7>>
+				 <+ <* <GET ,OOPS-TABLE ,O-PTR> ,P-LEXELEN> 3>>
+		      <STUFF ,P-LEXV ,AGAIN-LEXV>
+		      <SETG P-LEN <GETB ,P-LEXV ,P-LEXWORDS>>;"Will this help?"
+		      <SET PTR <GET ,OOPS-TABLE ,O-START>>
+		      <INBUF-STUFF ,P-INBUF ,OOPS-INBUF>)
+		     (T
+		      <PUT ,OOPS-TABLE ,O-END <>>
+		      <TELL "There was no word to replace!" CR>
+		      <RFALSE>)>)
+	      (T <PUT ,OOPS-TABLE ,O-END <>>)>
+	<COND (<EQUAL? <GET ,P-LEXV .PTR> ,W?AGAIN ,W?G>
+	       <COND (,P-OFLAG
+		      <TELL "It's difficult to repeat fragments." CR>
+		      <RFALSE>)
+		     (<G? ,P-LEN 1>
+		      <COND (<OR <EQUAL? <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>
+					,W?PERIOD ,W?COMMA ,W?THEN>
+				 <EQUAL? <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>
+					,W?AND>>
+			     <SET PTR <+ .PTR <* 2 ,P-LEXELEN>>>
+			     <PUTB ,P-LEXV ,P-LEXWORDS
+				   <- <GETB ,P-LEXV ,P-LEXWORDS> 2>>)
+			    (T
+			     <TELL "I couldn't understand that sentence." CR>
+			     <RFALSE>)>)
+		     (T
+		      <SET PTR <+ .PTR ,P-LEXELEN>>
+		      <PUTB ,P-LEXV ,P-LEXWORDS 
+			    <- <GETB ,P-LEXV ,P-LEXWORDS> 1>>)>
+	       <COND (<G? <GETB ,P-LEXV ,P-LEXWORDS> 0>
+		      <STUFF ,RESERVE-LEXV ,P-LEXV>
+		      <SETG RESERVE-PTR .PTR>)
+		     (T
+		      <SETG RESERVE-PTR <>>)>
+	       ;<SETG P-LEN <GETB ,AGAIN-LEXV ,P-LEXWORDS>>
+	       <SETG WINNER .OWINNER>
+	       <SETG P-MERGED .OMERGED>
+	       <INBUF-STUFF ,P-INBUF ,OOPS-INBUF>
+	       <STUFF ,P-LEXV ,AGAIN-LEXV>
+	       <SET CNT -1>
+	       <SET DIR ,P-WALK-DIR>
+	       <REPEAT ()
+		<COND (<IGRTR? CNT ,P-ITBLLEN> <RETURN>)
+		      (T <PUT ,P-ITBL .CNT <GET ,P-OTBL .CNT>>)>>)
+	      (T
+	       <STUFF ,AGAIN-LEXV ,P-LEXV>
+	       <INBUF-STUFF ,OOPS-INBUF ,P-INBUF>
+	       <PUT ,OOPS-TABLE ,O-START .PTR>
+	       <PUT ,OOPS-TABLE ,O-LENGTH <* 4 .OLEN>>
+	       <SETG RESERVE-PTR <>>
+	       <SET LEN ,P-LEN>
+	       <SETG P-DIR <>>
+	       <SETG P-NCN 0>
+	       <SETG P-GETFLAGS 0>
+	       ;"3/25/83: Next statement added."
+	       <PUT ,P-ITBL ,P-VERBN 0>
+	       <REPEAT ()
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-226 (24687)
+			     (<OR <EQUAL? .WRD ,W?THEN ,W?PERIOD>
+				  <EQUAL? .WRD ,W?QUOTE>> 
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-302 (27443)
+			     (<EQUAL? .WRD ,W?THEN ,W?PERIOD ,W?QUOTE> 
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-276 (26283)
+						    <SET NUM
+							 <+ <* .PTR 2> 2>>>>
+			      <PUTB ,P-VTBL 3 <GETB ,P-LEXV <+ .NUM 1>>>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-351 (29013)
+						    <SET ?TMP1
+							 <+ <* .PTR 2> 2>>>>
+			      <PUTB ,P-VTBL 3 <GETB ,P-LEXV <+ .?TMP1 1>>>)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 4-343 (28348)
+		<SET PTR <+ .PTR ,P-LEXELEN>>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 3-418 (31082)
+		<SET PTR <+ .PTR ,P-LEXELEN>>>)>
+	<PUT ,OOPS-TABLE ,O-PTR <>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 5-2 (28917)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 4-2 (31685)
+"For AGAIN purposes, put contents of one LEXV table into another:"
+<ROUTINE STUFF (DEST SRC "OPTIONAL" (MAX 29) "AUX" (PTR ,P-LEXSTART) (CTR 1)
+						   BPTR)
+	 <PUTB .DEST 0 <GETB .SRC 0>>
+	 <PUTB .DEST 1 <GETB .SRC 1>>
+	 <REPEAT ()
+	  <PUT .DEST .PTR <GET .SRC .PTR>>
+	  <SET BPTR <+ <* .PTR 2> 2>>
+	  <PUTB .DEST .BPTR <GETB .SRC .BPTR>>
+	  <SET BPTR <+ <* .PTR 2> 3>>
+	  <PUTB .DEST .BPTR <GETB .SRC .BPTR>>
+	  <SET PTR <+ .PTR ,P-LEXELEN>>
+	  <COND (<IGRTR? CTR .MAX>
+		 <RETURN>)>>>
+"Put contents of one INBUF into another:"
+<ROUTINE INBUF-STUFF (DEST SRC "AUX" (CNT -1))
+	 <REPEAT ()
+	  <COND (<IGRTR? CNT 59> <RETURN>)
+		(T <PUTB .DEST .CNT <GETB .SRC .CNT>>)>>> 
+"Put the word in the positions specified from P-INBUF to the end of
+OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV:"
+<ROUTINE INBUF-ADD (LEN BEG SLOT "AUX" DBEG (CTR 0) TMP)
+	 <COND (<SET TMP <GET ,OOPS-TABLE ,O-END>>
+		<SET DBEG .TMP>)
+	       (T
+		<SET DBEG <+ <GETB ,AGAIN-LEXV
+				   <SET TMP <GET ,OOPS-TABLE ,O-LENGTH>>>
+			     <GETB ,AGAIN-LEXV <+ .TMP 1>>>>)>
+	 <PUT ,OOPS-TABLE ,O-END <+ .DBEG .LEN>>
+	 <REPEAT ()
+	  <PUTB ,OOPS-INBUF <+ .DBEG .CTR> <GETB ,P-INBUF <+ .BEG .CTR>>>
+	  <SET CTR <+ .CTR 1>>
+	  <COND (<EQUAL? .CTR .LEN> <RETURN>)>>
+	 <PUTB ,AGAIN-LEXV .SLOT .DBEG>
+	 <PUTB ,AGAIN-LEXV <- .SLOT 1> .LEN>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 5-18 (29639)
+	;#DECL ((PTR VAL OFF NUM) FIX (WRD NW) <OR FALSE FIX TABLE>
+	       (ANDFLG FIRST??) <OR ATOM FALSE>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 4-59 (33766)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 6-24 (36837)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 5-24 (40859)
+			<COND (<ZERO? <GET ,P-ITBL ,P-NC1L>> ;"? DELETE?"
+			       <PUT ,P-ITBL ,P-NC1L <REST ,P-LEXV 6>>)>
+			<COND (<ZERO? ,P-NCN> ;"? DELETE?"
+			       <SETG P-NCN 1>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 6-36 (37254)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 5-40 (41449)
+			<COND (<ZERO? <GET ,P-ITBL ,P-NC1L>> ;"? DELETE?"
+			       <PUT ,P-ITBL ,P-NC1L <REST ,P-LEXV 6>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 6-87 (38823)
+"New ACLAUSE-WIN for TRAP retrofix 6/21/84"
+<ROUTINE ACLAUSE-WIN (ADJ) 
+	<PUT ,P-ITBL ,P-VERB <GET ,P-OTBL ,P-VERB>>
+	<CLAUSE-COPY ,P-OTBL ,P-OTBL ,P-ACLAUSE <+ ,P-ACLAUSE 1>
+		      ,P-ACLAUSE <+ ,P-ACLAUSE 1> .ADJ>
+	;"<PUT ,P-CCTBL ,CC-SBPTR ,P-ACLAUSE>
+	<PUT ,P-CCTBL ,CC-SEPTR <+ ,P-ACLAUSE 1>>
+	<PUT ,P-CCTBL ,CC-DBPTR ,P-ACLAUSE>
+	<PUT ,P-CCTBL ,CC-DEPTR <+ ,P-ACLAUSE 1>>
+	<CLAUSE-COPY ,P-OTBL ,P-OTBL .ADJ>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 5-93 (43124)
+<ROUTINE ACLAUSE-WIN (ADJ "AUX" X)
+	<PUT ,P-ITBL ,P-VERB <GET ,P-OTBL ,P-VERB>>
+	<SET X <+ ,P-ACLAUSE 1>>
+	%<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+	      '<CLAUSE-COPY ,P-OTBL ,P-OTBL ,P-ACLAUSE .X ,P-ACLAUSE .X .ADJ>)
+	       (T
+		'<PROG ()
+		       <PUT ,P-CCTBL ,CC-SBPTR ,P-ACLAUSE>
+		       <PUT ,P-CCTBL ,CC-SEPTR .X>
+		       <PUT ,P-CCTBL ,CC-DBPTR ,P-ACLAUSE>
+		       <PUT ,P-CCTBL ,CC-DEPTR .X>
+		       <CLAUSE-COPY ,P-OTBL ,P-OTBL .ADJ>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 6-103 (39369)
+        <CLAUSE-COPY ,P-ITBL ,P-OTBL ,P-NC1 ,P-NC1L
+		     ,P-ACLAUSE <+ ,P-ACLAUSE 1>>
+	;"<PUT ,P-CCTBL ,CC-SBPTR ,P-NC1>
+	<PUT ,P-CCTBL ,CC-SEPTR ,P-NC1L>
+	<PUT ,P-CCTBL ,CC-DBPTR ,P-ACLAUSE>
+	<PUT ,P-CCTBL ,CC-DEPTR <+ ,P-ACLAUSE 1>>
+	<CLAUSE-COPY ,P-ITBL ,P-OTBL>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 5-110 (43715)
+        %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+		'<CLAUSE-COPY ,P-ITBL ,P-OTBL ,P-NC1 ,P-NC1L
+			      ,P-ACLAUSE <+ ,P-ACLAUSE 1>>)
+	       (T
+		'<PROG ()
+		       <PUT ,P-CCTBL ,CC-SBPTR ,P-NC1>
+		       <PUT ,P-CCTBL ,CC-SEPTR ,P-NC1L>
+		       <PUT ,P-CCTBL ,CC-DBPTR ,P-ACLAUSE>
+		       <PUT ,P-CCTBL ,CC-DEPTR <+ ,P-ACLAUSE 1>>
+		       <CLAUSE-COPY ,P-ITBL ,P-OTBL>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 7-2 (39741)
+"Print undefined word in input.
+   PTR points to the unknown word in P-LEXV"   
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 6-2 (44207)
+"Print undefined word in input. PTR points to the unknown word in P-LEXV:"   
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 7-25 (40401)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 6-24 (44864)
+	<PUT ,OOPS-TABLE ,O-PTR .PTR>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 7-52 (41477)
+ 
+<GLOBAL P-SLOCBITS 0>    
+ 
+<CONSTANT P-SYNLEN 8>    
+ 
+<CONSTANT P-SBITS 0>
+ 
+<CONSTANT P-SPREP1 1>    
+ 
+<CONSTANT P-SPREP2 2>    
+ 
+<CONSTANT P-SFWIM1 3>    
+ 
+<CONSTANT P-SFWIM2 4>    
+ 
+<CONSTANT P-SLOC1 5>
+ 
+<CONSTANT P-SLOC2 6>
+ 
+<CONSTANT P-SACTION 7>   
+ 
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 6-53 (45974)
+<GLOBAL P-SLOCBITS 0>    
+<CONSTANT P-SYNLEN 8>    
+<CONSTANT P-SBITS 0> 
+<CONSTANT P-SPREP1 1>
+<CONSTANT P-SPREP2 2>
+<CONSTANT P-SFWIM1 3>
+<CONSTANT P-SFWIM2 4>
+<CONSTANT P-SLOC1 5>
+<CONSTANT P-SLOC2 6>
+<CONSTANT P-SACTION 7>   
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 9-13 (45365)
+	       <CLAUSE-COPY ,P-ITBL ,P-OTBL ,P-NC2 ,P-NC2L ,P-NC2 ,P-NC2L>
+	       ;"<PUT ,P-CCTBL ,CC-SBPTR ,P-NC2>
+	       <PUT ,P-CCTBL ,CC-SEPTR ,P-NC2L>
+	       <PUT ,P-CCTBL ,CC-DBPTR ,P-NC2>
+	       <PUT ,P-CCTBL ,CC-DEPTR ,P-NC2L>
+	       <CLAUSE-COPY ,P-ITBL ,P-OTBL>")>
+	<COND (<NOT <L? ,P-NCN 1>>
+	       <CLAUSE-COPY ,P-ITBL ,P-OTBL ,P-NC1 ,P-NC1L ,P-NC1 ,P-NC1L>
+	       ;"<PUT ,P-CCTBL ,CC-SBPTR ,P-NC1>
+	       <PUT ,P-CCTBL ,CC-SEPTR ,P-NC1L>
+	       <PUT ,P-CCTBL ,CC-DBPTR ,P-NC1>
+	       <PUT ,P-CCTBL ,CC-DEPTR ,P-NC1L>
+	       <CLAUSE-COPY ,P-ITBL ,P-OTBL>")>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 8-13 (49820)
+	       %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+		       '<CLAUSE-COPY ,P-ITBL ,P-OTBL
+				     ,P-NC2 ,P-NC2L ,P-NC2 ,P-NC2L>)
+		      (T
+		       '<PROG ()
+			      <PUT ,P-CCTBL ,CC-SBPTR ,P-NC2>
+			      <PUT ,P-CCTBL ,CC-SEPTR ,P-NC2L>
+			      <PUT ,P-CCTBL ,CC-DBPTR ,P-NC2>
+			      <PUT ,P-CCTBL ,CC-DEPTR ,P-NC2L>
+			      <CLAUSE-COPY ,P-ITBL ,P-OTBL>>)>)>
+	<COND (<NOT <L? ,P-NCN 1>>
+	       %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+		       '<CLAUSE-COPY ,P-ITBL ,P-OTBL
+				     ,P-NC1 ,P-NC1L ,P-NC1 ,P-NC1L>)
+		      (T
+		       '<PROG ()
+			      <PUT ,P-CCTBL ,CC-SBPTR ,P-NC1>
+			      <PUT ,P-CCTBL ,CC-SEPTR ,P-NC1L>
+			      <PUT ,P-CCTBL ,CC-DBPTR ,P-NC1>
+			      <PUT ,P-CCTBL ,CC-DEPTR ,P-NC1L>
+			      <CLAUSE-COPY ,P-ITBL ,P-OTBL>>)>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 9-116 (48910)
+"<GLOBAL P-CCTBL <TABLE 0 0 0 0>>"
+"pointers used by CLAUSE-COPY (source/destination beginning/end pointers)"
+"<CONSTANT CC-SBPTR 0>
+<CONSTANT CC-SEPTR 1>
+<CONSTANT CC-DBPTR 2>
+<CONSTANT CC-DEPTR 3>"
+;<ROUTINE CLAUSE-COPY (SRC DEST "OPTIONAL" (INSRT <>) "AUX" BEG END)
+	<SET BEG <GET .SRC <GET ,P-CCTBL ,CC-SBPTR>>>
+	<SET END <GET .SRC <GET ,P-CCTBL ,CC-SEPTR>>>
+	<PUT .DEST
+	     <GET ,P-CCTBL ,CC-DBPTR>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 8-124 (53579)
+%<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+'<ROUTINE CLAUSE-COPY (SRC DEST SRCBEG SRCEND DESTBEG DESTEND
+		      "OPTIONAL" (INSRT <>) "AUX" BEG END)
+	<SET BEG <GET .SRC .SRCBEG>>
+	<SET END <GET .SRC .SRCEND>>
+	<PUT .DEST .DESTBEG
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 9-131 (49424)
+		<COND (<==? .BEG .END>
+		       <PUT .DEST
+			    <GET ,P-CCTBL ,CC-DEPTR>
+			    <REST ,P-OCLAUSE
+				  <+ <* <GET ,P-OCLAUSE ,P-MATCHLEN> ,P-LEXELEN>
+				     2>>>
+		       <RETURN>)
+		      (T
+		       <COND (<AND .INSRT <==? ,P-ANAM <GET .BEG 0>>>
+			      <CLAUSE-ADD .INSRT>)>
+		       <CLAUSE-ADD <GET .BEG 0>>)>
+		<SET BEG <REST .BEG ,P-WORDLEN>>>>
+<ROUTINE CLAUSE-COPY (SRC DEST SRCBEG SRCEND DESTBEG DESTEND
+		      "OPTIONAL" (INSRT <>) "AUX" BEG END)
+	<SET BEG <GET .SRC .SRCBEG>>
+	<SET END <GET .SRC .SRCEND>>
+	<PUT .DEST .DESTBEG
+	     <REST ,P-OCLAUSE
+		   <+ <* <GET ,P-OCLAUSE ,P-MATCHLEN> ,P-LEXELEN> 2>>>
+	<REPEAT ()
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 8-133 (53916)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 10-2 (50396)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 8-143 (54225)
+)(T
+"pointers used by CLAUSE-COPY (source/destination beginning/end pointers)"
+'(
+<CONSTANT CC-SBPTR 0>
+<CONSTANT CC-SEPTR 1>
+<CONSTANT CC-DBPTR 2>
+<CONSTANT CC-DEPTR 3>
+<GLOBAL P-CCTBL <TABLE 0 0 0 0>>
+<ROUTINE CLAUSE-COPY (SRC DEST "OPTIONAL" (INSRT <>) "AUX" BEG END)
+	<SET BEG <GET .SRC <GET ,P-CCTBL ,CC-SBPTR>>>
+	<SET END <GET .SRC <GET ,P-CCTBL ,CC-SEPTR>>>
+	<PUT .DEST
+	     <GET ,P-CCTBL ,CC-DBPTR>
+	     <REST ,P-OCLAUSE
+		   <+ <* <GET ,P-OCLAUSE ,P-MATCHLEN> ,P-LEXELEN> 2>>>
+	<REPEAT ()
+		<COND (<==? .BEG .END>
+		       <PUT .DEST
+			    <GET ,P-CCTBL ,CC-DEPTR>
+			    <REST ,P-OCLAUSE
+				  <+ <* <GET ,P-OCLAUSE ,P-MATCHLEN> ,P-LEXELEN>
+				     2>>>
+		       <RETURN>)
+		      (T
+		       <COND (<AND .INSRT <==? ,P-ANAM <GET .BEG 0>>>
+			      <CLAUSE-ADD .INSRT>)>
+		       <CLAUSE-ADD <GET .BEG 0>>)>
+		<SET BEG <REST .BEG ,P-WORDLEN>>>>
+))>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 11-18 (52884)
+<GLOBAL P-NAM <>>   
+ 
+<GLOBAL P-XNAM <>>
+<GLOBAL P-ADJ <>>   
+ 
+<GLOBAL P-XADJ <>>
+"<GLOBAL P-ADJN <>>
+<GLOBAL P-XADJN <>>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 10-18 (57608)
+<GLOBAL P-NAM <>>
+<GLOBAL P-XNAM <>>
+<GLOBAL P-ADJ <>>
+<GLOBAL P-XADJ <>>
+%<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>)
+       (T
+'(<GLOBAL P-ADJN <>>
+  <GLOBAL P-XADJN <>>))>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 12-7 (53462)
+		  "AUX" (BUT <>) LEN WV WRD NW (WAS-ALL <>) TMP ONEOBJ) 
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 11-7 (58240)
+		  "AUX" (BUT <>) LEN WV WRD NW (WAS-ALL <>) ONEOBJ) 
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 12-20 (53855)
+		  <SET TMP <GET-OBJECT <OR .BUT .TBL>>>
+		  <COND (.WAS-ALL <SETG P-GETFLAGS ,P-ALL>)>
+		  <RETURN .TMP>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 11-20 (58629)
+		  <SET WV <GET-OBJECT <OR .BUT .TBL>>>
+		  <COND (.WAS-ALL <SETG P-GETFLAGS ,P-ALL>)>
+		  <RETURN .WV>)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 12-55 (54967)
+			(<AND <WT? .WRD ,PS?ADJECTIVE>
+			      <NOT ,P-ADJ>>
+			 <SETG P-ADJ .WRD>)
+			;(<AND <SET WV <WT? .WRD ,PS?ADJECTIVE ,P1?ADJECTIVE>>
+			      <NOT ,P-ADJ>>
+			 <SETG P-ADJ .WV>
+			 <SETG P-ADJN .WRD>)
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 11-55 (59739)
+			%<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+				'(<AND <WT? .WRD ,PS?ADJECTIVE>
+				       <NOT ,P-ADJ>>
+				  <SETG P-ADJ .WRD>))
+			       (T
+				'(<AND <SET WV <WT? .WRD ,PS?ADJECTIVE
+							 ,P1?ADJECTIVE>>
+				       <NOT ,P-ADJ>>
+				  <SETG P-ADJ .WV>
+				  <SETG P-ADJN .WRD>))>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 12-69 (55368)
+<CONSTANT SH 128>   
+ 
+<CONSTANT SC 64>    
+ 
+<CONSTANT SIR 32>   
+ 
+<CONSTANT SOG 16>   
+ 
+<CONSTANT STAKE 8>  
+ 
+<CONSTANT SMANY 4>  
+ 
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 11-72 (60231)
+<CONSTANT SH 128>
+<CONSTANT SC 64>
+<CONSTANT SIR 32>
+<CONSTANT SOG 16>
+<CONSTANT STAKE 8>
+<CONSTANT SMANY 4>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 13-11 (55934)
+ <SET ADJ ,P-ADJ ;N>
+ <COND (<AND <NOT ,P-NAM> ,P-ADJ>
+	<COND (<WT? ,P-ADJ ;N ,PS?OBJECT ;,P1?OBJECT>
+	       <SETG P-NAM ,P-ADJ ;N>
+	       <SETG P-ADJ <>>)
+	      (<SET BTS <WT? ,P-ADJ ;N ,PS?DIRECTION ,P1?DIRECTION>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 12-11 (60762)
+ <SET ADJ %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+		  ',P-ADJ)
+		 (T
+		  ',P-ADJN)>>
+ <COND (<AND <NOT ,P-NAM> ,P-ADJ>
+	<COND (<WT? %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+			    ',P-ADJ)
+			   (T ',P-ADJN)>
+		    ,PS?OBJECT>
+	       <SETG P-NAM %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+				   ',P-ADJ)
+				  (T ',P-ADJN)>>
+	       <SETG P-ADJ <>>)
+	      (<SET BTS <WT? %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+				     ',P-ADJ)
+				    (T ',P-ADJN)>
+			     ,PS?DIRECTION ,P1?DIRECTION>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 13-69 (57809)
+		       <SETG P-ADJ <>>
+		       ;<SETG P-ADJN <>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 12-80 (62948)
+		       %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+			       '<SETG P-ADJ <>>)
+			      (T
+			       '<PROG ()
+				      <SETG P-ADJ <>>
+				      <SETG P-ADJN <>>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 13-96 (58566)
+		       <SETG P-XADJ ,P-ADJ>
+		       ;<SETG P-XADJN ,P-ADJN>
+		       <SETG P-NAM <>>
+		       <SETG P-ADJ <>>
+		       ;<SETG P-ADJN <>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 12-111 (63830)
+		       <SETG P-NAM <>>
+		       %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+			       '<PROG ()
+				      <SETG P-XADJ ,P-ADJ>
+				      <SETG P-ADJ <>>>)
+			      (T
+			       '<PROG ()
+				      <SETG P-XADJ ,P-ADJ>
+				      <SETG P-XADJN ,P-ADJN>
+				      <SETG P-ADJ <>>
+				      <SETG P-ADJN <>>>)>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 13-122 (59358)
+	      (<EQUAL? .V ,V?YES ,V?TALK-ABOUT>			<RTRUE>)
+	      (<EQUAL? .V ,V?ASK-CONTEXT-ABOUT ,V?ASK-CONTEXT-FOR> <RTRUE>)>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 12-143 (64801)
+	      (<EQUAL? .V ,V?YES ,V?TALK-ABOUT ,V?ANSWER>	<RTRUE>)
+	      (<EQUAL? .V ,V?ASK-CONTEXT-ABOUT ,V?ASK-CONTEXT-FOR ,V?REPLY>
+								<RTRUE>)>>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 13-179 (61065)
+"<GLOBAL P-MOBY-FLAG <>>"
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 12-202 (66536)
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 14-63 (64082)
+<CONSTANT P-SRCBOT 2>    
+<CONSTANT P-SRCTOP 0>    
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 13-63 (69524)
+<CONSTANT P-SRCBOT 2>
+<CONSTANT P-SRCTOP 0>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 14-84 (64752)
+			    <OR <FSET? .OBJ ,OPENBIT>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 13-82 (70182)
+			    <OR .MOBY-FLAG <SEE-INSIDE? .OBJ>>
+			    ;<OR <FSET? .OBJ ,OPENBIT>
+***************
+
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.151, 14-106 (65485)
+		 <NOT <ZMEMQ ;B ,P-ADJ .SYNS <RMGL-SIZE .SYNS>>>>>
+**** FILE PS:<CHECKPOINT>PARSER.ZIL.170, 13-105 (70959)
+		 <NOT %<COND (<AND <GASSIGNED? PLUS-MODE> ,PLUS-MODE>
+			      '<ZMEMQ  ,P-ADJ .SYNS <RMGL-SIZE .SYNS>>)
+			     (T
+			      '<ZMEMQB ,P-ADJ .SYNS <RMGL-SIZE .SYNS>>)>>>>
+***************
+

@@ -1,0 +1,146 @@
+
+SCRIPTS FOR YOUR OPPONENT IN "CHECKPOINT"
+
+Note: O = opponent, C = compartment, RV = rear vestibule, PO = passobject.
+
+Rules:
+If you knock out O, script is suspended until O wakes up.
+If you kill O, script is suspended forever.
+If O is spy and you show McGuffin to him/her, O shoots you on the spot.
+
+"S" script ("spy"):
+
+0. If you take traveler's viewpoint, this begins when stranger is killed.
+1. O starts at RV in car just behind yours and heads for "your" C.
+(Reason: O is looking for case and saw stranger reach roof from your
+car.)
+2. If O reaches room where case is (and not hidden), O heads for that room.
+3. If O reaches room where blood spot is, O heads for that room.
+4. If O sees you and case is in same place as you, O heads for you and
+starts "FY" script.
+5. When O reaches destination,
+    5a. If blood spot is on floor: If O can see you, O starts "FY"
+	script. If O can see case, O "looks triumphant".
+    5b. In any case: If you're holding case or O can't see it, O heads
+	for C1 behind diner. Else O takes case and starts "WC" script.
+
+"T" script ("traveler"):
+
+0. If you take spy's viewpoint, this begins 10-15 minutes after story begins.
+1. If O isn't holding case:
+    1a. If case is sitting on floor, O takes it.
+    1b. If case is elsewhere in room, O "tries" to take it.
+    1c. Otherwise, O heads for your location and starts "FY" script.
+2. O examines latch, turns it, opens it, opens case, examines scrap.
+(1 min each)
+3. O examines case. If McGuffin not in case, go to step 5.
+4. O takes camera, examines it, opens it, examines film, loads camera,
+closes it, cocks it, photographs McGuffin, opens camera, pockets film,
+puts away camera. (1 min each)
+5. O closes case, closes latch, turns latch (if long var.), takes case.
+(1 min each)
+6. If PO is knife, O heads for diner's RV and starts "SK" script.
+7. If PO is flower, O heads for RV (if O not in restroom) and starts
+"SF" script.
+8. Else, O heads for nearest restroom and starts "FM" script.
+
+"AR" event ("train arrives at station"):
+
+1. If you are spy and station is Frbz or Gola, O heads for platform and
+starts "FC" script.
+2. If you are spy and station is Knut and O has PO:
+    2a. If you are not on train and O is on platform, O boards train,
+	heads for C5 and continues "T" script.
+    2b. Else, O heads for RV and starts "ST" script.
+3. If O is following "I" script, O heads for RV.
+
+"DP" event ("train departs from station"):
+
+1. If O has identified you, O (boards train and) heads for you.
+
+"F" script ("flee"):
+
+When O reaches destination, O continues "T" script.
+
+"FC" script ("find contact"):
+
+1. O walks from one end of platform to other, looking for contact.
+2. If and when O finds contact, O shows PO, and talks to contact (1
+min each).
+    2a. If station is not Gola, contact whispers and O starts "RR" script.
+    2b. If O has film, O gives it to contact, and story is over.
+
+"FM" script ("flush McGuffin"):
+
+When O reaches restroom, O flushes McGuffin (1 min) and waits.
+
+"FY" script ("follow you"):
+
+1. En route, if O discovers case and you're not holding it, O takes it
+and starts "WC" script. Else if O can't see you, O heads for you.
+2. If O reaches destination, O waits until you move again. But if you
+are still there, alone in a C or booth, O immediately threatens you with
+gun.
+3. While O waits: If you stay in a C or booth, O threatens you with gun.
+Else O heads for your location.
+4. After gun threat, if you don't leave immediately, O shoots you dead.
+
+"I" script ("imitate"):
+
+1. When O reaches RV, O leaves train and heads for north end of platform.
+2. When O reaches north end (not at checkpoint), O heads for south end.
+3. When O reaches north end (at checkpoint) or O reaches south end, O
+boards train and heads for C5 in car #5.
+4. En route, O searches the crowd.
+
+"PC" script ("passed customs"):
+
+1. When O reaches any destination but diner RV,
+    1a. If PO is lighter, O heads for diner RV.
+    1b. If PO is flower, O heads for RV and waits.
+2. When O reaches diner RV, O kicks machine, starts "SL" script and
+heads for front of train.
+
+"RR" script ("restroom"):
+
+1. O heads for restroom of contact's gender.
+
+"SF" script ("seek flower"):
+
+1. When O reaches destination, O waits.
+2. When train reaches meadow, train stops, O leaves restroom (if in
+one), leaves train, picks flower, boards train (1 min each), and waits.
+
+"SK" script ("seek knife"):
+
+1. When O reaches diner RV, O pulls stop cord and heads for galley.
+2. When O reaches galley, O takes knife and heads for C1 in next car rear.
+3. When O reaches C1, O waits.
+
+"SL" script ("seek lighter"):
+
+1. When O reaches front of train, O heads for rear of train, and vice
+versa. En route, O tries to acquire lighter from passenger.
+2. If O acquires lighter, O heads for rear of train.
+
+"ST" script ("seek ticket"):
+
+0. When train reaches Knut, O leaves restroom if in one.
+1. When O reaches RV, O leaves train and heads for ticket area.
+2. When O reaches ticket area, O buys ticket for Gola and heads for
+middle of platform.
+3. When O reaches there, O waits.
+
+"WC" script ("with case"):
+
+0. If you talk to O, O hurries away toward destination.
+1. O heads for C5 in car #5. When reached, O tries to open case. If case
+was open when O took it, no problem. Else:
+    1a. If latch OK or long story:
+	1a1. If McGuffin is in case, O just waits.
+	1a2. If scrap is in case, O reads it and either heads for
+	     diner RV to start "SK" script, or heads for RV to start "SF"
+	     script, unless O already has PO.
+	1a3. If O identified you, O starts "FY" script and heads for you.
+	1a4. Else O starts "I" script.
+    1b. Else O takes gas and dies. (So does anyone else in O's C.)

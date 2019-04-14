@@ -1,0 +1,1527 @@
+
+Combined ZIL Compiler Ver 2.0 (MIM)
+-----------------------------------
+Input file: SPY.ZIL
+Input file: MACROS.ZIL
+Compiling routine: START-SENTENCE
+Compiling routine: PRINTT
+Compiling routine: THE?
+Compiling routine: PRINTA
+Compiling routine: NO-PRONOUN?
+Compiling routine: HE-SHE-IT
+Compiling routine: ONE?
+Compiling routine: HIM-HER-IT
+Compiling routine: PICK-ONE-NEW
+Compiling routine: PICK-ONE
+Input file: SYNTAX.ZIL
+Input file: MAIN.ZIL
+Compiling routine: GO
+Compiling routine: INTRO
+Compiling routine: READ-WORD
+Compiling routine: PLEASE-TYPE-OR
+Compiling routine: RANDOM-PER-VAR
+Compiling routine: TAKE-YOUR-PLACES
+Compiling routine: SET-PASSES
+Compiling routine: TAKE-YOUR-PLACES-CAST
+Compiling routine: TAKE-YOUR-PLACE-TEST
+Compiling routine: OCCUPIED?
+Compiling routine: MOVE-CONTACT
+Compiling routine: INIT-STATUS-LINE
+Compiling routine: INVERSE-LINE
+Compiling routine: PRINT-SPACES
+Compiling routine: STATUS-LINE
+Compiling routine: TELL-LOCATION
+Input file: THINGS.ZIL
+Compiling routine: RANDOM-PSEUDO
+Compiling routine: NOT-HERE-OBJECT-F
+Compiling routine: PRSO-VERB?
+Compiling routine: PRSI-VERB?
+Compiling routine: GEN-TEST
+Compiling routine: FIND-NOT-HERE
+Compiling routine: NOT-HERE-PRINT
+Compiling routine: GIVE-SHOW
+Compiling routine: TICKET-F
+Compiling routine: PASSPORT-F
+Compiling routine: CHECK-F
+Compiling routine: CAMERA-F
+Compiling routine: FILM-F
+Compiling routine: GLASS-F
+Compiling routine: MCGUFFIN-F
+Compiling routine: SPY-LIST-F
+Compiling routine: PAD-READ
+Compiling routine: BRIEFCASE-F
+Compiling routine: TELL-GAS
+Compiling routine: LATCH-F
+Compiling routine: CASE-CAREFUL
+Compiling routine: BRIEFCASE-HANDLE-F
+Compiling routine: PLAQUE-F
+Compiling routine: TBL-FIRST?
+Compiling routine: TBL-TO-INSIDE
+Compiling routine: INSIDE-OBJ-TO
+Compiling routine: OBJS-SLIDE-OFF
+Compiling routine: NEWSPAPER-F
+Compiling routine: CIGARETTE-F
+Compiling routine: LIGHTER-F
+Compiling routine: FLOWER-F
+Compiling routine: SEARCHING-FOR?
+ ** Warning: Unknown value - KNIFE
+Compiling routine: BLOOD-SPOT-DESC
+Compiling routine: FIND-SEARCH
+Compiling routine: BLOOD-SPOT-F
+Compiling routine: KNIFE-F
+Compiling routine: KNIFE-NAPKIN-F
+Compiling routine: NAPKIN-F
+Compiling routine: SNEAKY-TAKE?
+Input file: PEOPLE.ZIL
+Compiling routine: PREVENTS-YOU?
+Compiling routine: PLAYER-F
+Compiling routine: TOO-BAD-SIT-HIDE
+Compiling routine: CONDUCTOR-DESC
+Compiling routine: CONDUCTOR-GIVE-SHOW
+Compiling routine: CONDUCTOR-F
+Compiling routine: CUSTOMS-AGENT-DESC
+Compiling routine: CUSTOMS-AGENT-F
+Compiling routine: CONFISCATE-MCGUFFIN
+Compiling routine: WAITER-DESC
+Compiling routine: WAITER-F
+Compiling routine: BRING-GIVE
+Compiling routine: COOK-DESC
+Compiling routine: COOK-F
+Compiling routine: HAT-COOK-F
+Compiling routine: BRIBED?
+Compiling routine: CLERK-DESC
+Compiling routine: CLERK-F
+Compiling routine: BOND-DESC
+Compiling routine: BOND-OTHER-DESC
+Compiling routine: BOND-F
+Compiling routine: BOND-OTHER-F
+Compiling routine: THIN-MAN-DESC
+Compiling routine: THIN-MAN-F
+Compiling routine: FAT-MAN-DESC
+Compiling routine: FAT-MAN-F
+Compiling routine: HUNK-DESC
+Compiling routine: HUNK-F
+Compiling routine: PEEL-DESC
+Compiling routine: PEEL-F
+Compiling routine: DUCHESS-DESC
+Compiling routine: DUCHESS-F
+Compiling routine: NATASHA-DESC
+Compiling routine: NATASHA-F
+Compiling routine: GUARD-DESC
+Compiling routine: GUARD-F
+Compiling routine: THUG-DESC
+Compiling routine: THUG-F
+Compiling routine: DEFECTOR-DESC
+Compiling routine: DEFECTOR-F
+Compiling routine: WAITRESS-DESC
+Compiling routine: WAITRESS-F
+Compiling routine: OFFICER-DESC
+Compiling routine: OFFICER-F
+Compiling routine: YOUNG-MAN-DESC
+Compiling routine: YOUNG-MAN-F
+Compiling routine: YOUNG-WOMAN-DESC
+Compiling routine: YOUNG-WOMAN-F
+Compiling routine: BOY-DESC
+Compiling routine: BOY-F
+Compiling routine: GIRL-DESC
+Compiling routine: GIRL-F
+Compiling routine: OLD-MAN-DESC
+Compiling routine: OLD-MAN-F
+Compiling routine: OLD-WOMAN-DESC
+Compiling routine: OLD-WOMAN-F
+Compiling routine: YOUNG-COUPLE-DESC
+Compiling routine: YOUNG-COUPLE-F
+Compiling routine: MIDDLE-COUPLE-DESC
+Compiling routine: MIDDLE-COUPLE-F
+Compiling routine: OLD-COUPLE-DESC
+Compiling routine: OLD-COUPLE-F
+Compiling routine: ELIMINATE
+Compiling routine: MONEY?
+Compiling routine: PERSON-F
+Compiling routine: ASK-WHAT?
+Compiling routine: IMMOBILIZE
+Compiling routine: UNCONSCIOUS-FCN
+Compiling routine: ANYONE-VISIBLE?
+Compiling routine: BODY-F
+Compiling routine: I-COME-TO
+Compiling routine: MCG-SAFE?
+Compiling routine: CARRY-CHECK
+Compiling routine: COM-CHECK
+Compiling routine: COMMON-OTHER
+Compiling routine: PICK-THIS
+ ** Warning: Unknown value - REM-NULL
+ ** Warning: Unknown value - REM-EYES-BLK
+ ** Warning: Unknown value - REM-EYES-BLU
+ ** Warning: Unknown value - REM-FINGER
+ ** Warning: Unknown value - REM-MARK
+ ** Warning: Unknown value - REM-WART
+Compiling routine: REM-NULL
+Compiling routine: REM-EYES-BLK
+Compiling routine: REM-EYES-BLU
+Compiling routine: REM-FINGER
+Compiling routine: REM-MARK
+Compiling routine: REM-WART
+Compiling routine: NEW-LDESC
+Compiling routine: CALL-FOR-PROP
+Compiling routine: UNSNOOZE
+Compiling routine: DESCRIBE-PERSON
+Compiling routine: DONT-KNOW
+Compiling routine: GLOBAL-PERSON
+Compiling routine: NOT-HERE-PERSON
+Compiling routine: PRODUCE-SOMETHING
+Compiling routine: PRODUCE-GIBBERISH
+Input file: PLACES.ZIL
+Compiling routine: NULL-F
+Compiling routine: DOOR-ROOM
+Compiling routine: DOOR-DIR
+Compiling routine: FACE-DOOR
+Compiling routine: FIND-FLAG
+Compiling routine: FIND-FLAG-CAR
+Compiling routine: FIND-FLAG-LG
+Compiling routine: FIND-FLAG-HERE
+Compiling routine: FIND-FLAG-HERE-NOT
+Compiling routine: NEXT-ROOM
+Compiling routine: OUTSIDE?
+Compiling routine: WINDOW-IN?
+Compiling routine: FRESH-AIR?
+Input file: GLOBAL.ZIL
+Compiling routine: DO-INSTEAD-OF
+Compiling routine: TURN-F
+Compiling routine: IT-F
+Compiling routine: FLOOR-F
+Compiling routine: DOLLARS-F
+Compiling routine: INTNUM-F
+Compiling routine: YOU-F
+Compiling routine: CORRIDOR-GLOBAL-F
+Compiling routine: GLOBAL-HERE-F
+Compiling routine: FOUND?
+Compiling routine: AIR-F
+Compiling routine: SOMETHING-F
+Compiling routine: TOILET-F
+Compiling routine: ROB
+Compiling routine: SINK-F
+Compiling routine: TOWEL-LOOP-F
+Compiling routine: TOWEL-LOOP-BROKEN-F
+Compiling routine: PAPER-FIXTURE-F
+Compiling routine: PAPER-LOOP-F
+Compiling routine: MIRROR-F
+Compiling routine: POCKET-F
+Compiling routine: POCKET-C-F
+Compiling routine: TELL-FLASHING-CASH
+Compiling routine: GLOBAL-MONEY-F
+Compiling routine: MENU-F
+Compiling routine: ITEMS-F
+Compiling routine: FOOD-GLOBAL-F
+Compiling routine: DRINK-F
+Compiling routine: DRINK-1-F
+Compiling routine: FOOD-F
+Compiling routine: CUP-F
+Compiling routine: WINE-PUT?
+Compiling routine: WINE-F
+Compiling routine: NO-FOOD-F
+Compiling routine: TABLE?
+Compiling routine: LANGUAGE-F
+Compiling routine: GESTURE-F
+Compiling routine: GAME-F
+Compiling routine: HEAD-F
+Input file: CLOCK.ZIL
+Compiling routine: QUEUE
+Compiling routine: INT
+Compiling routine: QUEUED?
+Compiling routine: CLOCKER
+Input file: PARSER.ZIL
+Compiling routine: MAIN-LOOP
+Compiling routine: MAIN-LOOP-1
+Compiling routine: VERB-ALL-TEST
+Compiling routine: GAME-VERB?
+Compiling routine: QCONTEXT-CHECK
+Compiling routine: QCONTEXT-GOOD?
+Compiling routine: SAID-TO
+Compiling routine: THIS-IS-IT
+Compiling routine: NOT-IT
+Compiling routine: FAKE-ORPHAN
+Compiling routine: TELL-D-LOC
+Compiling routine: FIX-HIM-HER
+Compiling routine: PERFORM
+Compiling routine: D-APPLY
+Compiling routine: I-PROMPT
+Compiling routine: BUZZER-WORD?
+Compiling routine: QUESTION-WORD?
+Compiling routine: NUMBER-WORD?
+Compiling routine: NAUGHTY-WORD?
+Compiling routine: PARSER
+Compiling routine: STUFF
+Compiling routine: INBUF-STUFF
+Compiling routine: INBUF-ADD
+Compiling routine: WT?
+Compiling routine: CHANGE-LEXV
+Compiling routine: CLAUSE
+Compiling routine: VERB-DIR-ONLY?
+Compiling routine: NUMBER?
+Compiling routine: CENTS-CHECK
+Compiling routine: ORPHAN-MERGE
+Compiling routine: ACLAUSE-WIN
+Compiling routine: NCLAUSE-WIN
+Compiling routine: WORD-PRINT
+Compiling routine: UNKNOWN-WORD
+Compiling routine: CANT-USE
+Compiling routine: SYNTAX-CHECK
+Compiling routine: DONT-UNDERSTAND
+Compiling routine: VERB-PRINT
+Compiling routine: ORPHAN
+Compiling routine: CLAUSE-PRINT
+Compiling routine: BUFFER-PRINT
+Compiling routine: CAPITAL-NOUN?
+Compiling routine: CAPITALIZE
+Compiling routine: PREP-PRINT
+Compiling routine: CLAUSE-COPY
+Compiling routine: CLAUSE-ADD
+Compiling routine: PREP-FIND
+Compiling routine: SYNTAX-FOUND
+Compiling routine: GWIM
+Compiling routine: SNARF-OBJECTS
+Compiling routine: BUT-MERGE
+Compiling routine: SNARFEM
+Compiling routine: GET-OBJECT
+Compiling routine: SPEAKING-VERB?
+Compiling routine: CANT-ORPHAN
+Compiling routine: MISSING-NOUN
+Compiling routine: MISSING-VERB
+Compiling routine: MOBY-FIND
+Compiling routine: WHICH-PRINT
+Compiling routine: GLOBAL-CHECK
+Compiling routine: DO-SL
+Compiling routine: SEARCH-LIST
+Compiling routine: THIS-IT?
+Compiling routine: OBJ-FOUND
+Compiling routine: TAKE-CHECK
+Compiling routine: ITAKE-CHECK
+Compiling routine: MANY-CHECK
+Compiling routine: ZMEMQ
+Compiling routine: ZMEMZ
+Compiling routine: LIT?
+Compiling routine: NOT-HERE
+Input file: VERBS.ZIL
+Compiling routine: TRANSCRIPT
+Compiling routine: V-SCRIPT
+Compiling routine: V-UNSCRIPT
+Compiling routine: V-$VERIFY
+Compiling routine: V-$ANSWER
+Compiling routine: V-$FCLEAR
+Compiling routine: V-$FSET
+Compiling routine: V-$QFSET
+Compiling routine: V-$GOAL
+Compiling routine: V-$QUEUE
+Compiling routine: V-$STATION
+Compiling routine: V-$WHERE
+Compiling routine: TELL-$WHERE
+Compiling routine: V-DEBUG
+Compiling routine: YOU-WILL-GET
+Compiling routine: V-BRIEF
+Compiling routine: V-SUPER-BRIEF
+Compiling routine: V-VERBOSE
+Compiling routine: V-INVENTORY
+Compiling routine: V-QUIT
+Compiling routine: V-RESTART
+Compiling routine: TELL-FAILED
+Compiling routine: V-SAVE
+Compiling routine: V-RESTORE
+Compiling routine: V-FIRST-LOOK
+Compiling routine: V-VERSION
+Compiling routine: YES?
+Compiling routine: YOU-CANT
+Compiling routine: DESCRIBE-OBJECT
+Compiling routine: DESCRIBE-OBJECTS
+Compiling routine: DESCRIBE-ROOM
+Compiling routine: FAR-AWAY?
+Compiling routine: COMPASS-EQV
+Compiling routine: FIRSTER
+Compiling routine: HAR-HAR
+Compiling routine: NOT-HOLDING?
+Compiling routine: GOTO
+Compiling routine: HACK-HACK
+Compiling routine: HELD?
+Compiling routine: IDROP
+Compiling routine: ITAKE
+Compiling routine: LURCH-MISS
+Compiling routine: MOVE-FROM
+Compiling routine: CCOUNT
+Compiling routine: CHECK-DOOR
+Compiling routine: PRINT-CONT
+ ** Note: Non-predicate jump flushed PRINTI
+
+ ** Note: Non-predicate jump flushed PRINTI
+
+ ** Note: Non-predicate jump flushed PRINTI
+
+ ** Note: Non-predicate jump flushed PRINTI
+Compiling routine: PRINT-CONTENTS
+Compiling routine: ROOM-CHECK
+Compiling routine: SEE-INSIDE?
+Compiling routine: ARENT-TALKING
+Compiling routine: ALREADY
+Compiling routine: NOT-CLEAR-WHOM
+Compiling routine: OKAY
+Compiling routine: WONT-HELP-TO-TALK-TO
+Compiling routine: TOO-BAD-BUT
+Compiling routine: TOO-DARK
+Compiling routine: VISIBLE?
+Compiling routine: ACCESSIBLE?
+Compiling routine: META-LOC
+Compiling routine: WEIGHT
+Compiling routine: WHO-CARES
+Compiling routine: PRE-SAIM
+Compiling routine: V-SAIM
+Compiling routine: V-AIM
+Compiling routine: PRE-SANALYZE
+Compiling routine: V-SANALYZE
+Compiling routine: PRE-ANALYZE
+Compiling routine: V-ANALYZE
+Compiling routine: V-ANSWER
+Compiling routine: V-REPLY
+Compiling routine: WAITING-FOR-YOU-TO-SPEAK
+Compiling routine: PRE-ASK
+Compiling routine: V-ASK
+Compiling routine: PRE-ASK-ABOUT
+Compiling routine: V-ASK-ABOUT
+Compiling routine: PRE-ASK-CONTEXT-ABOUT
+Compiling routine: V-ASK-CONTEXT-ABOUT
+Compiling routine: PRE-ASK-FOR
+Compiling routine: V-ASK-FOR
+Compiling routine: PRE-ASK-CONTEXT-FOR
+Compiling routine: V-ASK-CONTEXT-FOR
+Compiling routine: V-ATTACK
+Compiling routine: PRE-BRING
+Compiling routine: V-BRING
+Compiling routine: PRE-SBRING
+Compiling routine: V-SBRING
+Compiling routine: V-BRUSH
+Compiling routine: TELL-NO-PRSI
+Compiling routine: PRE-BURN
+Compiling routine: V-BURN
+Compiling routine: REMOVE-CAREFULLY
+Compiling routine: PRE-BUY
+Compiling routine: PRE-BUY-TICKET
+Compiling routine: V-BUY-TICKET
+Compiling routine: V-BUY
+Compiling routine: V-$CALL
+Compiling routine: PRE-PHONE
+Compiling routine: V-PHONE
+Compiling routine: V-CHANGE
+Compiling routine: V-CHASTISE
+Compiling routine: V-BOARD
+Compiling routine: V-CLIMB-ON
+Compiling routine: V-CLIMB-UP
+Compiling routine: V-CLIMB-DOWN
+Compiling routine: V-CLOSE
+Compiling routine: PRE-COME-WITH
+Compiling routine: V-COME-WITH
+Compiling routine: V-CONFRONT
+Compiling routine: V-COUNT
+Compiling routine: V-CUT
+Compiling routine: V-MUNG
+Compiling routine: V-DIAGNOSE
+Compiling routine: PRE-DISCUSS
+Compiling routine: V-DISCUSS
+Compiling routine: V-DRINK
+Compiling routine: V-DROP
+Compiling routine: GROUND-DESC
+Compiling routine: V-EAT
+Compiling routine: PRE-EMPTY
+Compiling routine: V-EMPTY
+Compiling routine: V-ENTER
+Compiling routine: V-THROUGH
+Compiling routine: PRE-EXAMINE
+Compiling routine: V-EXAMINE
+Compiling routine: NOTHING-SPECIAL
+Compiling routine: GLOBAL-IN?
+Compiling routine: V-$FACE
+Compiling routine: V-FACE
+Compiling routine: V-FAINT
+Compiling routine: PRE-FILL
+Compiling routine: V-FILL
+Compiling routine: PRE-FIND
+Compiling routine: BITE-YOU
+Compiling routine: V-FIND
+Compiling routine: V-FIND-WITH
+Compiling routine: V-FIX
+Compiling routine: V-FLUSH
+Compiling routine: V-FLUSH-AWAY
+Compiling routine: V-FLUSH-DOWN
+Compiling routine: V-FOLLOW
+Compiling routine: V-FOO
+Compiling routine: PRE-GESTURE
+Compiling routine: V-GESTURE
+Compiling routine: PRE-GIVE
+Compiling routine: V-GIVE
+Compiling routine: PRE-SGIVE
+Compiling routine: V-SGIVE
+Compiling routine: PRE-GOODBYE
+Compiling routine: V-GOODBYE
+Compiling routine: PRE-HANGUP
+Compiling routine: V-HANGUP
+Compiling routine: PRE-HEAT
+Compiling routine: V-HEAT
+Compiling routine: PRE-HELLO
+Compiling routine: V-HELLO
+Compiling routine: V-HELP
+Compiling routine: HELP-TEXT
+Compiling routine: V-HIDE
+Compiling routine: V-HIDE-BEHIND
+Compiling routine: PRE-HOLD-OVER
+Compiling routine: V-HOLD-OVER
+Compiling routine: V-HOLD-UNDER
+Compiling routine: V-KILL
+Compiling routine: IKILL
+Compiling routine: V-KISS
+Compiling routine: V-KNOCK
+Compiling routine: V-STAND
+Compiling routine: V-LEAP
+Compiling routine: V-SKIP
+Compiling routine: WHEE
+Compiling routine: V-LEARN
+Compiling routine: V-LEAVE
+Compiling routine: PRE-LIE
+Compiling routine: V-LIE
+Compiling routine: V-LISTEN
+Compiling routine: V-LOCK
+Compiling routine: V-LOOK
+Compiling routine: V-LOOK-BEHIND
+Compiling routine: V-LOOK-DOWN
+Compiling routine: PRE-LOOK-INSIDE
+Compiling routine: V-LOOK-INSIDE
+Compiling routine: V-LOOK-THROUGH
+Compiling routine: ROOM-PEEK
+Compiling routine: SEE-INTO?
+Compiling routine: V-LOOK-ON
+Compiling routine: V-LOOK-OUTSIDE
+Compiling routine: V-LOOK-UNDER
+Compiling routine: V-LOOK-UP
+Compiling routine: V-MAKE
+Compiling routine: PRE-MOVE
+Compiling routine: V-MOVE
+Compiling routine: PRE-MOVE-DIR
+Compiling routine: V-MOVE-DIR
+Compiling routine: V-NOD
+Compiling routine: V-OPEN
+Compiling routine: PRE-OPEN-WITH
+Compiling routine: V-OPEN-WITH
+Compiling routine: V-PASS
+Compiling routine: PRE-PHOTO
+Compiling routine: TAKE-PICTURE
+Compiling routine: V-PHOTO
+Compiling routine: V-PLAY
+Compiling routine: PRE-POCKET
+Compiling routine: V-POCKET
+Compiling routine: V-POUR
+Compiling routine: V-PUSH
+Compiling routine: PRE-PUT
+Compiling routine: PRE-SPUT-IN
+Compiling routine: V-SPUT-IN
+Compiling routine: PRE-PUT-IN
+Compiling routine: V-PUT-IN
+Compiling routine: V-PUT
+Compiling routine: V-PUT-UNDER
+Compiling routine: V-RAISE
+Compiling routine: PRE-READ
+Compiling routine: V-READ
+Compiling routine: V-REMOVE
+Compiling routine: V-RING
+Compiling routine: V-RIP
+Compiling routine: V-RISE
+Compiling routine: V-RUB
+Compiling routine: PRE-RUB-OVER
+Compiling routine: V-RUB-OVER
+Compiling routine: V-SAY
+Compiling routine: PRE-SAY-INTO
+Compiling routine: V-SAY-INTO
+Compiling routine: PRE-SEARCH
+Compiling routine: V-SEARCH
+Compiling routine: PRE-SSEARCH-FOR
+Compiling routine: V-SSEARCH-FOR
+Compiling routine: PRE-SEARCH-FOR
+Compiling routine: V-SEARCH-FOR
+Compiling routine: V-SEND
+Compiling routine: PRE-SSEND
+Compiling routine: V-SSEND
+Compiling routine: V-SEND-OUT
+Compiling routine: PRE-SEND-TO
+Compiling routine: V-SEND-TO
+Compiling routine: V-SHAKE
+Compiling routine: PRE-SHOOT
+Compiling routine: V-SHOOT
+Compiling routine: PRE-SSHOOT
+Compiling routine: V-SSHOOT
+Compiling routine: V-SHOW
+Compiling routine: PRE-SSHOW
+Compiling routine: V-SSHOW
+Compiling routine: V-SIGN
+Compiling routine: PRE-SIT
+Compiling routine: V-SIT
+Compiling routine: V-SIT-AT
+Compiling routine: V-SLAP
+Compiling routine: IF-SPY
+Compiling routine: FACE-RED
+Compiling routine: V-SLIDE
+Compiling routine: V-SMELL
+Compiling routine: V-SMILE
+Compiling routine: V-SMOKE
+Compiling routine: V-STOP
+Compiling routine: V-SWIM
+Compiling routine: PRE-TAKE
+Compiling routine: PRE-TAKE-WITH
+Compiling routine: V-TAKE
+Compiling routine: V-TAKE-OFF
+Compiling routine: V-TAKE-TO
+Compiling routine: V-TAKE-WITH
+Compiling routine: V-DISEMBARK
+Compiling routine: OWN-FEET
+Compiling routine: V-HOLD-UP
+Compiling routine: V-TELL
+Compiling routine: PRE-STELL-ABOUT
+Compiling routine: V-STELL-ABOUT
+Compiling routine: PRE-TELL-ABOUT
+Compiling routine: V-TELL-ABOUT
+Compiling routine: PRE-TALK-ABOUT
+Compiling routine: V-TALK-ABOUT
+Compiling routine: V-THANKS
+Compiling routine: THANKS-ACT
+Compiling routine: V-THROW
+Compiling routine: V-THROW-AT
+Compiling routine: V-THROW-OFF
+Compiling routine: V-THROW-THROUGH
+Compiling routine: PRE-TIE-TO
+Compiling routine: V-TIE-TO
+Compiling routine: PRE-TIE-WITH
+Compiling routine: V-TIE-WITH
+Compiling routine: V-TIME
+Compiling routine: TIME-PRINT
+Compiling routine: V-TURN
+Compiling routine: V-TURN-AROUND
+Compiling routine: V-LAMP-OFF
+Compiling routine: V-LAMP-ON
+Compiling routine: V-UNLOCK
+Compiling routine: V-UNTIE
+Compiling routine: MORE-SPECIFIC
+Compiling routine: V-USE
+Compiling routine: V-USE-AGAINST
+Compiling routine: HAS-ARRIVED
+Compiling routine: V-WAIT
+Compiling routine: INT-WAIT
+Compiling routine: V-WAIT-FOR
+Compiling routine: V-WAIT-UNTIL
+Compiling routine: V-ALARM
+Compiling routine: DO-WALK
+Compiling routine: V-WALK
+Compiling routine: WALK-THRU-DOOR?
+Compiling routine: V-WALK-AROUND
+Compiling routine: WHO-KNOWS?
+Compiling routine: V-WALK-TO
+Compiling routine: V-WALK-UNDER
+Compiling routine: V-RUN-OVER
+Compiling routine: V-WEAR
+Compiling routine: V-WHAT
+Compiling routine: V-WIND
+Compiling routine: V-YELL
+Compiling routine: V-YELL-FOR
+Compiling routine: V-YES
+Compiling routine: V-NO
+Compiling routine: FINISH
+Compiling routine: DIVESTMENT?
+Compiling routine: EXIT-VERB?
+Compiling routine: REMOTE-VERB?
+Input file: TRAIN.ZIL
+Compiling routine: TRAIN-F
+Compiling routine: SCENERY-RIGHT-F
+Compiling routine: SCENERY-LEFT-F
+Compiling routine: SCENERY-F
+Compiling routine: GENERIC-STATION-F
+Compiling routine: START-TRAIN
+Compiling routine: DESTINATION
+Compiling routine: I-TRAIN-SCENERY
+Compiling routine: PREPARE-SPLAT
+Compiling routine: DO-SPLAT
+Compiling routine: TIMETABLE-F
+Compiling routine: PRINT-TT
+Compiling routine: I-ARRIVE-WARNING
+Compiling routine: HIDE-OBJECT?
+Compiling routine: ARRIVE-STATION
+Compiling routine: CLEAR-TRAIN
+Compiling routine: CLEAR-TRAIN-PERSON
+Compiling routine: CONDUCTOR-OFF
+Compiling routine: I-CONTACT-APPEARS
+Compiling routine: I-CONTACT-GIVES-UP
+Compiling routine: I-DEPART-WARNING
+Compiling routine: I-DEPART
+Compiling routine: CUE-NEXT-TRAIN
+Compiling routine: FLUSH?
+Compiling routine: FLUSH-ROOM?
+Compiling routine: UNPUNCH-TICKETS
+Compiling routine: TRAIN-SLOWING?
+Compiling routine: MOTION-PREFIX
+Compiling routine: I-TRAIN-LURCH
+Compiling routine: REST-ROOM-F
+Compiling routine: COMPARTMENT-F
+Compiling routine: PERSON-TAKES-GUN?
+Compiling routine: CALL-FOR-EXTRA
+Compiling routine: MOVE-EXTRA?
+Compiling routine: COMPARTMENT-DESC
+Compiling routine: CORD-SWINGS?
+Compiling routine: GENERIC-COMPARTMENT-F
+Compiling routine: REST-ROOM-FWD-DOOR-F
+Compiling routine: REST-ROOM-DOOR-F
+Compiling routine: COMPARTMENT-1-DOOR-F
+Compiling routine: COMPARTMENT-DOOR-F
+Compiling routine: COMPARTMENT-2-DOOR-F
+Compiling routine: COMPARTMENT-3-DOOR-F
+Compiling routine: HALL-3-F
+Compiling routine: COMPARTMENT-4-DOOR-F
+Compiling routine: COMPARTMENT-5-DOOR-F
+Compiling routine: HALL-F
+Compiling routine: REST-ROOM-REAR-DOOR-F
+Compiling routine: VESTIBULE-FWD-F
+Compiling routine: VESTIBULE-REAR-F
+Compiling routine: VESTIBULE-F
+Compiling routine: FORWARD-PART?
+Compiling routine: GENERIC-VESTIBULE-F
+Compiling routine: GENERIC-REST-ROOM-F
+Compiling routine: GENERIC-HALL-1-F
+Compiling routine: GENERIC-MIDDLE-F
+Compiling routine: GENERIC-HALL-5-F
+Compiling routine: DETRAIN-F
+Compiling routine: LADDER-EXIT-F
+Compiling routine: ROOF-F
+Compiling routine: LADDER-ENTER-F
+Compiling routine: LADDER-F
+Compiling routine: VESTIBULE-FWD-DOOR-F
+Compiling routine: VESTIBULE-REAR-DOOR-F
+Compiling routine: VESTIBULE-DOOR-F
+Compiling routine: I-VESTIBULE-DOOR
+Compiling routine: I-VESTIBULE-DOOR-PART
+Compiling routine: STOP-CORD-IN?
+Compiling routine: STOP-CORD-F
+Compiling routine: I-TRAIN-RESTART
+Compiling routine: OPEN-CURTAINS
+Compiling routine: OPEN-CURTAIN
+Compiling routine: CLOSE-CURTAINS
+Compiling routine: CLOSE-CURTAIN
+Compiling routine: CURTAIN-F
+Compiling routine: GENERIC-SEAT-F
+Compiling routine: SEAT-1-F
+Compiling routine: SEAT-F
+Compiling routine: UNDER-SEAT-F
+Compiling routine: UNDER-SEAT-N-F
+Compiling routine: SEAT-2-F
+Compiling routine: SEAT-3-F
+Compiling routine: SEAT-4-F
+Compiling routine: SEAT-5-F
+Compiling routine: BOOTH-SEAT-1-F
+Compiling routine: BOOTH-SEAT-2-F
+Compiling routine: BOOTH-SEAT-3-F
+Compiling routine: WINDOW-ROOM
+Compiling routine: WINDOW-F
+ ** Warning: Unknown value - VESTIBULE-FWD-DINER
+ ** Warning: Unknown value - VESTIBULE-REAR-DINER
+
+ ** Warning: Unknown value - VESTIBULE-FWD-FANCY
+ ** Warning: Unknown value - VESTIBULE-REAR-FANCY
+
+ ** Warning: Unknown value - REST-ROOM-FWD-DINER
+ ** Warning: Unknown value - REST-ROOM-REAR-DINER
+
+ ** Warning: Unknown value - HALL-1-DINER
+ ** Warning: Unknown value - HALL-2-DINER
+ ** Warning: Unknown value - HALL-3-DINER
+ ** Warning: Unknown value - HALL-4-DINER
+ ** Warning: Unknown value - HALL-5-DINER
+ ** Warning: Unknown value - HALL-1-FANCY
+ ** Warning: Unknown value - HALL-2-FANCY
+ ** Warning: Unknown value - HALL-3-FANCY
+Compiling routine: NEXT-ROOF-TO-FWD-F
+Compiling routine: NEXT-ROOF-TO-REAR-F
+Compiling routine: NEXT-CAR-TO-FWD-F
+Compiling routine: NEXT-CAR-TO-REAR-F
+Compiling routine: NEXT-CAR
+Compiling routine: NEXT-CAR-SWITCHEROO
+Compiling routine: ROOM-TO-OTHER
+Compiling routine: OTHER-TO-ROOM
+Compiling routine: FIX-GOAL
+Compiling routine: BESIDE-TRACKS-F
+Compiling routine: ALONG-TRAIN-FWD-F
+Compiling routine: ALONG-TRAIN-REAR-F
+Compiling routine: I-TRAIN-ARREST
+Compiling routine: NOISY?
+Compiling routine: L-FWD
+Compiling routine: L-REAR
+Compiling routine: V-FWD
+Compiling routine: V-REAR
+Input file: CARS.ZIL
+Compiling routine: DINER-F
+Compiling routine: GENERIC-BOOTH-F
+Compiling routine: PANTRY-F
+Compiling routine: INVASION?
+Compiling routine: GALLEY-F
+Compiling routine: COUNTER-GALLEY-F
+Compiling routine: ROOM-IS-CROWDED
+Compiling routine: BOOTH-F
+Compiling routine: BOOTH-DESC
+Compiling routine: FROY-F
+Compiling routine: REST-ROOM-REAR-DINER-DOOR-F
+Compiling routine: REST-ROOM-FWD-DINER-DOOR-F
+Compiling routine: MACHINE-F
+ ** Warning: Unknown value - SUITE-1
+ ** Warning: Unknown value - SUITE-2
+ ** Warning: Unknown value - VESTIBULE-FWD-FANCY
+ ** Warning: Unknown value - HALL-1-FANCY
+ ** Warning: Unknown value - HALL-2-FANCY
+ ** Warning: Unknown value - HALL-3-FANCY
+ ** Warning: Unknown value - VESTIBULE-REAR-FANCY
+Compiling routine: PICK-ONE-BOOTH
+Compiling routine: SUITE-1-DOOR-F
+Compiling routine: SUITE-2-DOOR-F
+Compiling routine: SUITE-3-DOOR-F
+Compiling routine: SUITE-F
+Compiling routine: HALL-FANCY-F
+Input file: STATION.ZIL
+Compiling routine: ON-PLATFORM?
+Compiling routine: PLATFORM-GLOBAL-F
+Compiling routine: PASS-CUSTOMS-F
+Compiling routine: UNPASS-CUSTOMS-F
+Compiling routine: NEXT-PLATFORM-TO-REAR-F
+Compiling routine: NEXT-PLATFORM-TO-FWD-F
+Compiling routine: NEXT-PLATFORM-F
+Compiling routine: PLATFORM-F
+Compiling routine: NO-EMBARK-TEST
+Compiling routine: EMBARK-F
+Compiling routine: CROWD-F
+Compiling routine: LUGGAGE-ROOM-F
+Compiling routine: REST-ROOM-STATION-TEST
+Compiling routine: REST-ROOM-STATION-F
+Compiling routine: NEW-CONTACT
+Compiling routine: COUNTER-CAFE-F
+Compiling routine: TICKET-AREA-F
+Compiling routine: TOWN-F
+Compiling routine: SIDEWALK-F
+Input file: GOAL.ZIL
+Compiling routine: DIR-PRINT
+Compiling routine: OPP-DIR
+Compiling routine: GET-LINE
+Compiling routine: FOLLOW-GOAL
+Compiling routine: FOLLOW-GOAL-DIR
+Compiling routine: FOLLOW-GOAL-NEXT
+Compiling routine: COR-GRAB-ATTENTION
+Compiling routine: CORRIDOR-LOOK
+Compiling routine: CORRIDOR-CHECK
+Compiling routine: COR-ADD-PER
+Compiling routine: COR-TELL-PER
+Compiling routine: IN-MOTION?
+Compiling routine: START-MOVEMENT
+
+ ** Note: Atomic argument to routine assumed constant - G-LEAVE-TRAIN
+
+ ** Warning: Unknown value - I-PLAYER
+ ** Warning: Unknown value - I-PLAYER
+ ** Warning: Unknown value - I-CONDUCTOR
+ ** Warning: Unknown value - I-CONDUCTOR
+ ** Warning: Unknown value - I-WAITER
+ ** Warning: Unknown value - I-WAITER
+ ** Warning: Unknown value - I-COOK
+ ** Warning: Unknown value - I-COOK
+ ** Warning: Unknown value - I-EXTRA
+ ** Warning: Unknown value - I-EXTRA
+ ** Warning: Unknown value - I-BOND
+ ** Warning: Unknown value - I-BOND
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-GUARD
+ ** Warning: Unknown value - I-GUARD
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+ ** Warning: Unknown value - I-STAR
+ ** Warning: Unknown value - STOP-WALKING-F
+Compiling routine: ESTABLISH-GOAL
+Compiling routine: ESTABLISH-GOAL-TRAIN
+Compiling routine: GOAL-REACHED
+Compiling routine: ENTERS?
+Compiling routine: TELL-THE-NOT-OTHER
+Compiling routine: DESCRIBE-MOVER?
+Compiling routine: MOVE-PERSON
+Compiling routine: DIR-FROM
+Compiling routine: DIR-FROM-TEST
+Compiling routine: I-FOLLOW
+Compiling routine: I-PLAYER
+Compiling routine: PICK-POCKET
+Compiling routine: I-LEAVE-TRAIN
+Compiling routine: LEAVE-TRAIN
+Compiling routine: G-LEAVE-TRAIN
+Compiling routine: I-WALK-TRAIN
+Compiling routine: OBJ-TO-NEXT
+Compiling routine: I-EXTRA
+Compiling routine: I-STAR
+Compiling routine: PICK-ONE-NOT
+Compiling routine: STOP-CONDUCTOR?
+Compiling routine: I-CONDUCTOR
+Compiling routine: TURNS-AROUND?
+Compiling routine: WHERE?
+Compiling routine: ANY-TICKETS?
+Compiling routine: I-WAITER
+Compiling routine: I-BOND
+Compiling routine: I-BOND-OTHER
+Compiling routine: I-COOK
+Compiling routine: I-GUARD
+Compiling routine: I-ATTENTION
+Compiling routine: GRAB-ATTENTION
+Compiling routine: I-TICKETS-PLEASE
+ ** Note: Non-predicate jump flushed PRINTI
+
+ ** Note: Non-predicate jump flushed PRINTI
+
+ ** Note: Non-predicate jump flushed PRINTI
+Compiling routine: ARREST-MCGUFFIN?
+Compiling routine: ARREST-PLAYER
+Input file: SPIES.ZIL
+Compiling routine: GUN-F
+Compiling routine: START-BAD-SPY
+Compiling routine: I-BAD-SPY
+Compiling routine: SPY-TAKES-CASE
+Compiling routine: I-BAD-SPY-W-CASE
+Compiling routine: ARRIVE-AT-STATION-BAD-SPY
+Compiling routine: DEPART-FROM-STATION-BAD-SPY
+Compiling routine: I-BAD-SPY-IMITATES
+Compiling routine: I-BAD-SPY-W-YOU
+Compiling routine: BAD-SPY-GUN-THREAT
+Compiling routine: I-BAD-SPY-TO-YOU
+Compiling routine: BAD-SPY-LEAVES-BOARDS
+Compiling routine: HIDDEN?
+Compiling routine: PASS-OBJECT?
+Compiling routine: CONTACT-F
+Compiling routine: GIVE-MCGUFFIN?
+Compiling routine: GIVE-WRONG-PASS-X
+Compiling routine: GIVE-PASSWORD
+Compiling routine: WHISPER-PLAN
+Compiling routine: WHISPER-PLAN-OTHER
+Compiling routine: I-AGENT-COMES
+Compiling routine: GUARD-NOTICES
+Compiling routine: TRAVELER-F
+Compiling routine: BAD-SPY-F
+Compiling routine: SHOW-MCGUFFIN
+Compiling routine: PAUSE-SCRIPT?
+Compiling routine: I-TRAVELER
+Compiling routine: TRAVELER-FLUSHES-MCGUFFIN
+Compiling routine: TRAVELER-FLEES
+Compiling routine: I-TRAVELER-SEEKS-FLOWER
+Compiling routine: I-TRAVELER-SEEKS-TICKET
+Compiling routine: I-TRAVELER-PASSED-CUSTOMS
+Compiling routine: STOP-WALKING-F
+
+ ** Note: Atomic argument to routine assumed constant - STOP-WALKING-F
+
+Compiling routine: I-TRAVELER-TO-GRNZ
+Compiling routine: I-TRAVELER-SEEKS-LIGHTER
+Compiling routine: I-TRAVELER-SEEKS-KNIFE
+Compiling routine: I-TRAVELER-FINDS-CONTACT
+Compiling routine: G-FINISH
+
+ ** Note: Atomic argument to routine assumed constant - G-FINISH
+
+Compiling routine: FINAL-SCENE
+Compiling routine: AWARD
+** Note: OBJECT has no properties: ROOMS
+** Note: OBJECT has no properties: LAST-OBJECT
+
+** Note: OBJECT has no properties: UNCONSCIOUS
+Vocabulary: 882
+Prepositions: 26
+	 OFF
+	 ON
+	 UP
+	 DOWN
+	 UNDER
+	 OUT
+	 IN
+	 THROUGH
+	 WITH
+	 BY
+	 PHOTO
+	 TILL
+	 AGAINST
+	 BESIDE
+	 AROUND
+	 ACROSS
+	 OVER
+	 BEHIND
+	 RID
+	 AWAY
+	 FROM
+	 ABOUT
+	 FOR
+	 TO
+	 AT
+Objects: 301
+	 GLOBAL-NATASHA
+	 PAPER-LOOP
+	 PLATFORM-GLOBAL
+	 WAITRESS
+	 DEFECTOR
+	 COUNTER-GALLEY
+	 OTHER-RACK-4
+	 SPY-LIST
+	 RACK-2
+	 HANDS
+	 FLOWER-GLOBAL
+	 SCENERY-LEFT
+	 GAME
+	 AIR
+	 OTHER-UNDER-SEAT-4
+	 FOREST
+	 HALL-1-DINER
+	 TABLE-2
+	 STATION-WIEN
+	 GLASS
+	 OTHER-BESIDE-TRACKS
+	 VESTIBULE-REAR-FANCY
+	 TOWEL-LOOP
+	 STATION-GRNZ
+	 DRINK-GLOBAL
+	 UNDER-BOOTH-2
+	 VESTIBULE-REAR-WINDOW
+	 COMPARTMENT-2-DOOR
+	 OTHER-COMPARTMENT-1
+	 THUG
+	 CURTAIN-1
+	 BOOTH-SEAT-2
+	 PAPER-FIXTURE
+	 RACK-3
+	 WINDOW-2
+	 REST-ROOM-FWD-DOOR
+	 LUGGAGE-ROOM
+	 NAPKIN
+	 YOUNG-WOMAN
+	 SUITE-1-DOOR
+	 VEHICLE
+	 TOILET
+	 SEAT-3
+	 FOOD
+	 VESTIBULE-FWD-FANCY
+	 TUNNEL
+	 RIVER
+	 MENU
+	 CAMERA
+	 LIMBO-FWD-FANCY
+	 CROSSING
+	 MARKS
+	 SUITE-3-DOOR
+	 OTHER-SEAT-2
+	 FILM
+	 TURN
+	 LIGHTER
+	 HALL-1
+	 CURTAIN-2
+	 PLAIN
+	 REST-ROOM-REAR-DINER-DOOR
+	 FOOD-CAFE
+	 GLOBAL-HERE
+	 LIGHT-GLOBAL
+	 TICKET-AREA
+	 OTHER-SEAT-4
+	 COMPARTMENT-4
+	 GUARD
+	 MACHINE
+	 OLD-COUPLE
+	 SUITE-2
+	 OTHER-LIMBO-REAR
+	 REST-ROOM-FWD-DINER
+	 OTHER-COMPARTMENT-3
+	 REST-ROOM-MEN
+	 HALL-3-DINER
+	 SEAT-2
+	 REST-ROOM-WOMEN
+	 CURTAIN-3
+	 FLOOR
+	 INTNUM
+	 TOWEL-FIXTURE-BROKEN
+	 FROY
+	 BOND-OTHER
+	 NOT-HERE-OBJECT
+	 UNDER-SEAT-3
+	 HALL-2
+	 VESTIBULE-REAR-DOOR
+	 VESTIBULE-FWD-DINER
+	 STATION-FRBZ
+	 FOOD-GLOBAL
+	 FAT-MAN
+	 GLOBAL-BOND
+	 UNDER-SEAT-1
+	 OTHER-VESTIBULE-REAR
+	 OTHER-COMPARTMENT-2
+	 GLOBAL-DUCHESS
+	 BRIEFCASE-LATCH
+	 OTHER-UNDER-SEAT-3
+	 OTHER-HALL-2
+	 RACK-1
+	 LIMBO-REAR
+	 NEWSPAPER
+	 UNDER-BOOTH-1
+	 BOOTH-1
+	 LIMBO-REAR-DINER
+	 COMPARTMENT-3-DOOR
+	 COUNTER-CAFE
+	 YOU
+	 TOWEL-FIXTURE
+	 DUCHESS
+	 CHECK
+	 HALL-2-DINER
+	 SEAT-1
+	 STATION-POTRZEBIE
+	 CROWD
+	 BOOTH-3
+	 CORRIDOR-GLOBAL
+	 WINDOW-3
+	 COOK
+	 UNDER-SEAT-5
+	 FIXTURES
+	 KNIFE
+	 HALL-3-FANCY
+	 REST-ROOM-FWD-DINER-DOOR
+	 THEM
+	 PANTRY
+	 HALL-3
+	 GLOBAL-COOK
+	 OTHER-RACK-1
+	 COMPARTMENT-1
+	 PEEL
+	 OTHER-HALL-4
+	 GALLEY
+	 PLAQUE
+	 PICTURE-GLOBAL
+	 GLOBAL-MONEY
+	 MIDDLE-COUPLE
+	 OTHER-RACK-3
+	 BOND
+	 TOWEL-WAITER
+	 GUN
+	 STOP-CORD
+	 COMPARTMENT-5
+	 OTHER-RACK-5
+	 VESTIBULE-FWD
+	 OTHER-ROOF
+	 HIM
+	 BLOOD-SPOT
+	 MEADOW
+	 UNCONSCIOUS
+	 HALL-2-FANCY
+	 OLD-WOMAN
+	 CLERK
+	 OTHER-VESTIBULE-FWD
+	 GESTURE
+	 HALL-4
+	 BODY
+	 TICKET-OTHER
+	 REST-ROOM-REAR-DINER
+	 DINER
+	 SCENERY-RIGHT
+	 LIMBO-REAR-FANCY
+	 WAITING-ROOM
+	 VESTIBULE-FWD-DOOR
+	 TRAIN
+	 VESTIBULE-FWD-WINDOW
+	 WAITER
+	 REST-ROOM-REAR-DOOR
+	 CLIFF
+	 YOUNG-MAN
+	 TABLE-3
+	 MIRROR
+	 DRINK-1
+	 FLOWER-2
+	 DOLLARS
+	 SOMETHING
+	 GLOBAL-THIN-MAN
+	 OFFICER
+	 WORN-SPOT
+	 FOOD-2
+	 GLOBAL-WAITER
+	 TABLE-1
+	 TOWN
+	 GLOBAL-PEEL
+	 HUNK
+	 NATASHA
+	 TICKET
+	 OTHER-LIMBO-FWD
+	 OLD-MAN
+	 HALL-5-DINER
+	 OTHER-UNDER-SEAT-2
+	 WINDOW-4
+	 WINE-WHITE
+	 BOOTH-SEAT-3
+	 HALL-1-FANCY
+	 THIN-MAN
+	 ROOF
+	 POCKET-C
+	 HALL-5
+	 HANKY
+	 BOOTH-SEAT-1
+	 SIDEWALK
+	 BESIDE-TRACKS
+	 OTHER-REST-ROOM-REAR
+	 TIMETABLE
+	 COMPARTMENT-4-DOOR
+	 SUITE-2-DOOR
+	 OTHER-SEAT-1
+	 LANGUAGE
+	 RACK-4
+	 STATION-KNUT
+	 GLOBAL-GUARD
+	 COMPARTMENT-2
+	 PEN
+	 ROOM-LUGGAGE
+	 EQUIPMENT
+	 FOOD-3
+	 OTHER-SEAT-3
+	 REST-ROOM-REAR
+	 LADDER
+	 GLOBAL-BOND-OTHER
+	 CUP-A
+	 HALL-4-DINER
+	 CURTAIN-4
+	 CUP-B
+	 ITEMS
+	 OTHER-SEAT-5
+	 FLARE
+	 VESTIBULE-REAR-DINER
+	 GLOBAL-FAT-MAN
+	 VESTIBULE-REAR
+	 SUITE-3
+	 CAFE
+	 CIGARETTE
+	 BRIEFCASE
+	 OTHER-UNDER-SEAT-5
+	 OTHER-COMPARTMENT-5
+	 YOUNG-COUPLE
+	 COUNTER-TICKET
+	 GIRL
+	 SUITE-1
+	 RACK-5
+	 STATION-GOLA
+	 UNDER-SEAT-2
+	 GRAFFITI
+	 CURTAIN-5
+	 IT
+	 HALL-WINDOW
+	 GLOBAL-CONDUCTOR
+	 GLOBAL-OBJECTS
+	 SCARF
+	 SEAT-5
+	 TOWEL-LOOP-BROKEN
+	 OTHER-UNDER-SEAT-1
+	 LIMBO-FWD-DINER
+	 UNDER-BOOTH-3
+	 OTHER-HALL-3
+	 FLOWER-1
+	 PASSPORT
+	 LUGGAGE
+	 OTHER-COMPARTMENT-4
+	 OTHER-HALL-1
+	 REST-ROOM-FWD
+	 HER
+	 LAST-OBJECT
+	 PLATFORM-D
+	 HEAD
+	 CHAIR
+	 LOCAL-GLOBALS
+	 BOOTH-2
+	 WINDOW-5
+	 PLAYER
+	 MCGUFFIN
+	 PLATFORM-E
+	 STATION-HRNG
+	 UNDER-SEAT-4
+	 COMPARTMENT-1-DOOR
+	 PLATFORM-B
+	 BOY
+	 PLATFORM-C
+	 HAT-COOK
+	 CONDUCTOR
+	 ROOMS
+	 LIMBO-FWD
+	 INTDIR
+	 PLATFORM-A
+	 BRIEFCASE-HANDLE
+	 WINDOW-1
+	 FOOD-1
+	 OTHER-HALL-5
+	 GLOBAL-HUNK
+	 SEAT-4
+	 COMPARTMENT-5-DOOR
+	 CUSTOMS-AGENT
+	 POCKET
+	 WINE-RED
+	 COMPARTMENT-3
+	 OTHER-REST-ROOM-FWD
+	 OTHER-RACK-2
+	 SINK
+Properties: 26
+	 P?GLOBAL
+	 P?STATION
+	 P?LINE
+	 P?OTHER
+	 P?GENERIC
+	 P?CHARACTER
+	 P?FDESC
+	 P?LDESC
+	 P?DESCFCN
+	 P?TEXT
+	 P?CAPACITY
+	 P?SIZE
+	 P?SYNONYM
+	 P?ADJECTIVE
+	 P?CAR
+	 P?ACTION
+	 P?CONTFCN
+	 P?OUT
+	 P?IN
+	 P?DOWN
+	 P?UP
+	 P?WEST
+	 P?SOUTH
+	 P?EAST
+	 P?NORTH
+Globals: 229
+	 P-HIM-OBJECT
+	 LATCH-TURNED
+	 TRAIN-MOVING
+	 PERSON-SAW-GUN
+	 P-BUTS
+	 VERBOSE
+	 UNKNOWN-MSGS
+	 P-END-ON-PREP
+	 GUARD-SAW-PASSPORT
+	 TRAVELER-CHECKED-CASE
+	 GESTURE-TABLE
+	 CAR-ROOMS-REST
+	 BRIEFCASE-TBL
+	 CAR-ROOMS
+	 P-HER-OBJECT
+	 COR-PER-TBLS
+	 TOURIST-ACTS
+	 P-NCN
+	 CHAR-LOCS
+	 PASSWORD
+	 PULLED-STOP-CORD
+	 I-ASSUME
+	 CAR-MAX
+	 DRESSED-FOR-TBL
+	 CAR-ROOMS-CORRIDS
+	 QUESTION-WORD-COUNT
+	 CHARACTER-TABLE
+	 CAR-HERE
+	 RESERVE-PTR
+	 PRSI
+	 PASSWORD-GIVEN-OTHER
+	 IN-STATION
+	 P-PROMPT
+	 CREDITS
+	 LOW-DIRECTION
+	 COR-1
+	 FANCY-LINE
+	 GIBBERISH
+	 GAS-CAR-RM
+	 COR-2
+	 HO-HUM
+	 P-IT-OBJECT
+	 LEAVE-TRAIN-PERSON
+	 COR-4
+	 PLAYER-NOT-FACING
+	 SCENERY-OBJ
+	 CAMERA-COCKED
+	 ACCESS-TBL
+	 MARKS-TABLE
+	 QCONTEXT-ROOM
+	 CELEBS
+	 WINNER
+	 TICKET-VIA
+	 P-OFLAG
+	 LAST-CAR-HERE
+	 P-NUMBER
+	 FUMBLE-PROB
+	 BRIEFCASE-PASSED
+	 OOPS-INBUF
+	 SPY-TABLE
+	 PASS-TABLE
+	 NAUTICAL-DIR-STRINGS
+	 TRAIN-NAME
+	 ON-TRAIN
+	 YUKS
+	 WHO-CARES-TBL
+	 CAR-ROOMS-WINDOWS
+	 PASSOBJECT-GIVEN-OTHER
+	 P-GETFLAGS
+	 TICKET-COUNT
+	 TRANSFER-TABLE
+	 QUOTE-FLAG
+	 P-ITBL
+	 WHO-WAIT
+	 KILLED-PERSON
+	 LAST-PLAYER-LOC
+	 STATION-ROOMS
+	 P-OVTBL
+	 GLOBAL-CHARACTER-TABLE
+	 TOLD-LURCHING
+	 QCONTEXT
+	 STATION-ACTS
+	 PASSWORD-GIVEN
+	 CAR-ROOMS-COMPS-DINER
+	 HERE
+	 PEEKER
+	 NOW-LURCHING
+	 BAD-SPY-KNOWS-YOU
+	 TRAIN-TABLE-A
+	 P-MERGE
+	 SL-BUFFER
+	 BOND-CTR
+	 OFFENDED
+	 P-INBUF
+	 TRAIN-TABLE
+	 COR-10
+	 EXTRA-SEEN-TABLE
+	 COR-20
+	 MOTIONS
+	 SCORE
+	 P-AND
+	 LAST-STAR-LOC
+	 COR-40
+	 CONDUCTOR-KNOWS
+	 P-PRSO
+	 LENS-CRACKED
+	 GOAL-TABLES
+	 PRESENT-TIME
+	 PRSA
+	 LAST-EXTRA-LOC
+	 STAR-C
+	 P-AADJ
+	 CONTACT-DEFAULT-F
+	 ITAKE-LOC
+	 P-CENT-FLAG
+	 PLURAL-ACTS
+	 SUPPRESS-INTERRUPT
+	 MOVES
+	 P-XADJ
+	 PLAYER-SEATED-OLD
+	 PICKPOCKET
+	 ARREST-REASON
+	 PASSOBJECT-GIVEN
+	 BAD-SPY-DEFAULT-F
+	 P-SYNTAX
+	 CUSTOMS-SWEEP
+	 PICTURE-NUMBER
+	 JUST-LOOKED
+	 LIST-RUBBED
+	 P-OCLAUSE
+	 TRAIN-LINE
+	 BRIEFCASE-WAS-OPEN
+	 P-GWIMBIT
+	 P-MERGED
+	 PASSOBJECT
+	 IDEBUG
+	 PRSO
+	 PLATFORM-ACTS
+	 COR-10000
+	 DIR-STRINGS
+	 DEBUG
+	 ACT-STRINGS
+	 MUNGED-ENABLE
+	 COR-20000
+	 BAD-SPY-C
+	 BAD-SPY-DONE-PEEKING
+	 TRAIN-TABLE-B
+	 COR-40000
+	 CAR-ROOMS-DINER
+	 EXTRA-TABLE
+	 P-LEXV
+	 C-INTS
+	 COMPARTMENT-START
+	 PLAYER-SEATED
+	 P-LEN
+	 GUARD-SUSPICION
+	 P-ADJ
+	 RESERVE-LEXV
+	 YES-INBUF
+	 COR-100
+	 CAR-ROOMS-COMPS
+	 P-VTBL
+	 COR-200
+	 YES-LEXV
+	 TICKET-OTHER-VIA
+	 COR-DIR-TBL
+	 COR-ALL-DIRS
+	 PLAYER-HIDING
+	 TICKET-KNOCK
+	 OTHER-LINE
+	 CAR-ROOMS-UNDER
+	 LIT
+	 BAD-SPY
+	 COR-400
+	 STATN-LINE
+	 CONTACT-SUSPICION
+	 P-DOLLAR-FLAG
+	 FANCY-CAR
+	 CAR-ROOMS-VESTIB
+	 P-THEM-OBJECT
+	 COLOR-TBL
+	 TICKETS-PUNCHED?
+	 STATIONS
+	 FUMBLE-NUMBER
+	 GAS-CAR
+	 P-DIRECTION
+	 AGAIN-LEXV
+	 P-PRSI
+	 CONTACT
+	 NOW-PRSI
+	 P-CONT
+	 PLAYER-NOT-FACING-OLD
+	 DINER-TOUCHED
+	 CHAR-CARS
+	 VARIATION
+	 DINER-CAR
+	 VOWELS
+	 P-ANAM
+	 MUNGED-PERSON
+	 P-WALK-DIR
+	 OOPS-TABLE
+	 DINER-LINE
+	 CAR-ROOMS-FANCY
+	 TOUCH-CAP?
+	 P-MOBY-FOUND
+	 P-XNAM
+	 C-TABLE
+	 WHO-CARES-VERB
+	 ALWAYS-LIT
+	 P-NAM
+	 P-OTBL
+	 FILM-TBL
+	 CAR-ROOMS-CORRID
+	 CLOCK-WAIT
+	 GOAL-PERSON
+	 COR-1000
+	 BOND-OTHER-ACTIONS
+	 COR-2000
+	 P-ADVERB
+	 PLATF-LINE
+	 BAD-SPY-OPENED-CASE
+	 COR-4000
+	 P-SLOCBITS
+	 INVASION-TIME
+	 REMARKS-TBL
+	 P-AMOUNT
+	 VICTIM-KNOWN
+	 P-ACLAUSE
+	 P-DIR

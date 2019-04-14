@@ -1,0 +1,544 @@
+[Automatic transcript: User is JW]
+
+Copyright (c) 1985 Infocom, Inc. All rights reserved.
+
+Welcome to CHECKPOINT (TM) - interactive fiction from Infocom!
+
+[Note to testers: this story has the command GO TO, and the concept of not
+being able to see things behind your back. The unit of currency in this story
+is the Frotzian slimpuk, whose symbol is "*".
+
+Messages in square brackets [] will not be in the final release. 
+Remember: you can shorten your words only to NINE (9) letters.
+But you can use C for COMPARTMENT, V for VESTIBULE, and F for FORWARD.]
+
+Do you want the viewpoint of the traveler or the spy? >S
+
+Do you want the short variation or the long one? >S
+
+Then let the story begin!
+Why did you want to be a spy anyway? You could have had a nice restful job,
+like an air-traffic controller. You could have tended flowers behind a white
+picket fence around your country cottage. At least they could let you grab a
+few winks between one job and the next. But no -- you finish debriefing in some
+dirty little city in Frotzerland, and before you can even find a phone book,
+let alone a hotel, they volunteer you for another assignment.
+
+"You've got to intercept a document!" they told you. "Then deliver it to our
+agent in Gola so the leak can be traced. We don't know where it is for sure,
+but we think it's in a briefcase that's leaving town on the next train. You're
+the only agent that's close enough and experienced enough to be sent after it.
+And at the end of the trip, there will be a plane ticket to home waiting for
+you."
+
+So that's why you're climbing all over this stupid train. Finding the briefcase
+was easy enough, but the dude carrying it was something else. Even your
+well-placed bullet didn't make him drop. Now, if only he'll take the bait and
+follow you up here, you can .... Wait! Here he comes from the forward end! But
+he's not carrying the case!
+
+CHECKPOINT
+Infocom interactive fiction - a story of intrigue
+Copyright (c) 1985 by Infocom, Inc. All rights reserved.
+CHECKPOINT is a trademark of Infocom, Inc.
+Release 14 / Serial number 850403 / Spy's viewpoint, short variation
+
+(roof)
+You are on the roof of the train. The wind blows your hair, and the rocking,
+lurching train threatens to buck you right off. It occurs to you that this
+might not be the safest place to be right now.
+The other spy is here, preparing to knock you off.
+
+
+Okay, what do you want to do now?
+>KICK
+
+(What do you want to kick?)
+
+>SPY
+
+The train lurches a bit.
+You go for him, but he dodges. He hesitates, preparing his next move.
+
+What next?
+>G
+
+You go for him, but he dodges. He hesitates, preparing his next move.
+
+What next?
+>G
+
+You go for him, but he dodges. He hesitates, then lunges at you!
+He crouches low and prepares to lunge.
+
+What next?
+>G
+
+You go for him, but he dodges. He hesitates, preparing his next move.
+He slips but then regains his footing.
+
+What next?
+>G
+
+You lunge at him and almost miss, but he loses footing and falls off the edge
+of the roof! The train quickly leaves his body behind.
+
+What next?
+>D
+
+(rear vestibule)
+This is a small vestibule at the rear end of the car. There's a short flight of
+metal steps on the left side of the train leading down off the train, and a
+narrow metal ladder leading up to the roof. A small door leads to a restroom,
+and a big window is open to the outside. A red handle is hanging by a short
+length of cord from the ceiling, swinging in time to the train's rocking
+motion. The train is steaming along a barren stubble-plain.
+The clatter of the wheels on the track is almost deafening.
+A young man and an old couple are off to the rear.
+A cigarette machine stands in one corner, waiting to be either used or
+discarded -- it's hard to say which.
+
+What next?
+>SAVE
+
+(In this variation, 1 minute will pass in the story before you can type another
+command. Are you sure you want to SAVE now? >Y
+
+Okay.)
+To file: START.CSS14.1Okay.
+
+What next?
+>GO TO FRONT VESTIB
+
+(Sorry, but this story doesn't recognize the word "vestib".)
+
+(You won't see "What next?" any more.)
+
+>GO TO FRONT VESTIBULE
+
+The relative quiet here is welcome. The smell of food is unmistakable.
+The relative quiet here is welcome. 
+The relative quiet here is welcome. 
+The relative quiet here is welcome. 
+(forward vestibule)
+[You're facing to the front.]
+This is a small vestibule at the forward end of the car. It's just like the
+rear vestibule, but with no steps or ladder.
+
+>N
+
+[Debugging info: you are entering car #2.]
+(rear vestibule)
+There's a young woman here, chewing gum.
+There's a boy here, reading a newspaper.
+
+>N
+
+(You open the swinging door and close it again.)
+The relative quiet here is welcome. 
+(rear end)
+This is the rear end of the corridor. The floor and walls are covered with
+cream-colored linoleum, worn away in spots to reveal the original hardwood
+finish. A long series of windows, still framed by wood, runs along the corridor
+on the right-hand side of the train. On the left side of the train, behind a
+windowed door, lies the fifth compartment.
+An attractive woman is in the fifth compartment.
+A regal woman is off to the front.
+The girl, off to the front, opens the compartment door for a moment and enters
+the first compartment.
+
+>W
+
+(You open the compartment door and close it again.)
+(fifth compartment)
+[You're facing to the left side of the train.]
+This is a once-luxurious first-class compartment on the Znuk-Potrzebie Express.
+The plush red upholstery on the two facing seats, shiny and worn in spots, and
+the greasy lace on the headrests, give the car an air of faded elegance. A red
+handle is hanging by a short length of cord from the ceiling, swinging in time
+to the train's rocking motion. The corridor is outside, past a window with a
+red curtain on it.
+The train is steaming along a barren stubble-plain.
+The attractive woman is here, holding the briefcase and deep in thought.
+Your sharp eyes notice a spot of blood on the floor.
+
+>EXAMINE SPOT
+
+Yup. That's a spot of blood, all right.
+
+>SAVE
+
+(In this variation, 1 minute will pass in the story before you can type another
+command. Are you sure you want to SAVE now? >Y
+
+Okay.)
+To file: CASETIME.CSS14.1Okay.
+
+>HIT WOMAN
+
+The train lurches a bit.
+She blocks your thrust and delivers a chop to your nose.
+
+>G
+
+She blocks your thrust and knocks you unconscious....
+
+You shake your head and come to.
+
+>RESTOR
+
+From file: CASETIME.CSS14.1Okay.
+(fifth compartment)
+[You're facing to the left side of the train.]
+The attractive woman is here, still holding the briefcase and deep in thought.
+A spot of blood is still on the floor.
+
+>HIT WOMAN
+
+She drops the briefcase and slumps on the floor.
+
+>TAKE CASE
+
+You are now holding it.
+
+>E
+
+(You open the compartment door and close it again.)
+
+(rear end)
+[You're facing to the right side of the train.]
+The conductor and the regal woman are off to the front.
+He punches her ticket.
+The girl, off to the front, opens the swinging door for a moment and disappears
+to the front.
+
+>N
+
+
+(rear middle)
+[You're facing to the front.]
+This is the rear middle of the corridor. On the left side of the train, behind
+a windowed door, lies the fourth compartment.
+The conductor and the regal woman are off to the front.
+The conductor is off to the front, heading toward you.
+He, off to the front, stops to punch tickets.
+
+>W
+
+(You open the compartment door and close it again.)
+(fourth compartment)
+[You're facing to the left side of the train.]
+There's a young man here, smoking a cigarette.
+
+>TURN LATCH
+
+A mechanical click comes from within the briefcase.
+
+>OPEN IT
+
+(I assume you mean: the briefcase latch.)
+The metal latch snaps open. At the same time, a loud thump comes from within
+the briefcase.
+
+The conductor appears and makes a gesture, asking for your ticket.
+
+>GIVE CONDUC TICKET
+
+(Whom do you want to give the conduc ticket to?)
+
+>CONDUC
+
+(You don't seem to be holding that!)
+
+>GIVE CONDUCTOR TICKET
+
+(Whom do you want to give the conductor ticket to?)
+
+>GIVE TICKET TO CONDUCTOR
+
+The conductor punches your ticket and then gives it back to you.
+He punches the young man's ticket.
+
+>TURN LATCH
+
+A mechanical click comes from within the briefcase.
+The conductor touches a finger to his cap and opens the compartment door for a
+moment and leaves.
+
+>OPEN CASE
+
+You open it a crack before you realize that everything inside would fall out.
+You quickly close it again.
+
+>SIT
+
+(on the train seat)
+You're now sitting on it.
+A young couple, just outside, disappear to the rear.
+Just outside the attractive woman appears from the rear end.
+
+>OPEN CASE
+
+Opening it reveals a document, a miniature camera, a cassette of film, a
+magnifying glass, and a scrap of newsprint.
+The attractive woman stops here.
+
+>EXAMINE DOCUMENT
+
+It's not a very handsome document, scrawled in a hurry by a hand that wouldn't
+win any prizes under the best of conditions. But it seems to contain crucial
+information -- times, places, a crude map, even code words -- about a plan to
+kidnap some high-ranking official. Were the plan to succeed, several
+governments would be embarrassed, if not in mortal danger, and the balance of
+power would become precarious.
+
+>EXAMINE NEWSPRINT
+
+There doesn't seem to be anything written on the scrap of newsprint.
+
+>HOLD NEWSPRINT TO LIGHT
+
+That doesn't seem to help at all.
+
+>RUB NEWSPRINT
+
+Fiddling with it is a waste of time.
+
+>RESTORE
+
+From file: CASETIME.CSS14.1Okay.
+(fifth compartment)
+[You're facing to the left side of the train.]
+The attractive woman is here, still holding the briefcase and deep in thought.
+A spot of blood is still on the floor.
+
+>HIT WOMAN
+
+She blocks your thrust and knocks you unconscious....
+
+You shake your head and come to.
+
+>RESTOR
+
+From file: CASETIME.CSS14.1Okay.
+(fifth compartment)
+[You're facing to the left side of the train.]
+The attractive woman is here, still holding the briefcase and deep in thought.
+A spot of blood is still on the floor.
+
+>HIT WOMAN
+
+She drops the briefcase and slumps on the floor.
+
+>TAKE CASE
+
+You are now holding it.
+
+>E
+
+(You open the compartment door and close it again.)
+
+(rear end)
+[You're facing to the right side of the train.]
+The conductor and the regal woman are off to the front.
+He punches her ticket.
+The girl is off to the front, heading toward you.
+
+>S
+
+(You open the swinging door and close it again.)
+(rear vestibule)
+[You're facing to the rear.]
+The young woman is here, still chewing gum.
+The boy is here, still reading a newspaper.
+
+>IN
+
+(You open the restroom door and close it again.)
+(rear restroom)
+As you'd expect, the restroom is tidy but small, almost too small for comfort.
+But it does have the usual fixtures.
+
+>SAVE
+
+(In this variation, 1 minute will pass in the story before you can type another
+command. Are you sure you want to SAVE now? >Y
+
+Okay.)
+To file: HAVECASE.CSS14.1Okay.
+
+>LOCK DOOR
+
+[You're facing to the left side of the train.]
+Okay, it is now locked.
+
+>DROP CASE
+
+Okay, it is now on the floor.
+
+>OPEN LATCH
+
+The metal latch snaps open.
+
+>OPEN CASE
+
+Opening it reveals a document, a miniature camera, a cassette of film, a
+magnifying glass, and a scrap of newsprint.
+
+>I
+
+You are not holding anything. But there's something in your pocket.
+
+>L IN POCKET
+
+The train lurches a bit.
+Your pocket contains a gun, your ticket, a timetable, a traveler's check, and
+your passport.
+And some money.
+You hear a knock on the door.
+
+>CLOSE CASE
+
+Closed.
+
+The conductor appears and makes a gesture, asking for your ticket.
+
+>GIVE CONDUC TICKET
+
+(Whom do you want to give the conduc ticket to?)
+
+>GIVE CONDUC THE TICKET
+
+The conductor punches your ticket and then gives it back to you.
+He touches a finger to his cap and opens the restroom door for a moment and
+leaves.
+
+>LOCK DOOR
+
+Okay, it is now locked.
+
+>OPEN CASE
+
+Opening it reveals a scrap of newsprint, a magnifying glass, a cassette of
+film, a miniature camera, and a document.
+
+>TAKE NEWSPRINT
+
+(You can't take it.)
+
+>I
+
+You're holding your ticket.
+And there's something in your pocket.
+
+>HOLD NEWSPRINT TO LOGHT
+
+(I don't know the word "loght".)
+
+>TAKE SCRAPO
+
+(I don't know the word "scrapo".)
+
+>TAKE SCRAP
+
+(You can't take it.)
+
+>TAKE ALL FROM CASE
+
+(Please be more specific.)
+
+>L
+
+(rear restroom)
+(You're facing to the left side of the train, but you look in all directions
+for a moment.)
+As you'd expect, the restroom is tidy but small, almost too small for comfort.
+But it does have the usual fixtures.
+A black briefcase with a chrome latch is here, open.
+
+
+>L IN CASE
+
+The briefcase contains a scrap of newsprint, a magnifying glass, a cassette of
+film, a miniature camera, and a document.
+
+>TAKE SCRAP
+
+(You can't take it.)
+
+>TAKE CASE
+
+Too bad, but it is open.
+
+>SIT
+
+(on the toilet)
+The train lurches a bit.
+You're now sitting on it.
+
+>TAKE CASE
+
+(You stand up first.)
+Too bad, but it is open.
+
+>CLOSE CASE
+
+Closed.
+
+>TAKE IT
+
+(I assume you mean: the briefcase.)
+You are now holding it.
+The train is now racing past a dark, violent river.
+
+>SIT
+
+(on the toilet)
+You're now sitting on it.
+
+>OPEN CASE
+
+Opening it reveals a document, a miniature camera, a cassette of film, a
+magnifying glass, and a scrap of newsprint.
+
+>TAKE SCRAP
+
+You are now holding it.
+
+>HOLD IT TO LIGHT
+
+(I assume you mean: the scrap of newsprint.)
+That doesn't seem to help at all.
+
+>EXAMINE IT CAREFULLY
+
+(I assume you mean: the scrap of newsprint.)
+There are some shiny lines on the scrap of newsprint, maybe invisible ink.
+
+>L IN POCKET
+
+Your pocket contains a gun, a timetable, a traveler's check, and your passport.
+And some money.
+
+>COUNT MONEY
+
+You are carrying *49.
+
+>COUNT SLIMPUKS
+
+(Sorry, but the word "slimpuks" is not in the vocabulary that you can use.)
+
+>LICK SCRAP
+
+(I don't know the word "lick".)
+
+>TURN ON WATER
+
+(I don't know the word "water".)
+
+>Q
+
+(If you want to continue from this point at another time, you must "SAVE"
+first.)
+Do you want to stop the story now? >Y
+

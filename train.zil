@@ -1,0 +1,3115 @@
+"TRAIN for CHECKPOINT
+Copyright (C) 1985 Infocom, Inc.  All rights reserved."
+
+<GLOBAL ON-TRAIN T>
+<GLOBAL IN-STATION <>>
+
+<OBJECT TRAIN
+	(LOC GLOBAL-OBJECTS)
+	(DESC "train")
+	(SYNONYM TRAIN)
+	(ACTION TRAIN-F)>
+
+<ROUTINE TRAIN-F ("AUX" L)
+ <COND (<VERB? WAIT-FOR>
+	<RFALSE>)
+       (<VERB? TAKE>
+	<TELL "Feel free!" CR>)
+       (<VERB? FIND>
+	<COND (,ON-TRAIN
+	       <SETG CLOCK-WAIT T>
+	       <TELL "(You're on it!)" CR>)
+	      (,IN-STATION
+	       <TELL CTHE ,TRAIN " is at the " D ,PLATFORM-GLOBAL "." CR>)
+	      (<EQUAL? ,HERE ,BESIDE-TRACKS>
+	       <BITE-YOU>)
+	      (T <TELL "Maybe one will stop here soon." CR>)>)
+       ;(<VERB? DISEMBARK>
+	<COND (<EQUAL? ,HERE ,ROOF>
+	       <DO-WALK ,P?DOWN>
+	       <RTRUE>)>)
+       (<VERB? BOARD ;ENTER THROUGH WALK-TO CLIMB-ON>
+	<COND (,ON-TRAIN
+	       <SETG CLOCK-WAIT T>
+	       <TELL "(You're on it!)" CR>
+	       <RTRUE>)
+	      (<EQUAL? ,HERE ,BESIDE-TRACKS>
+	       <COND (<AND <SET L <EMBARK-F>>
+			   <GOTO .L>>
+		      <OKAY>)>
+	       <RTRUE>)>
+	<COND (<NOT <ON-PLATFORM? ,HERE>>
+	       <PERFORM ,V?WALK-TO ,PLATFORM-GLOBAL>
+	       ;<RTRUE>)>
+	<COND (<ON-PLATFORM? ,HERE>
+	       <COND (<AND <SET L <EMBARK-F>>
+			   <GOTO .L>>
+		      <OKAY>)>)>
+	<RTRUE>)
+       (<VERB? DISEMBARK TAKE-OFF ;DROP LEAVE>	;"GET OFF/LEAVE TRAIN"
+	<COND (<NOT ,ON-TRAIN>
+	       <SETG CLOCK-WAIT T>
+	       <TELL "(You're not on it!)" CR>)
+	      (<AND <NOT ,CUSTOMS-SWEEP>
+		    <FORWARD-PART? ,HERE>
+		    <NOT <1? ,CAR-HERE>>>
+	       <SET L <V-FWD ,CAR-HERE>>
+	       <COND (<NOT <EQUAL? ,HERE .L>>
+		      <PERFORM ,V?WALK-TO .L>)>
+	       <COND (<EQUAL? ,HERE .L>
+		      <DO-WALK ,P?NORTH>)>)
+	      (T
+	       <SET L <V-REAR ,CAR-HERE>>
+	       <COND (<NOT <EQUAL? ,HERE .L>>
+		      <PERFORM ,V?WALK-TO .L>)>)>
+	<COND (<EQUAL? ,HERE ,VESTIBULE-REAR-DINER
+			     ,VESTIBULE-REAR-FANCY ,VESTIBULE-REAR>
+	       <DO-WALK ,P?DOWN>)>
+	<RTRUE>)
+       (<REMOTE-VERB?>
+	<RFALSE>)
+       (<AND <NOT ,ON-TRAIN>
+	     <NOT ,IN-STATION>
+	     <NOT <EQUAL? ,HERE ,BESIDE-TRACKS>>>
+	<NOT-HERE ,TRAIN>)
+       (<VERB? EXAMINE>
+	<TELL "Yup. That's a train, all right.">
+	<COND (<AND <NOT ,ON-TRAIN>
+		    <OR <==? ,HERE ,PLATFORM-A>
+			<AND <==? ,HERE ,BESIDE-TRACKS>
+			     <1? ,CAR-HERE>>>>
+	       <TELL
+" The engine is hissing and occasionally venting hot gases.">)>
+	<CRLF>)
+       (<VERB? LISTEN>
+	<COND (,ON-TRAIN
+	       <TELL "The clatter of the wheels on the track is ">
+	       <COND (<NOISY? ,HERE>
+		      <COND (<TRAIN-SLOWING?>
+			     <TELL "diminishing.">)
+			    (T <TELL "almost deafening.">)>)
+		     (,TRAIN-MOVING <TELL "muffled here.">)
+		     (T <TELL "gone for now.">)>
+	       <CRLF>)
+	      (<OR <ON-PLATFORM? ,HERE> <EQUAL? ,HERE ,BESIDE-TRACKS>>
+	       <TELL "It's hissing quietly." CR>)
+	      (<NOT-HERE ,TRAIN>)>
+	<RTRUE>)
+       (<VERB? SIT>
+	<COND (<EQUAL? ,HERE ,ROOF>
+	       <DO-INSTEAD-OF ,ROOF ,TRAIN>
+	       <RTRUE>)>)
+       (<VERB? STOP>
+	<COND (<STOP-CORD-IN? ,HERE>
+	       <STOP-CORD-F T>	;<PERFORM ,V?MOVE ,STOP-CORD>
+	       <RTRUE>)>)>>
+
+<OBJECT SCENERY-RIGHT
+	(LOC LOCAL-GLOBALS)
+	(DESC "scenery")
+	(SYNONYM SCENERY)
+	(ACTION SCENERY-RIGHT-F)>
+
+<ROUTINE SCENERY-RIGHT-F () <SCENERY-F ,SCENERY-RIGHT>>
+
+<OBJECT SCENERY-LEFT
+	(LOC LOCAL-GLOBALS)
+	(DESC "scenery")
+	(SYNONYM SCENERY)
+	(ACTION SCENERY-LEFT-F)>
+
+<ROUTINE SCENERY-LEFT-F () <SCENERY-F ,SCENERY-LEFT>>
+
+<ROUTINE SCENERY-F (OBJ)
+ <COND (,SCENERY-OBJ
+	<DO-INSTEAD-OF ,SCENERY-OBJ .OBJ>
+	<RTRUE>)
+       (T <NOT-HERE .OBJ>)>>
+[
+<OBJECT CROSSING
+	(LOC GLOBAL-OBJECTS)
+	(DESC "crossing")
+	(ADJECTIVE GRADE)
+	(SYNONYM CROSSING)
+	(LDESC "through a grade crossing.")
+	(FDESC ;"is stopped " "by a grade crossing.")
+	(TEXT
+"A country road crosses the tracks here, marked only by large
+\"X\"-shaped signs. A cross-country vehicle is waiting.")>
+
+<OBJECT VEHICLE
+	(LOC LIMBO-FWD)
+	(DESC "cross-country vehicle")
+	(ADJECTIVE CROSS COUNTRY CROSS-COUNTRY)
+	(SYNONYM VEHICLE)>
+
+<OBJECT FLARE
+	(DESC "flare")
+	(SYNONYM FLARE)>
+
+<OBJECT RIVER
+	(LOC GLOBAL-OBJECTS)
+	(DESC "river")
+	(ADJECTIVE DARK VIOLENT)
+	(SYNONYM RIVER BANK)
+	(LDESC "past a dark, violent river.")
+	(FDESC ;"is stopped " "on the bank of a violent river.")
+	(TEXT
+"The river splashes and swirls around huge granite boulders.
+In the center a dark current carries bits of foam swiftly along.")>
+
+<OBJECT TUNNEL
+	(LOC GLOBAL-OBJECTS)
+	(DESC "tunnel")
+	(ADJECTIVE LONG DARK)
+	(SYNONYM TUNNEL ;MIDDLE)
+	(LDESC "through a dark tunnel.")
+	(FDESC ;"is stopped " "in the middle of a long, dark tunnel.")
+	(TEXT
+"The tunnel is really too dark to see anything clearly.
+You can bet that some nasty beasties inhabit it.")>
+
+<OBJECT MEADOW
+	(LOC GLOBAL-OBJECTS)
+	(DESC "meadow")
+	(ADJECTIVE WILD)
+	(SYNONYM MEADOW)
+	(LDESC "past a wild meadow.")
+	(FDESC ;"is stopped " "at the edge of a wild meadow.")
+	(TEXT
+"The meadow looks too full of knolls and bumps for farming, but livestock
+can graze in it. A wild flower grows here and there.")>
+
+<OBJECT PLAIN
+	(LOC GLOBAL-OBJECTS)
+	(DESC "plain")
+	(ADJECTIVE BARREN STUBBLE)
+	(SYNONYM PLAIN STUBBLE EDGE)
+	(LDESC "along a barren stubble-plain.")
+	(FDESC ;"is stopped " "at the edge of a barren stubble-plain.")
+	(TEXT
+"There's not enough water supply here to support much obvious life.
+Dry stems cover the plain like a four-day-old beard.")>
+
+<OBJECT FOREST
+	(LOC GLOBAL-OBJECTS)
+	(DESC "forest")
+	(ADJECTIVE MYSTERIOUS)
+	(SYNONYM FOREST ;MIDDLE)
+	(LDESC "through a mysterious forest.")
+	(FDESC ;"is halted " "in the middle of a mysterious forest.")
+	(TEXT
+"So many tree trunks fill the view that you can't really see the forest.
+There might be a sun-dappled glade not far away, but the undergrowth is
+too thick to tell.")>
+
+<OBJECT CLIFF
+	(LOC GLOBAL-OBJECTS)
+	(DESC "cliff")
+	(ADJECTIVE ROCKY)
+	(SYNONYM CLIFF PRECIPICE EDGE)
+	(LDESC "along the edge of a rocky precipice.")
+	(FDESC
+;"is stopped " "on tracks that skirt the edge of a rocky precipice.")
+	(TEXT
+"The view down the cliff is so steep that you can't bear to look at it.")>
+
+<OBJECT TOWN
+	(LOC GLOBAL-OBJECTS)
+	(DESC "town")
+	(ADJECTIVE SMALL)
+	(SYNONYM TOWN)
+	(LDESC "past a small town.")
+	(FDESC ;"is stopped " "near a small town.")
+	(TEXT
+"Only a few poor souls walk the streets of this town at this hour.
+The nearest buildings look run-down and cold, and the farther ones
+blend together into a jumble of wooden shingles.")>
+][
+<OBJECT STATION-FRBZ
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Frbz")
+	(ADJECTIVE FRBZ RAILWAY)
+	(SYNONYM FRBZ STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)
+	(SIZE 20)	;"length of stop"
+	(NORTH 69)
+	(LDESC "through a railway station.")
+	(FDESC ;"is stopped " "in a railway station.")>
+
+<OBJECT STATION-GRNZ
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Grnz")
+	(ADJECTIVE GRNZ RAILWAY CUSTOMS BORDER FRONTIER)
+	(SYNONYM GRNZ STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)
+	(SIZE 30)	;"length of stop"
+	(NORTH 31)	;"cost of ticket"
+	(LDESC "through a railway station.")
+	(FDESC ;"is stopped " "in a railway station.")>
+
+<OBJECT STATION-GOLA
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Gola")
+	(ADJECTIVE GOLA RAILWAY)
+	(SYNONYM GOLA STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)
+	(SIZE 15)	;"length of stop"
+	(NORTH 42)	;"cost of ticket"
+	(LDESC "through a railway station.")
+	(FDESC ;"is stopped " "in a railway station.")>
+
+<OBJECT STATION-KNUT
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Knut")
+	(ADJECTIVE KNUT RAILWAY)
+	(SYNONYM KNUT STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)
+	(SIZE 15)	;"length of stop"
+	(NORTH 9)
+	(LDESC "through a railway station.")
+	(FDESC ;"is stopped " "in a railway station.")>
+
+<OBJECT STATION-HRNG
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Hrng")
+	(ADJECTIVE HRNG RAILWAY)
+	(SYNONYM HRNG STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)
+	(SIZE 15)	;"length of stop"
+	(NORTH 33)
+	(LDESC "through a railway station.")
+	(FDESC ;"is stopped " "in a railway station.")>
+
+<OBJECT STATION-WIEN
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Wien")
+	(ADJECTIVE WIEN VIENNA RAILWAY)
+	(SYNONYM WIEN VIENNA STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)>
+
+<OBJECT STATION-POTRZEBIE
+	(LOC GLOBAL-OBJECTS)
+	(DESC "Potrzebie")
+	(ADJECTIVE POTRZEBIE RAILWAY)
+	(SYNONYM POTRZEBIE STATION)
+	(GENERIC GENERIC-STATION-F)
+	(FLAGS NARTICLEBIT)>
+
+<GLOBAL STATIONS
+   <PLTABLE STATION-FRBZ STATION-GRNZ STATION-GOLA STATION-POTRZEBIE
+	    STATION-KNUT STATION-HRNG STATION-WIEN>>
+
+<ROUTINE GENERIC-STATION-F (X "OPTIONAL" (ANY <>) "AUX" (N 1) STA)
+ <COND (<OR .ANY <VERB? WAIT-FOR WAIT-UNTIL>>
+	<REPEAT ()
+		<SET STA <GET ,TRAIN-TABLE .N>>
+		<COND (<ZERO? .STA>
+		       <RFALSE>)
+		      (<ZMEMQ .STA ,STATIONS>
+		       <RETURN .STA>)
+		      (T <SET N <+ 2 .N>>)>>)
+       (T <RFALSE>)>>
+]
+
+<ROUTINE START-TRAIN ("AUX" N)
+	<COND (<HARD?>
+	       <SETG TRAIN-TABLE ,TRAIN-TABLE-A>)
+	      (T
+	       <SETG PRESENT-TIME <+ 200 ,PRESENT-TIME>>
+	       ;<SETG SCORE </ ,PRESENT-TIME 60>>
+	       ;<SETG MOVES <MOD ,PRESENT-TIME 60>>
+	       <SETG TRAIN-TABLE ,TRAIN-TABLE-B>)>
+	<SETG TRAIN-NAME <GET ,TRAIN-TABLE 0>>
+	<SETG TRAIN-TABLE <REST ,TRAIN-TABLE 2>>
+	<COND (<NOT <HARD?>>
+	       <SETG TRAIN-TABLE <REST ,TRAIN-TABLE 12>>
+	       <SET N <+ <GET ,TRAIN-TABLE 0> <GETP ,STATION-KNUT ,P?SIZE>>>)
+	      (T
+	       <SET N <- <GET ,TRAIN-TABLE 0> ,PRESENT-TIME>>)>
+	<SETG SCENERY-OBJ ,PLAIN>
+	<MOVE ,SCENERY-OBJ ,SCENERY-LEFT>
+	;<COND (<NOT <HARD?>>
+	       <SET N <+ 200 .N>>)>
+	<ENABLE <QUEUE I-TRAIN-SCENERY .N>>
+	<ENABLE <QUEUE I-TRAIN-LURCH -1>>
+	<SETG NOW-LURCHING ,PRESENT-TIME>
+	;<ENABLE <QUEUE I-TRAIN-SOUNDS -1>>>
+
+<GLOBAL JUST-LOOKED <>>
+<GLOBAL SCENERY-OBJ <>>	"object now in scenery in train window"
+
+<GLOBAL TRAIN-TABLE 0>
+<GLOBAL TRAIN-NAME 0>
+
+<GLOBAL TRAIN-TABLE-A
+       <TABLE	"Glrp-Wien Express"
+		610 RIVER
+		20 TUNNEL
+		22 MEADOW
+		30 STATION-FRBZ
+		 3 TOWN
+		17 PLAIN
+		20 CLIFF
+		20 STATION-KNUT
+		 3 TOWN
+		22 FOREST
+		15 STATION-HRNG
+		 3 TOWN
+		 5 RIVER
+		39 STATION-WIEN
+		 0>>
+
+<GLOBAL TRAIN-TABLE-B
+       <TABLE	"Znuk-Potrzebie Express"
+	       780 STATION-KNUT
+		 3 TOWN
+		 5 PLAIN
+		22 RIVER
+		20 CLIFF
+		20 STATION-GRNZ
+		 3 TOWN
+		17 FOREST
+		20 PLAIN
+		20 STATION-GOLA
+		 3 TOWN
+		15 CROSSING
+		39 STATION-POTRZEBIE
+		 0>>
+
+<ROUTINE DESTINATION (TBL "AUX" (CNT 0)) 
+	<COND (<NOT .TBL> <RFALSE>)>
+	<REPEAT ()
+		<COND (<ZERO? <GET .TBL .CNT>>
+		       <RETURN <GET .TBL <- .CNT 1>>>)
+		      (T <INC CNT>)>>>
+
+<ROUTINE I-TRAIN-SCENERY ("OPTIONAL" (GARG <>) "AUX" N)
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-TRAIN-SCENERY:">
+	       <COND (<==? .GARG ,G-DEBUG>
+		      ;<COND (,IDEBUG <TELL "(0)]" CR>)>
+		      <RFALSE>)>)>
+	<COND (,SCENERY-OBJ <MOVE ,SCENERY-OBJ ,GLOBAL-OBJECTS>)>
+	<SETG SCENERY-OBJ <GET ,TRAIN-TABLE 1>>
+	<SET N <GET ,TRAIN-TABLE 2>>
+	<SETG TRAIN-TABLE <REST ,TRAIN-TABLE 4>>
+	<MOVE ,SCENERY-OBJ ,SCENERY-LEFT>
+	<COND (<AND <==? ,SCENERY-OBJ ,TUNNEL> <==? ,HERE ,ROOF>>
+	       <DO-SPLAT>)>
+	<FLUSH-ROOM? ,ROOF T>
+	<ENABLE <QUEUE I-TRAIN-SCENERY .N>>
+	<COND (<ZMEMQ ,SCENERY-OBJ ,STATIONS>
+	       <SET N <ARRIVE-STATION ;.N>>
+	       <COND (,IDEBUG <TELL N .N "]" CR>)>
+	       <RETURN .N>)
+	      (T
+	       <COND (<ZMEMQ <GET ,TRAIN-TABLE 1> ,STATIONS>
+		      <ENABLE <QUEUE I-ARRIVE-WARNING
+				     <- .N ,ARRIVE-WARNING-TIME>>>)>
+	       <SETG JUST-LOOKED <>>
+	       <COND (<NOT <IN? ,PLAYER ,UNCONSCIOUS>> ;<NOT ,JUST-LOOKED>
+		      <MOTION-PREFIX T>)>
+	       <COND (<AND <==? ,SCENERY-OBJ ,MEADOW>
+			   <OR ;<NOT <HARD?>>
+			       <==? ,PASSOBJECT ,FLOWER-GLOBAL>
+			       <PROB 50>>>
+		      <COND (<AND <SPY?>
+				  <==? ,PASSOBJECT ,FLOWER-GLOBAL>>
+			     <ENABLE <QUEUE I-TRAVELER-SEEKS-FLOWER -1>>)>
+		      <STOP-CORD-F T>
+		      <COND (,IDEBUG <TELL "(1)]" CR>)>
+		      <RTRUE>)
+		     (<==? ,SCENERY-OBJ ,CROSSING>
+		      <MOVE ,VEHICLE ,BESIDE-TRACKS>
+		      <MOVE ,FLARE ,GLOBAL-OBJECTS>
+		      <COND (<NOT <IN? ,PLAYER ,UNCONSCIOUS>>
+			     <TELL "A flare shoots into the sky." CR>)>
+		      <COND (,IDEBUG <TELL "(1)]" CR>)>
+		      <RTRUE>)
+		     (T
+		      <COND (,IDEBUG <TELL "(0)]" CR>)>
+		      <RFALSE>)>)>>
+
+<ROUTINE PREPARE-SPLAT (N "AUX" M)
+ <COND (<NOT <==? ,TUNNEL <GET ,TRAIN-TABLE 1>>>
+	<SETG TRAIN-TABLE <BACK ,TRAIN-TABLE 4>>
+	<PUT ,TRAIN-TABLE 2 <GET <INT I-TRAIN-SCENERY> ,C-TICK>>
+	<PUT ,TRAIN-TABLE 1 ,TUNNEL>)>
+ <ENABLE <QUEUE I-TRAIN-SCENERY .N>>>
+
+<ROUTINE DO-SPLAT ()
+	<TELL  
+"The front of the train rapidly enters a narrow tunnel. Realizing that
+there isn't enough time to climb down the ladder, you throw yourself
+belly first against the roof. As you enter the tunnel, you are enveloped
+by blackness and fumes from the smokestack. Suddenly you feel very
+sleepy, and your grip on the roof begins to loosen. You have the good
+fortune to lose consciousness before your body slides off the roof into
+the speeding wall of the tunnel."
+;" Try as you might, you can't hug the roof
+closely enough to prevent the top of the tunnel from smashing your skull
+at 100 km/h. Your forward progress is effectively halted, but the train
+continues racing on beneath you. A farmer, standing on a distant hill,
+might imagine you a child, sliding mischieviously down a bannister. A
+very bloody, very dead, child." CR>
+	 <FINISH ;JIGS-UP>>
+
+<OBJECT TIMETABLE
+	(LOC POCKET)
+	(CAR 2)
+	(DESC "timetable")
+	(ADJECTIVE TIME TRAIN)
+	(SYNONYM TABLE TIMETABLE SCHEDULE)
+	(FLAGS TAKEBIT READBIT ;BURNBIT)
+	(SIZE 2)
+	(ACTION TIMETABLE-F)>
+
+<ROUTINE TIMETABLE-F ()
+ <COND (<VERB? OPEN READ EXAMINE ANALYZE TELL-ABOUT>
+	<SETG CLOCK-WAIT T>
+	<TELL
+"(You'll find the " D ,TIMETABLE " in your " D ,GAME " package.)" CR>
+	<TELL CR "[It should include:" CR>
+	<COND (,DEBUG <PRINT-TT ,TRAIN-TABLE>)
+	      (T <PRINT-TT ,TRAIN-TABLE-A> <PRINT-TT ,TRAIN-TABLE-B>)>
+	<TELL "]" CR>)>>
+
+<ROUTINE PRINT-TT (TBL "AUX" OBJ (N 0) (TIM 0))
+	<COND (<NOT ,DEBUG>
+	       <SET N 1>
+	       <TELL <GET .TBL 0> ": ">)>
+	<REPEAT ()
+	 <SET OBJ <GET .TBL .N>>
+	 <COND (<0? .OBJ> <CRLF> <RTRUE>)>
+	 <SET TIM <+ .TIM .OBJ>>
+	 <COND (,DEBUG
+		<PRINTN ;TIME-PRINT .TIM>
+		<PRINTC 9>)>
+	 <INC N>
+	 <SET OBJ <GET .TBL .N>>
+	 <COND (,DEBUG <PRINTD .OBJ>)>
+	 <COND (<ZMEMQ .OBJ ,STATIONS>	;<FSET? .OBJ ,LOCKED>
+		<COND (<NOT ,DEBUG>
+		       <TIME-PRINT .TIM>
+		       <PRINTC 32>
+		       <PRINTD .OBJ>
+		       <TELL ", ">)>
+		<SET TIM <+ .TIM <GETP .OBJ ,P?SIZE>>>)>
+	 <COND (,DEBUG <CRLF>)>
+	 <INC N>>>
+
+;<GLOBAL STATION-NAME 0>
+<CONSTANT ARRIVE-WARNING-TIME 2>
+
+<ROUTINE I-ARRIVE-WARNING ("OPTIONAL" (GARG <>) "AUX" GT)
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-ARRIVE-WARNING:">
+	       <COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	<TELL "The train begins to slow down a bit." CR>
+	<SET GT <GET ,GOAL-TABLES ,CONDUCTOR-C>>
+	<COND (<==? ,STATION-GRNZ <GET ,TRAIN-TABLE 1>>
+	       <HIDE-OBJECT? ,GUN>
+	       <HIDE-OBJECT? ,MCGUFFIN>)>
+	<COND (<==? ,TRAIN-NAME <GET ,TRAIN-TABLE-B 0>>
+	       <ESTABLISH-GOAL-TRAIN ,CONDUCTOR
+				     ,VESTIBULE-REAR ,PLATFORM-MAX>)>
+	<COND (,IDEBUG <TELL "(1)]" CR>)>
+	<RTRUE>>
+
+<ROUTINE HIDE-OBJECT? (OBJ "AUX" PER L V RM (X <>))
+	<SET PER <LOC .OBJ>>
+	<COND (<AND <FSET? .PER ,PERSONBIT>
+		    <NOT <FSET? .PER ,MUNGBIT>>
+		    <NOT <==? .PER ,PLAYER>>>
+	       <SET L <LOC .PER>>
+	       <COND (<ZMEMQ .L ,CAR-ROOMS-CORRID>
+		      <SET RM <GET-REXIT-ROOM <GETPT .L ,P?IN>>>
+		      <COND (<ZMEMQ .RM ,CAR-ROOMS-COMPS>
+			     <MOVE-PERSON .PER .RM>
+			     <SET L .RM>)>)>
+	       <PUT <GET ,GOAL-TABLES <GETP .PER ,P?CHARACTER>>
+		    ,GOAL-FUNCTION
+		    ,STOP-WALKING-F>
+	       <COND (<SET RM <ZMEMQ .L ,CAR-ROOMS-COMPS>>
+		      <SET X <GET ,CAR-ROOMS-UNDER .RM>>)
+		     (<==? .L ,BOOTH-1> <SET X ,UNDER-BOOTH-1>)
+		     (<==? .L ,BOOTH-2> <SET X ,UNDER-BOOTH-2>)
+		     (<==? .L ,BOOTH-3> <SET X ,UNDER-BOOTH-3>)>
+	       <COND (<NOT <ZERO? .X>>
+		      <MOVE .OBJ .X>
+		      <FSET .OBJ ,TAKEBIT>
+		      <COND (<VISIBLE? .PER>
+			     <TELL CHE .PER hide THE .OBJ "." CR>)>)>)>>
+
+<ROUTINE ARRIVE-STATION (;N "AUX" GT M (END <>))
+	 <SET M <GETP ,SCENERY-OBJ ,P?SIZE>>
+	 <COND (<ZERO? <GENERIC-STATION-F 0 T>>	;"end of line?"
+		<SET END T>)
+	       (T
+		<ENABLE <QUEUE I-DEPART-WARNING .M>>)>
+	 <COND (<EQUAL? ,SCENERY-OBJ ,STATION-FRBZ ,STATION-GOLA>
+		<ENABLE <QUEUE I-CONTACT-APPEARS <- .M 5>>>
+		<ENABLE <QUEUE I-CONTACT-GIVES-UP <+ .M 10>>>)
+	       (<EQUAL? ,SCENERY-OBJ ,STATION-KNUT>
+		<ENABLE <QUEUE I-TRAVELER-SEEKS-TICKET 1>>)>
+	 ;<SET N <+ .N .M>>
+	 <DISABLE <INT I-TRAIN-SCENERY ;.N>>
+	 <SETG TRAIN-MOVING <>>
+	 <SETG IN-STATION T>
+	 <SETG GUARD-SUSPICION 0>
+	 <SETG GUARD-SAW-PASSPORT <>>
+	 <FSET ,GUARD ,NDESCBIT>
+	 <FCLEAR ,GUARD ,SEENBIT>
+	 <FCLEAR ,GUARD ,TOUCHBIT>
+	 <MOVE ,GUARD ,PLATFORM-A>
+	 <SETG NOW-LURCHING <>>
+	 <QUEUE I-TRAIN-LURCH 0>
+	 <SETG TICKETS-PUNCHED? T>
+	 <SET GT <GET ,GOAL-TABLES ,CONDUCTOR-C>>
+	 <COND (<NOT <ZERO? ,VICTIM-KNOWN>>
+		<ARREST-PLAYER "homicide">)>
+	 <COND (<EQUAL? ,SCENERY-OBJ ,STATION-GRNZ>
+		<MOVE ,PLAQUE ,PLATFORM-B>
+		<FCLEAR ,CUSTOMS-AGENT ,NDESCBIT>
+		;"<FCLEAR ,CUSTOMS-AGENT ,TOUCHBIT>
+		<PUTP ,CUSTOMS-AGENT ,P?LDESC 31>"
+		<MOVE ,CUSTOMS-AGENT ,PLATFORM-B>
+		<FSET ,PASSPORT ,LOCKED>
+		<SETG CUSTOMS-SWEEP T>)
+	       (T
+		<MOVE ,PLAQUE ,LIMBO-FWD>
+		<MOVE ,CUSTOMS-AGENT ,LIMBO-FWD ;GLOBAL-OBJECTS>
+		<SETG CUSTOMS-SWEEP <>>)>
+	 <COND (<OR .END <EQUAL? ,SCENERY-OBJ ,STATION-GRNZ>>
+		<COND (<AND <VISIBLE? ,CONDUCTOR>
+			    <NOT <EQUAL? <DIR-FROM ,HERE <LOC ,CONDUCTOR>>
+					 ,P?NORTH>>>
+		       <TELL CTHE ,CONDUCTOR " rushes past you." CR>)>
+		<FCLEAR ,CONDUCTOR ,TOUCHBIT>
+		<PUTP ,CONDUCTOR ,P?CAR ,CAR-HERE>
+		<MOVE ,CONDUCTOR <V-FWD ,CAR-HERE>>
+		<ENABLE <QUEUE I-TICKETS-PLEASE -1>>
+		<PUT .GT ,GOAL-ENABLE 1>
+		<ESTABLISH-GOAL-TRAIN ,CONDUCTOR ,VESTIBULE-REAR ,CAR-MAX>
+		<CLOSE-CURTAINS>
+		<CLEAR-TRAIN>)
+	       (T
+		<CONDUCTOR-OFF .GT <>>)>
+	 <COND (<NOT <VERB? WAIT-FOR WAIT-UNTIL>> <CRLF>)>
+	 <COND (,ON-TRAIN
+		;<SETG STATION-NAME ,SCENERY-OBJ>
+		<TELL
+CTHE ,CONDUCTOR " cries, \"" D ,SCENERY-OBJ ",\" and the train glides to a
+halt in the station." CR>)
+	       (<ZMEMQ ,HERE ,STATION-ROOMS>
+		<I-EXTRA ,M-OTHER>
+		<ENABLE <QUEUE I-STAR <RANDOM 9>>>
+		<TELL 
+"A whistle sounds, and a passenger train comes screeching up to the
+platform. ">
+		<COND (<ON-PLATFORM? ,HERE>
+		       <TELL
+CTHE ,CONDUCTOR " leans out from one of the doors and shouts, \"">
+		       <COND (<SET GT <DESTINATION ,TRAIN-TABLE>>
+			      <PRINTD .GT>)
+			     (T <PRINTD ,SCENERY-OBJ ;,STATION-NAME>)>
+		       <TELL
+",\" then lowers a short flight of metal steps and gets off.">)>
+		<CRLF>)>
+	 <COND (<EQUAL? ,SCENERY-OBJ ,STATION-WIEN ,STATION-POTRZEBIE>
+		<TELL
+"[Now you can go home safely, but your mission has failed. Watch this
+space for details.]" CR>
+		<FINISH>)>
+	 <ARRIVE-AT-STATION-BAD-SPY>
+	 <RTRUE>>
+
+<ROUTINE CLEAR-TRAIN ("OPTIONAL" (N 0))
+	<COND (<NOT <ZERO? .N>>
+	       <CLEAR-TRAIN-PERSON .N>)
+	      (T
+	       <SET N ,CHARACTER-MAX>
+	       <REPEAT ()
+		       <COND (<NOT <==? .N ,GUARD-C>>
+			      <CLEAR-TRAIN-PERSON .N>)>
+		       <COND (<DLESS? N ,THIN-MAN-C>
+			      <RETURN>)>>)>>
+
+<ROUTINE CLEAR-TRAIN-PERSON (N "AUX" P L GT)
+	<SET P <GET ,CHARACTER-TABLE .N>>
+	<UNSNOOZE .P>
+	<SET L <LOC .P>>
+	<COND (<OR <EQUAL? .P ,BAD-SPY>
+		   <AND <EQUAL? .P ,THUG ,DEFECTOR> ,FANCY-CAR>
+		   <VISIBLE? .P>
+		   <AND <EQUAL? ,CAR-HERE <GETP .P ,P?CAR>>
+			<ZMEMQ .L ,CAR-ROOMS-CORRID>>>
+	       <COND (<EQUAL? .P ,DEFECTOR>
+		      <MOVE-PERSON .P <LOC ,THUG>>)>
+	       <SET GT <GET ,GOAL-TABLES .N>>
+	       <COND (<==? <GET .GT ,GOAL-FUNCTION> ,I-WALK-TRAIN>
+		      <PUT ,CHAR-CARS .N <GET .GT ,GOAL-CAR>>
+		      <PUT ,CHAR-LOCS .N <GET .GT ,GOAL-QUEUED>>)
+		     (T
+		      <PUT ,CHAR-CARS .N <GETP .P ,P?CAR>>
+		      <COND (<NOT <EQUAL? .N ,CAR-HERE ,DINER-CAR ,FANCY-CAR>>
+			     ;<AND <NOT <ZMEMQ .L ,CAR-ROOMS>>
+				  <NOT <ZMEMQ .L ,CAR-ROOMS-DINER>>
+				  <NOT <ZMEMQ .L ,CAR-ROOMS-FANCY>>>
+			     <SET L <GETP .L ,P?OTHER>>)>
+		      <PUT ,CHAR-LOCS .N .L>)>
+	       <PUT .GT ,GOAL-FUNCTION ,G-LEAVE-TRAIN>
+	       <SET L <GETP .P ,P?CAR>>
+	       <COND (<1? .L>
+		      <PUT .GT ,GOAL-SCRIPT ,G-LEAVE-TRAIN>
+		      <ESTABLISH-GOAL-TRAIN .P ,VESTIBULE-REAR 2>)
+		     (T
+		      <ESTABLISH-GOAL .P <V-REAR .L>>)>)>>
+
+<ROUTINE CONDUCTOR-OFF (GT "OPTIONAL" (MP? T) "AUX" X)
+	<QUEUE I-TICKETS-PLEASE 0>
+	<SETG TICKET-COUNT 0>
+	<SET X <GET ,STATION-ROOMS <GETP ,CONDUCTOR ,P?CAR>>>
+	<COND (.MP? <MOVE-PERSON ,CONDUCTOR .X>)
+	      (T <MOVE ,CONDUCTOR .X>)>
+	<ESTABLISH-GOAL ,CONDUCTOR ,PLATFORM-A>
+	<PUT .GT ,GOAL-ENABLE 1>
+	<PUT .GT ,GOAL-FUNCTION ,I-CONDUCTOR>
+	<FCLEAR ,CONDUCTOR ,TOUCHBIT>
+	<PUTP ,CONDUCTOR ,P?LDESC 17 ;"walking to front of train">>
+
+<ROUTINE I-CONTACT-APPEARS ("OPTIONAL" (GARG <>) "AUX" (L <>))
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-CONTACT-APPEARS:">
+	       <COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	<COND (<AND <FSET? ,CONTACT ,NDESCBIT>
+		    <NOT <IN? ,CONTACT ,GLOBAL-OBJECTS>>
+		    <VISIBLE? ,CONTACT>>
+	       <FSET ,CONTACT ,SEENBIT>
+	       <FSET ,CONTACT ,TOUCHBIT>
+	       <SET L <LOC ,CONTACT>>
+	       <TELL "You notice " A ,CONTACT>
+	       <THIS-IS-IT ,CONTACT>
+	       <COND (<WHERE? ,CONTACT> <TELL ",">)>
+	       <TELL " " <GET ,ACT-STRINGS<GETP ,CONTACT ,P?LDESC>> "." CR>)>
+	<FCLEAR ,CONTACT ,NDESCBIT>
+	<COND (,IDEBUG <TELL N .L "]" CR>)>
+	.L>
+
+<ROUTINE I-CONTACT-GIVES-UP ("OPTIONAL" (GARG <>) "AUX" VAL)
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-CONTACT-GIVES-UP:">
+	       <COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	<PUT <GT-O ,CONTACT> ,GOAL-FUNCTION ,G-FINISH>
+	<SET VAL <ESTABLISH-GOAL ,CONTACT ,SIDEWALK>>
+	<COND (,IDEBUG <TELL N .VAL "]" CR>)>
+	.VAL>
+
+<ROUTINE I-DEPART-WARNING ("OPTIONAL" (GARG <>) "AUX" (N 1))
+ <COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	<TELL "[I-DEPART-WARNING:">
+	<COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+ <COND (,IN-STATION
+	<COND (T ;<EQUAL? ,SCENERY-OBJ ,STATION-GRNZ>
+	       <SET N 3>)>
+	<ENABLE <QUEUE I-DEPART .N>>
+	<TELL
+"The train whistle blows once, and" HE ,CONDUCTOR " cries,
+\"Gormnash floogle nomnets!\"" CR>)>
+	<COND (<AND <SPY?> <EQUAL? ,SCENERY-OBJ ,STATION-GOLA>>
+	       <I-AGENT-COMES>)>
+	<COND (,IDEBUG <TELL "(1)]" CR>)>
+	<RTRUE>>
+
+<ROUTINE I-DEPART ("OPTIONAL" (GARG <>) "AUX" N GT)
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-DEPART:">
+	       <COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	 <DEPART-FROM-STATION-BAD-SPY>
+	 <SETG IN-STATION <>>
+	 <COND (,ON-TRAIN
+		<SETG TRAIN-MOVING T>
+		<QUEUE I-CONTACT-GIVES-UP 0>
+		<FCLEAR ,PLATFORM-A ,TOUCHBIT>
+		<FCLEAR ,PLATFORM-B ,TOUCHBIT>
+		<FCLEAR ,PLATFORM-C ,TOUCHBIT>
+		<FCLEAR ,PLATFORM-D ,TOUCHBIT>
+		<FCLEAR ,PLATFORM-E ,TOUCHBIT>
+		;"<FCLEAR ,WAITRESS ,SEENBIT>
+		<FCLEAR ,WAITRESS ,TOUCHBIT>	;'? FLUSH? should do it'
+		<FCLEAR ,CLERK ,SEENBIT>
+		<FCLEAR ,CLERK ,TOUCHBIT>"
+		<FCLEAR ,CONDUCTOR ,TOUCHBIT>
+		<PUTP ,CONDUCTOR ,P?LDESC 19 ;"making his rounds">
+		<PUTP ,CONDUCTOR ,P?CAR 1>
+		<SET GT <GET ,GOAL-TABLES ,CONDUCTOR-C>>
+		<PUT .GT ,GOAL-ENABLE 1>
+		<MOVE ,CONDUCTOR <V-FWD 1>>
+		<ESTABLISH-GOAL-TRAIN ,CONDUCTOR ,VESTIBULE-REAR ,CAR-MAX>
+		<FLUSH? ,STATION-ROOMS>
+		<ENABLE <QUEUE I-TRAIN-LURCH -1>>
+		<ENABLE <QUEUE I-TICKETS-PLEASE -1>>
+		<SETG TICKETS-PUNCHED? <>>
+		<FSET ,PLAYER ,LOCKED>
+		<UNPUNCH-TICKETS ,SPY-TABLE>
+		<UNPUNCH-TICKETS ,EXTRA-TABLE>
+		<COND (<==? ,SCENERY-OBJ ;,STATION-NAME ,STATION-GRNZ>
+		       <MOVE ,PLAQUE ,LIMBO-FWD> ;<FSET ,PLAQUE ,INVISIBLE>
+		       ;<FSET ,CUSTOMS-AGENT ,NDESCBIT>
+		       <MOVE ,CUSTOMS-AGENT ,LIMBO-FWD ;GLOBAL-OBJECTS>
+		       <SETG CUSTOMS-SWEEP <>>
+		       <COND (<OR ;<HARD?>
+				  <NOT <FSET? ,MCGUFFIN ,NDESCBIT>>>
+			      <MOVE-CONTACT>)>)>
+		<ENABLE <INT I-TRAIN-SCENERY>>
+		<TELL "The train">)
+	       (T
+		<FCLEAR ,COMPARTMENT-1 ,TOUCHBIT>
+		<FCLEAR ,COMPARTMENT-2 ,TOUCHBIT>
+		<FCLEAR ,COMPARTMENT-3 ,TOUCHBIT>
+		<FCLEAR ,COMPARTMENT-4 ,TOUCHBIT>
+		<FCLEAR ,COMPARTMENT-5 ,TOUCHBIT>
+		<FCLEAR ,BOOTH-1 ,TOUCHBIT>
+		<FCLEAR ,BOOTH-2 ,TOUCHBIT>
+		<FCLEAR ,BOOTH-3 ,TOUCHBIT>
+		<FCLEAR ,FROY ,TOUCHBIT>
+		<MOVE ,FROY <PICK-ONE-BOOTH>>
+		<SETG DINER-TOUCHED <>>
+		<MOVE ,CONDUCTOR <V-REAR 3>>
+		<TELL "You ">
+		<COND (<ON-PLATFORM? ,HERE>
+		       <TELL
+"watch as" HE ,CONDUCTOR " boards the train, and it">)
+		      (T <TELL "hear the noise as the train">)>
+		<CUE-NEXT-TRAIN>)>
+	 <TELL " slowly pulls out of " D ,SCENERY-OBJ " station">
+	 <COND (<NOT ,ON-TRAIN> <TELL " without you">)>
+	 <TELL "." CR>>
+
+<ROUTINE CUE-NEXT-TRAIN ("AUX" X)
+ <COND (<AND <EQUAL? ,SCENERY-OBJ ;,STATION-NAME ,STATION-KNUT>
+	     <EQUAL? ,TRAIN-NAME <GET ,TRAIN-TABLE-A 0>>>
+	<SETG TRAIN-NAME <GET ,TRAIN-TABLE-B 0>>
+	<SETG TRAIN-TABLE <REST ,TRAIN-TABLE-B 2>>
+	<SET X <- <GET ,TRAIN-TABLE 0> ,PRESENT-TIME>>
+	<COND (<L? .X 1> <SET X 5>)>
+	<ENABLE <QUEUE I-TRAIN-SCENERY .X>>
+	<FLUSH? ,CAR-ROOMS-DINER <> 4>
+	<SETG DINER-CAR 4>
+	<FLUSH? ,CAR-ROOMS-FANCY <> ;,CAR-MAX-MAX>
+	<SETG FANCY-CAR ,CAR-MAX-MAX>
+	<MOVE ,THUG	,HALL-3-FANCY>
+	<PUTP ,THUG	,P?CAR ,FANCY-CAR>
+	<PUTP ,DEFECTOR	,P?CAR ,FANCY-CAR>
+	<SETG CAR-MAX ,CAR-MAX-MAX>
+	;"<PUTP ,COAT ,P?CAR ,PLATFORM-MAX>
+	<COND (<==? ,CAR-HERE ,PLATFORM-MAX>
+	       <MOVE ,COAT ,HOOK>)
+	      (T <MOVE ,COAT ,OTHER-HOOK>)>"
+	<FCLEAR ,CONDUCTOR ,TOUCHBIT>
+	<FCLEAR ,CONDUCTOR ,SEENBIT>
+	<PUT <GET ,GOAL-TABLES ,EXTRA-C> ,GOAL-ENABLE 0>
+	<PUT <GET ,GOAL-TABLES  ,STAR-C> ,GOAL-ENABLE 0>
+	<TAKE-YOUR-PLACES-CAST ,EXTRA-TABLE T>
+	<TAKE-YOUR-PLACES-CAST ,SPY-TABLE T>
+	<TAKE-YOUR-PLACES-CAST ,MARKS-TABLE <> <> <>>
+	<FLUSH-ROOM? ,CUSTOMS-AGENT>
+	<FLUSH-ROOM? ,ROOF>
+	<FLUSH? ,CAR-ROOMS>
+	<FLUSH? ,CAR-ROOMS T>
+	<RTRUE>)>>
+
+<ROUTINE FLUSH? (TBL "OPTIONAL" (OTHER? <>) (NEW-DINER? <>) (ALL? T)
+		     "AUX" RM CNT)
+	<SET CNT <GET .TBL 0>>
+	<REPEAT ()
+		<SET RM <GET .TBL .CNT>>
+		<COND (.OTHER? <SET RM <GETP .RM ,P?OTHER>>)>
+		<FLUSH-ROOM? .RM <> .NEW-DINER? .ALL?>
+		<COND (<DLESS? CNT 1> <RETURN>)>>>
+
+<ROUTINE FLUSH-ROOM? (RM "OPTIONAL" (TELL? <>) (NEW-DINER? <>) (ALL? T)
+			 "AUX" F N X)
+ <SET F <FIRST? .RM>>
+ <REPEAT ()
+	 <COND (.F <SET N <NEXT? .F>>)
+	       (T <RETURN>)>
+	 <COND (<EQUAL? .F ,BLOOD-SPOT>
+		<MOVE .F ,LIMBO-FWD ;,GLOBAL-OBJECTS>)
+	       (<FSET? .F ,TAKEBIT>
+		<COND (<AND <ZERO? .ALL?> <HIDDEN? .F>>
+		       <SET F .N>
+		       <AGAIN>)
+		      (<AND .TELL? <==? .RM ,HERE>>
+		       <TELL CTHE .F " falls off" THE .RM "." CR>)>
+		<FCLEAR .F ,TAKEBIT>
+		<MOVE .F ,LIMBO-FWD ;,GLOBAL-OBJECTS>)
+	       (<FSET? .F ,PERSONBIT>
+		<COND (<SET X <ZMEMQ .F ,EXTRA-TABLE>>
+		       <FCLEAR .F ,SEENBIT>
+		       <PUT ,EXTRA-SEEN-TABLE
+			    .X
+			    <- 0 <GET ,EXTRA-SEEN-TABLE .X>>>)>
+		<FCLEAR .F ,TOUCHBIT>
+		<COND (<EQUAL? .F ,WAITRESS> <PUTP .F ,P?LDESC 26>)
+		      (T <PUTP .F ,P?LDESC 0>)>
+		<COND (.NEW-DINER?
+		       <PUTP .F ,P?CAR .NEW-DINER?>)>)
+	       (<OR <FSET? .F ,SURFACEBIT> <FSET? .F ,CONTBIT>>
+		<FLUSH-ROOM? .F <> .NEW-DINER? .ALL?>)>
+	 <SET F .N>>>
+
+<ROUTINE UNPUNCH-TICKETS (TBL "AUX" CNT PER)
+	<TAKE-YOUR-PLACES-CAST .TBL T T>
+	;<SET CNT <GET .TBL 0>>
+	;<REPEAT ()
+		<SET PER <GET .TBL .CNT>>
+		<FSET .PER ,LOCKED>
+		<COND (<ZMEMQ <META-LOC .PER> ,STATION-ROOMS>
+		       <PUTP .PER ,P?CAR <RANDOM ,CAR-MAX>>
+		       <MOVE .PER <PICK-ONE ,CAR-ROOMS-COMPS>>)>
+		<COND (<DLESS? CNT 1> <RETURN>)>>>
+
+<GLOBAL TRAIN-MOVING T>
+
+<ROUTINE TRAIN-SLOWING? ()
+	<COND (<NOT <ZMEMQ <GET ,TRAIN-TABLE 1> ,STATIONS>>
+	       <RFALSE>)
+	      (<QUEUED? ,I-ARRIVE-WARNING>
+	       <RFALSE>)
+	      (T <RTRUE>)>>
+
+<ROUTINE MOTION-PREFIX ("OPTIONAL" (NOW <>))
+	 <COND (<NOT ,SCENERY-OBJ> <RFALSE>)
+	       (,TRAIN-MOVING
+		<TELL "The train is ">
+		<COND (.NOW <TELL "now ">)>
+		<COND (<ZMEMQ ,SCENERY-OBJ ,STATIONS>
+		       <TELL "pass">)
+		      (<TRAIN-SLOWING?>
+		       <TELL "coast">)
+		      (T <TELL <PICK-ONE ,MOTIONS>>)>
+		<TELL "ing " <GETP ,SCENERY-OBJ ,P?LDESC>>)
+	       (T <TELL "The train is stopped "<GETP ,SCENERY-OBJ ,P?FDESC>>)>
+	 <CRLF>>
+
+<GLOBAL MOTIONS <PLTABLE "rac" "hurtl" "steam" "rocket" "speed">>
+
+<GLOBAL NOW-LURCHING <>>
+<GLOBAL TOLD-LURCHING <>>
+
+<ROUTINE I-TRAIN-LURCH ("OPTIONAL" (GARG <>))
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-TRAIN-LURCH:">
+	       <COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	 <SETG NOW-LURCHING <>>
+	 <COND (<AND ,TRAIN-MOVING <PROB 10>>
+		<SETG NOW-LURCHING ,PRESENT-TIME>
+		<SETG TOLD-LURCHING <>>)>
+	 <COND (,IDEBUG <TELL "(0)]" CR>)>
+	 <RFALSE>>
+
+<ROOM REST-ROOM-FWD 
+	(LOC ROOMS)
+	(OTHER OTHER-REST-ROOM-FWD)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "forward restroom")
+	(ADJECTIVE NORTH N FORWARD FRONT F FORE REST)
+	(SYNONYM RESTROOM BATHROOM LAVATORY TOILET ROOM)
+	(GENERIC GENERIC-REST-ROOM-F)
+	(LINE 1)
+	(STATION VESTIBULE-FWD)
+	;(NORTH	TO VESTIBULE-FWD IF REST-ROOM-FWD-DOOR IS OPEN)
+	(WEST	TO VESTIBULE-FWD IF REST-ROOM-FWD-DOOR IS OPEN)
+	(OUT	TO VESTIBULE-FWD IF REST-ROOM-FWD-DOOR IS OPEN)
+	(GLOBAL REST-ROOM-FWD-DOOR ;STOP-CORD MIRROR TOILET
+		SINK TOWEL-FIXTURE TOWEL-LOOP FIXTURES)
+	(ACTION REST-ROOM-F)>
+
+<ROUTINE REST-ROOM-F ("OPTIONAL" (RARG <>))
+ <COND (<==? .RARG ,M-ENTER>
+	<SETG PLAYER-NOT-FACING <>>
+	<MOVE ,PAPER-FIXTURE ,HERE>
+	<RFALSE>)
+       (<==? .RARG ,M-LOOK>
+	<FSET ,REST-ROOM-FWD  ,TOUCHBIT>
+	<FSET ,REST-ROOM-REAR ,TOUCHBIT>
+	<FSET ,REST-ROOM-FWD-DINER  ,TOUCHBIT>
+	<FSET ,REST-ROOM-REAR-DINER ,TOUCHBIT>
+	;<FSET ,REST-ROOM-FWD-FANCY  ,TOUCHBIT>
+	;<FSET ,REST-ROOM-REAR-FANCY ,TOUCHBIT>
+	<TELL
+"As you'd expect, the restroom is tidy but small, almost too small for
+comfort. But it does have the usual fixtures." CR>)>>
+
+<ROOM OTHER-REST-ROOM-FWD
+	(DESC "other forward restroom")
+	(LOC ROOMS)
+	(OTHER REST-ROOM-FWD)
+	(LINE 2)
+	(STATION OTHER-VESTIBULE-FWD)
+	(OUT TO OTHER-VESTIBULE-FWD)>
+
+<ROOM COMPARTMENT-1 
+	(LOC ROOMS)
+	(OTHER OTHER-COMPARTMENT-1)
+	(FLAGS ;RLANDBIT ONBIT SEENBIT)
+	(DESC "first compartment")
+	(ADJECTIVE FIRST 1ST \#1 ;MY)
+	(SYNONYM COMPARTMENT C ROOM)
+	(LINE 1)
+	(STATION HALL-1)
+	(CORRIDOR *40*)
+	(EAST	TO HALL-1 IF COMPARTMENT-1-DOOR IS OPEN)
+	(OUT	TO HALL-1 IF COMPARTMENT-1-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-1-DOOR CURTAIN-1 WINDOW-1 SCENERY-LEFT ;STOP-CORD)
+	(GENERIC GENERIC-COMPARTMENT-F)
+	(ACTION COMPARTMENT-F)>
+
+<ROOM OTHER-COMPARTMENT-1
+	(DESC "other first compartment")
+	(LOC ROOMS)
+	(OTHER COMPARTMENT-1)
+	(LINE 2)
+	(STATION OTHER-HALL-1)
+	(OUT TO OTHER-HALL-1)>
+
+<ROOM COMPARTMENT-2  
+	(LOC ROOMS)
+	(OTHER OTHER-COMPARTMENT-2)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "second compartment")
+	(ADJECTIVE SECOND 2ND 2D \#2)
+	(SYNONYM COMPARTMENT C ROOM)
+	(STATION HALL-2)
+	(LINE 1)
+	(CORRIDOR *100*)
+	(EAST	TO HALL-2 IF COMPARTMENT-2-DOOR IS OPEN)
+	(OUT	TO HALL-2 IF COMPARTMENT-2-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-2-DOOR CURTAIN-2 WINDOW-2 SCENERY-LEFT ;STOP-CORD)
+	(GENERIC GENERIC-COMPARTMENT-F)
+	(ACTION COMPARTMENT-F)>
+
+<ROOM OTHER-COMPARTMENT-2
+	(DESC "other second compartment")
+	(LOC ROOMS)
+	(OTHER COMPARTMENT-2)
+	(LINE 2)
+	(STATION OTHER-HALL-2)
+	(OUT TO OTHER-HALL-2)>
+
+<ROOM COMPARTMENT-3   
+	(LOC ROOMS)
+	(OTHER OTHER-COMPARTMENT-3)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "third compartment")
+	(ADJECTIVE THIRD 3RD 3D \#3)
+	(SYNONYM COMPARTMENT C ROOM)
+	(STATION HALL-3)
+	(LINE 1)
+	(CORRIDOR *200*)
+	(EAST	TO HALL-3 IF COMPARTMENT-3-DOOR IS OPEN)
+	(OUT	TO HALL-3 IF COMPARTMENT-3-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-3-DOOR CURTAIN-3 WINDOW-3 SCENERY-LEFT ;STOP-CORD)
+	(GENERIC GENERIC-COMPARTMENT-F)
+	(ACTION COMPARTMENT-F)>
+
+<ROOM OTHER-COMPARTMENT-3
+	(DESC "other third compartment")
+	(LOC ROOMS)
+	(OTHER COMPARTMENT-3)
+	(LINE 2)
+	(STATION OTHER-HALL-3)
+	(OUT TO OTHER-HALL-3)>
+
+<ROOM COMPARTMENT-4   
+	(LOC ROOMS)
+	(OTHER OTHER-COMPARTMENT-4)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "fourth compartment")
+	(ADJECTIVE FOURTH 4TH \#4)
+	(SYNONYM COMPARTMENT C ROOM)
+	(STATION HALL-4)
+	(LINE 1)
+	(CORRIDOR *400*)
+	(EAST	TO HALL-4 IF COMPARTMENT-4-DOOR IS OPEN)
+	(OUT	TO HALL-4 IF COMPARTMENT-4-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-4-DOOR CURTAIN-4 WINDOW-4 SCENERY-LEFT ;STOP-CORD)
+	(GENERIC GENERIC-COMPARTMENT-F)
+	(ACTION COMPARTMENT-F)>
+
+<ROOM OTHER-COMPARTMENT-4
+	(DESC "other fourth compartment")
+	(LOC ROOMS)
+	(OTHER COMPARTMENT-4)
+	(LINE 2)
+	(STATION OTHER-HALL-4)
+	(OUT TO OTHER-HALL-4)>
+
+<ROOM COMPARTMENT-5   
+	(LOC ROOMS)
+	(OTHER OTHER-COMPARTMENT-5)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "fifth compartment")
+	(ADJECTIVE FIFTH 5TH \#5 LAST)
+	(SYNONYM COMPARTMENT C ROOM)
+	(STATION HALL-5)
+	(LINE 1)
+	(CORRIDOR *1000*)
+	(EAST	TO HALL-5 IF COMPARTMENT-5-DOOR IS OPEN)
+	(OUT	TO HALL-5 IF COMPARTMENT-5-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-5-DOOR CURTAIN-5 WINDOW-5 SCENERY-LEFT ;STOP-CORD)
+	(GENERIC GENERIC-COMPARTMENT-F)
+	(ACTION COMPARTMENT-F)>
+
+<ROOM OTHER-COMPARTMENT-5
+	(DESC "other fifth compartment")
+	(LOC ROOMS)
+	(OTHER COMPARTMENT-5)
+	(LINE 2)
+	(STATION OTHER-HALL-5)
+	(OUT TO OTHER-HALL-5)>
+
+<ROUTINE COMPARTMENT-F ("OPTIONAL" (RARG <>) "AUX" N)
+ <COND (<EQUAL? .RARG ,M-LOOK>
+	<FSET ,COMPARTMENT-1 ,TOUCHBIT>
+	<FSET ,COMPARTMENT-2 ,TOUCHBIT>
+	<FSET ,COMPARTMENT-3 ,TOUCHBIT>
+	<FSET ,COMPARTMENT-4 ,TOUCHBIT>
+	<FSET ,COMPARTMENT-5 ,TOUCHBIT>
+	<COMPARTMENT-DESC>
+	<MOTION-PREFIX>
+	<RTRUE>)
+       (<EQUAL? .RARG ,M-ENTER>
+	<COND (<AND <SPY?> <IN? ,BLOOD-SPOT ,HERE>>
+	       <FCLEAR ,BLOOD-SPOT ,NDESCBIT>)>
+	<COND (<AND <==? ,HERE ,GAS-CAR-RM> <==? ,CAR-HERE ,GAS-CAR>>
+	       <TELL-GAS <>>)>
+	<COND (T ;<NOT <IN? ,CONTACT ,HERE>>
+	       <CALL-FOR-EXTRA ,HERE ,CAR-HERE>)>
+	<RFALSE>)
+       (<EQUAL? .RARG ,M-BEG>
+	<PERSON-TAKES-GUN?>)
+       (.RARG <RFALSE>)
+       (<VERB? EXAMINE LOOK-INSIDE>
+	<COND (T ;<NOT <IN? ,CONTACT ,PRSO>>
+	       <CALL-FOR-EXTRA ,PRSO ,CAR-HERE>)>
+	<RFALSE>)
+       (<AND <VERB? SEARCH>
+	     <IN? ,BLOOD-SPOT ,HERE>
+	     <FSET? ,BLOOD-SPOT ,NDESCBIT>>
+	<FCLEAR ,BLOOD-SPOT ,NDESCBIT>
+	<TELL "You find a " D ,BLOOD-SPOT " on the floor." CR>)>>
+
+<ROUTINE PERSON-TAKES-GUN? ("AUX" N)
+	<COND (<ZERO? <EXIT-VERB?>> <RFALSE>)>
+	<SET N <LOC ,GUN>>
+	<COND (<NOT <EQUAL? <META-LOC ,GUN> ,HERE>>	<RFALSE>)
+	      (<FSET? .N ,PERSONBIT>	<RFALSE>)
+	      (<FSET? .N ,MUNGBIT>	<RFALSE>)
+	      (<EQUAL? .N ,POCKET>	<RFALSE>)
+	      (<NOT <IN? ,PERSON-SAW-GUN ,HERE>>	<RFALSE>)>
+	<FSET ,GUN ,NDESCBIT>
+	<MOVE ,GUN ,PERSON-SAW-GUN>
+	<RTRUE>>
+
+<ROUTINE CALL-FOR-EXTRA ("OPTIONAL" (WHERE <>) (CAR <>) (EXCLUDE <>)
+			 "AUX" (L <>) N P)
+	<COND (,DEBUG <TELL "[CALL-FOR-EXTRA@" D .WHERE ": ">)>
+	<COND (.WHERE
+	       <SET L <META-LOC .WHERE>>
+	       <COND (<FIND-FLAG .L ,PERSONBIT ,WINNER>
+		      <COND (,DEBUG <TELL "person already here]" CR>)>
+		      <RFALSE>)
+		     (<AND ,ON-TRAIN <FSET? .L ,SEENBIT>>
+		      <COND (,DEBUG <TELL "place already seen]" CR>)>
+		      <RFALSE>)>
+	       <FSET .L ,SEENBIT>)>
+	<SET P <PICK-ONE ,EXTRA-TABLE>>
+	<COND (<AND <NOT <==? .P .EXCLUDE>>
+		    <MOVE-EXTRA? .P .L .CAR>>
+	       <COND (,DEBUG <TELL D .P CR>)>
+	       <RETURN .P>)>
+	<SET N <GET ,EXTRA-TABLE 0>>
+	<REPEAT ()
+		<SET P <GET ,EXTRA-TABLE .N>>
+		<COND (<AND <NOT <==? .P .EXCLUDE>>
+			    <MOVE-EXTRA? .P .L .CAR>>
+		       <COND (,DEBUG <TELL D .P CR>)>
+		       <RETURN .P>)
+		      (<DLESS? N 1>
+		       <COND (,DEBUG <TELL "are none]" CR>)>
+		       <RFALSE>)>>>
+
+<ROUTINE MOVE-EXTRA? (P L CAR "AUX" X STA)
+	<COND (<EQUAL? .P ,CONTACT ,BAD-SPY>	<RFALSE>)
+	      (<IN-MOTION? .P T>		<RFALSE>)
+	      (<VISIBLE? .P>			<RFALSE>)
+	      (<FSET? .P ,MUNGBIT>		<RFALSE>)
+	      (<NOT <FSET? .P ,PERSONBIT>>	<RFALSE>)>
+	<SET STA <ZMEMQ <LOC .P> ,STATION-ROOMS>>
+	<COND (<FSET? <LOC .P> ,SEENBIT>
+	       <COND (<AND .STA <NOT ,ON-TRAIN>>	<RFALSE>)
+		     (<AND <NOT .STA> ,ON-TRAIN>	<RFALSE>)>)>
+	<COND (.L
+	       <MOVE .P .L>
+	       <ROB .P ,GLOBAL-OBJECTS>
+	       <PUTP .P ,P?LDESC 0>
+	       <FCLEAR .P ,TOUCHBIT>
+	       <FCLEAR .P ,SEENBIT>
+	       <COND (<SET X <ZMEMQ .P ,EXTRA-TABLE>>
+		      <PUT ,EXTRA-SEEN-TABLE
+			   .X
+			   <- 0 <GET ,EXTRA-SEEN-TABLE .X>>>)>
+	       <COND (.CAR <PUTP .P ,P?CAR .CAR>)>)>
+	<RTRUE>>
+
+<ROUTINE COMPARTMENT-DESC ()
+	<TELL
+"This is a once-luxurious first-class compartment on the " ,TRAIN-NAME ".
+The plush red upholstery on the two facing seats, shiny and worn in
+spots, and the greasy lace on the headrests, give the car an air of
+faded elegance.">
+	<CORD-SWINGS?>
+	<SETG JUST-LOOKED T>
+	<TELL
+"The corridor is outside, past a window with a red curtain on it." CR>>
+
+<ROUTINE CORD-SWINGS? ()
+	<TELL
+" A red handle is hanging by a short length of cord from the ceiling">
+	<COND (,TRAIN-MOVING
+	       <TELL ", swinging in time to the train's rocking motion. ">)
+	      (ELSE <TELL "." CR>)>>
+
+<ROUTINE GENERIC-COMPARTMENT-F (X)
+ <COND (<EQUAL? ,HERE ,HALL-1 ,COMPARTMENT-1> ,COMPARTMENT-1)
+       (<EQUAL? ,HERE ,HALL-2 ,COMPARTMENT-2> ,COMPARTMENT-2)
+       (<EQUAL? ,HERE ,HALL-3 ,COMPARTMENT-3> ,COMPARTMENT-3)
+       (<EQUAL? ,HERE ,HALL-4 ,COMPARTMENT-4> ,COMPARTMENT-4)
+       (<EQUAL? ,HERE ,HALL-5 ,COMPARTMENT-5> ,COMPARTMENT-5)
+       (<REMOTE-VERB?> <RFALSE>)
+       (T
+	<SETG CLOCK-WAIT T>
+	<TELL "(You can't see any compartment here.)" CR>
+	,NOT-HERE-OBJECT)>>
+
+<ROOM REST-ROOM-REAR 
+	(LOC ROOMS)
+	(OTHER OTHER-REST-ROOM-REAR)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "rear restroom")
+	(ADJECTIVE SOUTH S REAR R AFT REST)
+	(SYNONYM RESTROOM BATHROOM LAVATORY TOILET ROOM)
+	(GENERIC GENERIC-REST-ROOM-F)
+	(LINE 1)
+	(STATION VESTIBULE-REAR)
+	;(SOUTH	TO VESTIBULE-REAR IF REST-ROOM-REAR-DOOR IS OPEN)
+	(WEST	TO VESTIBULE-REAR IF REST-ROOM-REAR-DOOR IS OPEN)
+	(OUT	TO VESTIBULE-REAR IF REST-ROOM-REAR-DOOR IS OPEN)
+	(GLOBAL REST-ROOM-REAR-DOOR ;STOP-CORD MIRROR TOILET
+		SINK TOWEL-FIXTURE TOWEL-LOOP FIXTURES)
+	(ACTION REST-ROOM-F)>
+
+<ROOM OTHER-REST-ROOM-REAR
+	(DESC "other rear restroom")
+	(LOC ROOMS)
+	(OTHER REST-ROOM-REAR)
+	(LINE 2)
+	(STATION OTHER-VESTIBULE-REAR)
+	(OUT TO OTHER-VESTIBULE-REAR)>
+
+<ROOM VESTIBULE-FWD
+	(LOC ROOMS)
+	(OTHER OTHER-VESTIBULE-FWD)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "forward vestibule")
+	(ADJECTIVE NORTH N FORWARD FRONT F FORE)
+	(SYNONYM VESTIBULE V)
+	(GENERIC GENERIC-VESTIBULE-F)
+	(NORTH PER NEXT-CAR-TO-FWD-F)
+	(SOUTH TO HALL-1 IF VESTIBULE-FWD-DOOR IS OPEN)
+	(EAST TO REST-ROOM-FWD IF REST-ROOM-FWD-DOOR IS OPEN)
+	(IN   TO REST-ROOM-FWD IF REST-ROOM-FWD-DOOR IS OPEN)
+	(LINE 1)
+	(STATION VESTIBULE-FWD)
+	(GLOBAL REST-ROOM-FWD-DOOR VESTIBULE-FWD-DOOR
+		VESTIBULE-FWD-WINDOW ;STOP-CORD)
+	(CORRIDOR -1)
+	(ACTION VESTIBULE-FWD-F)>
+
+<OBJECT REST-ROOM-FWD-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "restroom door")
+	(ADJECTIVE RESTROOM BATHROOM LAVATORY TOILET ROOM SMALL)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT)
+	(ACTION REST-ROOM-FWD-DOOR-F)>
+
+<ROUTINE REST-ROOM-FWD-DOOR-F ()
+	<REST-ROOM-DOOR-F ,REST-ROOM-FWD-DOOR ,REST-ROOM-FWD>>
+
+<ROUTINE REST-ROOM-DOOR-F (DR RM "AUX" PER)
+	<COND (<SET PER <OCCUPIED? .RM ,CAR-HERE>>
+	       <COND (<NOT <==? .PER ,PLAYER>>
+		      <FSET .DR ,LOCKED>)>)
+	      (T <FCLEAR .DR ,LOCKED>)>
+	<FACE-DOOR .DR>
+	<RFALSE>>
+
+<ROOM OTHER-VESTIBULE-FWD
+	(DESC "other front vestibule")
+	(LOC ROOMS)
+	(NORTH TO OTHER-LIMBO-FWD)
+	(SOUTH TO OTHER-HALL-1)
+	(IN TO OTHER-REST-ROOM-FWD)
+	(OTHER VESTIBULE-FWD)
+	(STATION OTHER-VESTIBULE-FWD)
+	(LINE 2)>
+
+<ROOM HALL-1
+	(LOC ROOMS)
+	(OTHER OTHER-HALL-1)
+	(DESC "forward end")
+	(ADJECTIVE NORTH N FORWARD FRONT F FORE)
+	(SYNONYM END)
+	(GENERIC GENERIC-HALL-1-F)
+	(STATION HALL-1)
+	(LINE 1)
+	(FLAGS ;RLANDBIT ONBIT)
+	(WEST	TO COMPARTMENT-1 IF COMPARTMENT-1-DOOR IS OPEN)
+	(IN	TO COMPARTMENT-1 IF COMPARTMENT-1-DOOR IS OPEN)
+	(NORTH TO VESTIBULE-FWD IF VESTIBULE-FWD-DOOR IS OPEN)
+	(SOUTH TO HALL-2)
+	(CORRIDOR *41*)
+	(GLOBAL COMPARTMENT-1-DOOR CURTAIN-1 HALL-WINDOW VESTIBULE-FWD-DOOR
+		SCENERY-RIGHT)
+	(ACTION HALL-F)>
+
+<OBJECT COMPARTMENT-1-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "compartment door")
+	(ADJECTIVE COMPARTMENT C)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT TRANSBIT)
+	(ACTION COMPARTMENT-1-DOOR-F)>
+
+<ROUTINE COMPARTMENT-1-DOOR-F () <COMPARTMENT-DOOR-F ,COMPARTMENT-1-DOOR>>
+
+<ROUTINE COMPARTMENT-DOOR-F (DR)
+	<FACE-DOOR .DR>
+	<RFALSE>>
+
+<ROOM OTHER-HALL-1
+	(DESC "other forward end")
+	(LOC ROOMS)
+	(IN TO OTHER-COMPARTMENT-1)
+	(NORTH TO OTHER-VESTIBULE-FWD)
+	(SOUTH TO OTHER-HALL-2)
+	(OTHER HALL-1)
+	(STATION OTHER-HALL-1)
+	(LINE 2)>
+
+<ROOM HALL-2
+	(LOC ROOMS)
+	(OTHER OTHER-HALL-2) 
+	(DESC "forward middle")
+	(ADJECTIVE NORTH N FORWARD FRONT F FORE)
+	(SYNONYM MIDDLE)
+	(GENERIC GENERIC-MIDDLE-F)
+	(STATION HALL-2)
+	(LINE 1)
+	(FLAGS ;RLANDBIT ONBIT)
+	(WEST	TO COMPARTMENT-2 IF COMPARTMENT-2-DOOR IS OPEN)
+	(IN	TO COMPARTMENT-2 IF COMPARTMENT-2-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-2-DOOR CURTAIN-2 HALL-WINDOW SCENERY-RIGHT)
+	(NORTH TO HALL-1)
+	(SOUTH TO HALL-3)
+	(CORRIDOR *101*)
+	(ACTION HALL-F)>
+
+<OBJECT COMPARTMENT-2-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "compartment door")
+	(ADJECTIVE COMPARTMENT C)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT TRANSBIT)
+	(ACTION COMPARTMENT-2-DOOR-F)>
+
+<ROUTINE COMPARTMENT-2-DOOR-F () <COMPARTMENT-DOOR-F ,COMPARTMENT-2-DOOR>>
+
+<ROOM OTHER-HALL-2
+	(DESC "other forward middle")
+	(LOC ROOMS)
+	(IN TO OTHER-COMPARTMENT-2)
+	(NORTH TO OTHER-HALL-1)
+	(SOUTH TO OTHER-HALL-3)
+	(OTHER HALL-2)
+	(STATION OTHER-HALL-2)
+	(LINE 2)>
+
+<ROOM HALL-3
+	(LOC ROOMS)
+	(OTHER OTHER-HALL-3) 
+	(DESC "middle")
+	(SYNONYM MIDDLE)
+	(GENERIC GENERIC-MIDDLE-F)
+	(STATION HALL-3)
+	(LINE 1)
+	(FLAGS ;RLANDBIT ONBIT)
+	(WEST	TO COMPARTMENT-3 IF COMPARTMENT-3-DOOR IS OPEN)
+	(IN	TO COMPARTMENT-3 IF COMPARTMENT-3-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-3-DOOR CURTAIN-3 HALL-WINDOW SCENERY-RIGHT)
+	(NORTH TO HALL-2)
+	(SOUTH TO HALL-4)
+	(CORRIDOR *201*)
+	(ACTION HALL-3-F)>
+
+<OBJECT COMPARTMENT-3-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "compartment door")
+	(ADJECTIVE COMPARTMENT C)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT TRANSBIT)
+	(ACTION COMPARTMENT-3-DOOR-F)>
+
+<ROUTINE COMPARTMENT-3-DOOR-F () <COMPARTMENT-DOOR-F ,COMPARTMENT-3-DOOR>>
+
+<ROUTINE HALL-3-F ("OPTIONAL" (RARG <>))
+ <COND (<EQUAL? .RARG ,M-ENTER>
+	<ROB ,TOILET ,LIMBO-FWD>
+	<RFALSE>)
+       (T <HALL-F .RARG>)>>
+
+<ROOM OTHER-HALL-3
+	(DESC "other middle")
+	(LOC ROOMS)
+	(NORTH TO OTHER-HALL-2)
+	(SOUTH TO OTHER-HALL-4)
+	(IN TO OTHER-COMPARTMENT-3)
+	(OTHER HALL-3)
+	(STATION OTHER-HALL-3)
+	(LINE 2)>
+
+<ROOM HALL-4
+	(DESC "rear middle")
+	(ADJECTIVE SOUTH S REAR R AFT)
+	(SYNONYM MIDDLE)
+	(GENERIC GENERIC-MIDDLE-F)
+	(LOC ROOMS)
+	(OTHER OTHER-HALL-4)
+	(STATION HALL-4)
+	(LINE 1)
+	(FLAGS ;RLANDBIT ONBIT)
+	(WEST	TO COMPARTMENT-4 IF COMPARTMENT-4-DOOR IS OPEN)
+	(IN	TO COMPARTMENT-4 IF COMPARTMENT-4-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-4-DOOR CURTAIN-4 HALL-WINDOW SCENERY-RIGHT)
+	(SOUTH TO HALL-5)
+	(NORTH TO HALL-3)
+	(CORRIDOR *401*)
+	(ACTION HALL-F)>
+
+<OBJECT COMPARTMENT-4-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "compartment door")
+	(ADJECTIVE COMPARTMENT C)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT TRANSBIT)
+	(ACTION COMPARTMENT-4-DOOR-F)>
+
+<ROUTINE COMPARTMENT-4-DOOR-F () <COMPARTMENT-DOOR-F ,COMPARTMENT-4-DOOR>>
+
+<ROOM OTHER-HALL-4
+	(DESC "other rear middle")
+	(LOC ROOMS)
+	(SOUTH TO OTHER-HALL-5)
+	(NORTH TO OTHER-HALL-3)
+	(IN TO OTHER-COMPARTMENT-4)
+	(OTHER HALL-4)
+	(STATION OTHER-HALL-4)
+	(LINE 2)>
+
+<ROOM HALL-5
+	(DESC "rear end")
+	(ADJECTIVE SOUTH S REAR R AFT)
+	(SYNONYM END)
+	(GENERIC GENERIC-HALL-5-F)
+	(LOC ROOMS)
+	(OTHER OTHER-HALL-5)
+	(STATION HALL-5)
+	(LINE 1)
+	(FLAGS ;RLANDBIT ONBIT)
+	(WEST	TO COMPARTMENT-5 IF COMPARTMENT-5-DOOR IS OPEN)
+	(IN	TO COMPARTMENT-5 IF COMPARTMENT-5-DOOR IS OPEN)
+	(GLOBAL COMPARTMENT-5-DOOR CURTAIN-5 HALL-WINDOW VESTIBULE-REAR-DOOR
+		SCENERY-RIGHT)
+	(SOUTH TO VESTIBULE-REAR IF VESTIBULE-REAR-DOOR IS OPEN)
+	(NORTH TO HALL-4)
+	(CORRIDOR *1001*)
+	(ACTION HALL-F)>
+
+<OBJECT COMPARTMENT-5-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "compartment door")
+	(ADJECTIVE COMPARTMENT C)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT TRANSBIT)
+	(ACTION COMPARTMENT-5-DOOR-F)>
+
+<ROUTINE COMPARTMENT-5-DOOR-F () <COMPARTMENT-DOOR-F ,COMPARTMENT-5-DOOR>>
+
+<ROOM OTHER-HALL-5
+	(DESC "other rear end")
+	(LOC ROOMS)
+	(SOUTH TO OTHER-VESTIBULE-REAR)
+	(NORTH TO OTHER-HALL-4)
+	(IN TO OTHER-COMPARTMENT-5)
+	(OTHER HALL-5)
+	(STATION OTHER-HALL-5)
+	(LINE 2)>
+
+<ROUTINE HALL-F ("OPTIONAL" (RARG <>) "AUX" X (TOUCHED <>) N)
+ <COND (<OR <EQUAL? .RARG ,M-LOOK>
+	    <AND <ZERO? .RARG> <VERB? LOOK>>>
+	<SET N 10 ;<GET ,CAR-ROOMS-CORRID 0>>	;"only non-fancy part"
+	<REPEAT ()
+		<COND (<FSET? <GET ,CAR-ROOMS-CORRID .N> ,TOUCHBIT>
+		       <SET TOUCHED T>
+		       <RETURN>)
+		      (<DLESS? N 1> <RETURN>)>>
+	<FSET ,HERE ,TOUCHBIT>
+	<TELL "This is the " D ,HERE " of the corridor.">
+	<COND (<OR <VERB? LOOK> <ZERO? .TOUCHED>>
+	       <TELL
+" The floor and walls are covered with cream-colored linoleum, worn away
+in spots to reveal the original hardwood finish. A long series of
+windows, still framed by wood, runs along the corridor on the right-hand
+side of the train.">)>
+	<COND (<==? ,PLAYER-NOT-FACING ,P?WEST>
+	       <CRLF>)
+	      (T
+	       <TELL " On the left side of the train">
+	       <SET X <GET-REXIT-ROOM <GETPT ,HERE ,P?IN>>>
+	       <COND (<NOT <EQUAL? ,CAR-HERE ,DINER-CAR ;,FANCY-CAR>>
+		      <TELL ", behind a windowed door,">)>
+	       <THIS-IS-IT .X>
+	       <TELL " lies the " D .X "." CR>)>
+	<RTRUE>)
+       (<EQUAL? .RARG ,M-ENTER>
+	<SET N <>>
+	<COND (<NOISY? ,LAST-PLAYER-LOC>
+	       <SET N T>
+	       <COND (T ;<OR <AND <EQUAL? ,LAST-PLAYER-LOC ,VESTIBULE-FWD>
+			       <EQUAL? ,HERE ,HALL-1>>
+			  <AND <EQUAL? ,LAST-PLAYER-LOC ,VESTIBULE-REAR>
+			       <EQUAL? ,HERE ,HALL-5>>>
+		      <TELL "The relative quiet here is welcome. ">)>)>
+	<COND (<AND <EQUAL? ,CAR-HERE ,DINER-CAR>
+		    <NOT ,DINER-TOUCHED>>
+	       <SET N T>
+	       <SETG DINER-TOUCHED T>
+	       <TELL "The smell of food is unmistakable.">)>
+	<COND (.N <CRLF>)>
+	<RFALSE>)>>
+
+<ROOM VESTIBULE-REAR
+	(LOC ROOMS)
+	(OTHER OTHER-VESTIBULE-REAR)
+	(FLAGS ;RLANDBIT ONBIT)
+	(DESC "rear vestibule")
+	(ADJECTIVE SOUTH S REAR R AFT)
+	(SYNONYM VESTIBULE V)
+	(GENERIC GENERIC-VESTIBULE-F)
+	;(LDESC "INTENTIONALLY LEFT BLANK")
+	(SOUTH PER NEXT-CAR-TO-REAR-F)
+	(NORTH TO HALL-5 IF VESTIBULE-REAR-DOOR IS OPEN)
+	(EAST TO REST-ROOM-REAR IF REST-ROOM-REAR-DOOR IS OPEN)
+	(IN   TO REST-ROOM-REAR IF REST-ROOM-REAR-DOOR IS OPEN)
+	(LINE 1)
+	(STATION VESTIBULE-REAR)
+	(GLOBAL REST-ROOM-REAR-DOOR VESTIBULE-REAR-DOOR
+		VESTIBULE-REAR-WINDOW ;STOP-CORD LADDER)
+	(WEST PER DETRAIN-F)
+	(OUT  PER DETRAIN-F)
+	(DOWN PER DETRAIN-F)
+	(UP PER LADDER-EXIT-F)
+	(CORRIDOR -1)
+	(ACTION VESTIBULE-REAR-F)>
+
+<OBJECT REST-ROOM-REAR-DOOR
+	(LOC LOCAL-GLOBALS)
+	(DESC "restroom door")
+	(ADJECTIVE RESTROOM BATHROOM LAVATORY TOILET ROOM SMALL)
+	(SYNONYM DOOR)
+	(FLAGS DOORBIT)
+	(ACTION REST-ROOM-REAR-DOOR-F)>
+
+<ROUTINE REST-ROOM-REAR-DOOR-F ()
+	<REST-ROOM-DOOR-F ,REST-ROOM-REAR-DOOR ,REST-ROOM-REAR>>
+
+<ROOM OTHER-VESTIBULE-REAR
+	(DESC "other rear vestibule")
+	(LOC ROOMS)
+	(NORTH TO OTHER-HALL-5)
+	(SOUTH TO OTHER-LIMBO-REAR)
+	(IN TO OTHER-REST-ROOM-REAR)
+	(OTHER VESTIBULE-REAR)
+	(STATION OTHER-VESTIBULE-REAR)
+	(LINE 2)>
+
+<ROUTINE VESTIBULE-FWD-F ("OPTIONAL" (RARG <>)) <VESTIBULE-F .RARG>>
+
+<ROUTINE VESTIBULE-REAR-F("OPTIONAL" (RARG <>)) <VESTIBULE-F .RARG T>>
+
+<ROUTINE VESTIBULE-F (RARG "OPTIONAL" (REAR? <>) "AUX" (TOUCHED <>))
+ <COND (<OR <EQUAL? .RARG ,M-LOOK>
+	    <AND <ZERO? .RARG> <VERB? LOOK>>>
+	<TELL "This is a small vestibule at the "
+	      <COND (.REAR? "rear ") (T "forward ")>
+	      "end of the car.">
+	<COND (.REAR?
+	       <FSET ,VESTIBULE-REAR ,TOUCHBIT>
+	       <FSET ,VESTIBULE-REAR-DINER ,TOUCHBIT>
+	       <FSET ,VESTIBULE-REAR-FANCY ,TOUCHBIT>
+	       <COND (<OR <FSET? ,VESTIBULE-FWD ,TOUCHBIT>
+			  <FSET? ,VESTIBULE-FWD-DINER ,TOUCHBIT>
+			  <FSET? ,VESTIBULE-FWD-FANCY ,TOUCHBIT>>
+		      <SET TOUCHED T>
+		      <TELL
+" It's just like the forward vestibule, except for">)
+		     (T <TELL " There's">)>
+	       <TELL
+" a short flight of metal steps on the left side of the train leading
+down off the train, and a narrow metal ladder leading up to the roof.">)
+	      (T
+	       <FSET ,VESTIBULE-FWD ,TOUCHBIT>
+	       <FSET ,VESTIBULE-FWD-DINER ,TOUCHBIT>
+	       <FSET ,VESTIBULE-FWD-FANCY ,TOUCHBIT>
+	       <COND (<OR <FSET? ,VESTIBULE-REAR ,TOUCHBIT>
+			  <FSET? ,VESTIBULE-REAR-DINER ,TOUCHBIT>
+			  <FSET? ,VESTIBULE-REAR-FANCY ,TOUCHBIT>>
+		      <SET TOUCHED T>
+		      <TELL
+" It's just like the rear vestibule, but with no steps or ladder.">)>)>
+	<COND (<AND <NOT <VERB? LOOK>>
+		    <NOT <ZERO? .TOUCHED>>>
+	       <CRLF>)
+	      (T
+	       <TELL " A ">
+	       <COND (<NOT <==? ,CAR-HERE ,FANCY-CAR>>
+		      <TELL "small door leads to a restroom, and a ">)>
+	       <TELL "big window is open to the outside.">
+	       <CORD-SWINGS?>
+	       <SETG JUST-LOOKED T>
+	       <MOTION-PREFIX>
+	       <COND (,TRAIN-MOVING 
+		      <TELL
+"The clatter of the wheels on the track is almost deafening." CR>)>)>
+	<RTRUE>)
+       (.RARG <RFALSE>)
+       (<ON-PLATFORM? ,HERE>
+	<COND (<AND .REAR? <VERB? WALK-TO>>
+	       <DO-WALK ,P?UP>
+	       <RTRUE>)>)>>
+
+<ROUTINE FORWARD-PART? (RM)
+	<OR <EQUAL? .RM ,VESTIBULE-FWD ,HALL-1 ,HALL-2>
+	    <EQUAL? .RM ,COMPARTMENT-1 ,COMPARTMENT-2 ,REST-ROOM-FWD>
+	    <EQUAL? .RM ,VESTIBULE-FWD-DINER ,HALL-1-DINER ,HALL-2-DINER>
+	    <EQUAL? .RM ,BOOTH-1 ,BOOTH-2 ,REST-ROOM-FWD-DINER>
+	    <EQUAL? .RM ,VESTIBULE-FWD-FANCY ,HALL-1-FANCY ,SUITE-1>
+	    ;<EQUAL? .RM ,REST-ROOM-FWD-FANCY>>>
+
+<ROUTINE GENERIC-VESTIBULE-F (X "OPTIONAL" (CAR <>) (L <>))
+	<COND (<ZERO? .CAR> <SET CAR ,CAR-HERE>)>
+	<COND (<ZERO? .L> <SET L ,HERE>)>
+	<COND (<EQUAL? .CAR ,DINER-CAR>
+	       <COND (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?R ,W?S>
+			       <EQUAL? ,P-ADJ ,W?REAR ,W?SOUTH>>>
+		      ,VESTIBULE-REAR-DINER)
+		     (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?F ,W?N>
+			       <EQUAL? ,P-ADJ ,W?FORWARD ,W?FRONT ,W?NORTH>>>
+		      ,VESTIBULE-FWD-DINER)
+		     (<FORWARD-PART? .L>
+		      ,VESTIBULE-FWD-DINER)
+		     (T ,VESTIBULE-REAR-DINER)>)
+	      (<EQUAL? .CAR ,FANCY-CAR>
+	       <COND (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?R ,W?S>
+			       <EQUAL? ,P-ADJ ,W?REAR ,W?SOUTH>>>
+		      ,VESTIBULE-REAR-FANCY)
+		     (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?F ,W?N>
+			       <EQUAL? ,P-ADJ ,W?FORWARD ,W?FRONT ,W?NORTH>>>
+		      ,VESTIBULE-FWD-FANCY)
+		     (<FORWARD-PART? .L>
+		      ,VESTIBULE-FWD-FANCY)
+		     (T ,VESTIBULE-REAR-FANCY)>)
+	      (T
+	       <COND (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?R ,W?S>
+			       <EQUAL? ,P-ADJ ,W?REAR ,W?SOUTH>>>
+		      <SET X ,VESTIBULE-REAR>)
+		     (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?F ,W?N>
+			       <EQUAL? ,P-ADJ ,W?FORWARD ,W?FRONT ,W?NORTH>>>
+		      <SET X ,VESTIBULE-FWD>)
+		     (<FORWARD-PART? .L>
+		      <SET X ,VESTIBULE-FWD>)
+		     (T <SET X ,VESTIBULE-REAR>)>
+	       <COND (<NOT <==? .CAR ,CAR-HERE>>
+		      <SET X <GETP .X ,P?OTHER>>)>
+	       .X)>>
+
+<ROUTINE GENERIC-REST-ROOM-F (X "OPTIONAL" (CAR <>) (L <>))
+	<COND (<ZERO? .CAR> <SET CAR ,CAR-HERE>)>
+	<COND (<ZERO? .L> <SET L ,HERE>)>
+	<COND (<NOT ,ON-TRAIN>
+	       <COND (<EQUAL? ,HERE ,REST-ROOM-WOMEN ,REST-ROOM-MEN>
+		      ,HERE)
+		     (<FSET? ,CONTACT ,FEMALE> ,REST-ROOM-WOMEN)
+		     (T ,REST-ROOM-MEN)>)
+	      (<EQUAL? .CAR ,DINER-CAR>
+	       <COND (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?R ,W?S>
+			       <EQUAL? ,P-ADJ ,W?REAR ,W?SOUTH>>>
+		      ,REST-ROOM-REAR-DINER)
+		     (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?F ,W?N>
+			       <EQUAL? ,P-ADJ ,W?FORWARD ,W?FRONT ,W?NORTH>>>
+		      ,REST-ROOM-FWD-DINER)
+		     (<FORWARD-PART? .L>
+		      ,REST-ROOM-FWD-DINER)
+		     (T ,REST-ROOM-REAR-DINER)>)
+	      ;(<EQUAL? .CAR ,FANCY-CAR>
+	       <COND (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?R ,W?S>
+			       <EQUAL? ,P-ADJ ,W?REAR ,W?SOUTH>>>
+		      ,REST-ROOM-REAR-FANCY)
+		     (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?F ,W?N>
+			       <EQUAL? ,P-ADJ ,W?FORWARD ,W?FRONT ,W?NORTH>>>
+		      ,REST-ROOM-FWD-FANCY)
+		     (<FORWARD-PART? .L>
+		      ,REST-ROOM-FWD-FANCY)
+		     (T ,REST-ROOM-REAR-FANCY)>)
+	      (T
+	       <COND (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?R ,W?S>
+			       <EQUAL? ,P-ADJ ,W?REAR ,W?SOUTH>>>
+		      <SET X ,REST-ROOM-REAR>)
+		     (<AND <NOT <ZERO? .X>>
+			   <OR <EQUAL? ,P-ADJ ,W?F ,W?N>
+			       <EQUAL? ,P-ADJ ,W?FORWARD ,W?FRONT ,W?NORTH>>>
+		      <SET X ,REST-ROOM-FWD>)
+		     (<FORWARD-PART? .L>
+		      <SET X ,REST-ROOM-FWD>)
+		     (T <SET X ,REST-ROOM-REAR>)>
+	       <COND (<NOT <==? .CAR ,CAR-HERE>>
+		      <SET X <GETP .X ,P?OTHER>>)>
+	       .X)>>
+
+<ROUTINE GENERIC-HALL-1-F (X)
+	<COND (<EQUAL? ,CAR-HERE ,DINER-CAR> ,HALL-1-DINER)
+	      (<EQUAL? ,CAR-HERE ,FANCY-CAR> ,HALL-1-FANCY)
+	      (T ,HALL-1)>>
+
+<ROUTINE GENERIC-MIDDLE-F (X)
+	<COND (<NOT ,ON-TRAIN> ,PLATFORM-C)
+	      (<EQUAL? ,CAR-HERE ,DINER-CAR>
+	       <COND (<EQUAL? ,P-ADJ ;N ,W?R ,W?REAR>
+		      ,HALL-4-DINER)
+		     (<EQUAL? ,P-ADJ ;N ,W?F ,W?FORWARD>
+		      ,HALL-2-DINER)
+		     (T ,HALL-3-DINER)>)
+	      (<EQUAL? ,CAR-HERE ,FANCY-CAR>
+	       ,HALL-2-FANCY)
+	      (T
+	       <COND (<EQUAL? ,P-ADJ ;N ,W?R ,W?REAR>
+		      ,HALL-4)
+		     (<EQUAL? ,P-ADJ ;N ,W?F ,W?FORWARD>
+		      ,HALL-2)
+		     (T ,HALL-3)>)>>
+
+<ROUTINE GENERIC-HALL-5-F (X)
+	<COND (<EQUAL? ,CAR-HERE ,DINER-CAR> ,HALL-5-DINER)
+	      (<EQUAL? ,CAR-HERE ,FANCY-CAR> ,HALL-3-FANCY)
+	      (T ,HALL-5)>>
+
+"These rooms are used to get characters from one car to another:"
+
+<ROOM LIMBO-FWD
+	(DESC "forward limbo")
+	(LOC ROOMS)
+	(OTHER OTHER-LIMBO-FWD)
+	(SOUTH TO VESTIBULE-FWD)
+	(LINE 1)
+	(STATION LIMBO-FWD)>
+
+<ROOM OTHER-LIMBO-FWD
+	(DESC "other forward limbo")
+	(LOC ROOMS)
+	(OTHER LIMBO-FWD)
+	(SOUTH TO OTHER-VESTIBULE-FWD)
+	(LINE 2)
+	(STATION OTHER-LIMBO-FWD)>
+
+<ROOM LIMBO-REAR
+	(DESC "rear limbo")
+	(LOC ROOMS)
+	(OTHER OTHER-LIMBO-REAR)
+	(NORTH TO VESTIBULE-REAR)
+	(LINE 1)
+	(STATION LIMBO-REAR)>
+
+<ROOM OTHER-LIMBO-REAR
+	(DESC "other rear limbo")
+	(LOC ROOMS)
+	(OTHER LIMBO-REAR)
+	(NORTH TO OTHER-VESTIBULE-REAR)
+	(LINE 2)
+	(STATION OTHER-LIMBO-REAR)>
+
+<ROUTINE DETRAIN-F ()
+ <COND (,IN-STATION
+	<COND (<AND <G? ,CAR-HERE ,PLATFORM-MAX>
+		    <NOT ,CUSTOMS-SWEEP>>
+	       <TELL
+"There's no platform here. You'll have to walk forward." CR>
+	       <RFALSE>)
+	      (<NOT <ZERO? ,VICTIM-KNOWN>>
+	       <TELL
+"As you reach the platform, a police officer seizes you, searches you,
+and arrests you for the murder of" THE ,VICTIM-KNOWN ". For years and
+years, you languish in prison, awaiting trial and wishing you had
+disposed of the body." CR>
+	       <FINISH>)
+	      (<AND ,CUSTOMS-SWEEP <1? ,CAR-HERE>>
+	       <TELL CTHE ,GUARD " prevents you and points to the rear." CR>
+	       <RFALSE>)
+	      (T
+	       <COND (<NOT <FSET? ,PEN ,TOUCHBIT>>
+		      <FSET ,PEN ,NDESCBIT>
+		      ;<MOVE ,PEN ,CLERK>)>
+	       <COND (<AND ,CUSTOMS-SWEEP <NOT <QUEUED? ,I-TRAIN-ARREST>>>
+		      <CONDUCTOR-OFF <GET ,GOAL-TABLES ,CONDUCTOR-C>>
+		      <TELL
+"You notice a pair of customs inspectors boarding the train to search it."
+CR>)>
+	       <SETG ON-TRAIN <>>
+	       <COND (<G? ,CAR-HERE ,PLATFORM-MAX>
+		      <NEXT-CAR-SWITCHEROO ,CAR-HERE ,PLATFORM-MAX>
+		      <GET ,STATION-ROOMS ,PLATFORM-MAX>)
+		     (T <GET ,STATION-ROOMS ,CAR-HERE>)>)>)
+       (<NOT ,TRAIN-MOVING>
+	<COND (,PULLED-STOP-CORD <ARREST-PLAYER "delaying trains">)>
+	<SETG ON-TRAIN <>>
+	,BESIDE-TRACKS)
+       ;(<VERB? LEAP DISEMBARK>
+	 <PERFORM ,V?JUMP>)
+       (T 
+	<SETG CLOCK-WAIT T>
+	<TELL
+"(The train is moving pretty quickly. If you want to jump, say so.)" CR>
+	<RFALSE>)>>
+
+<ROUTINE LADDER-EXIT-F ()
+	 <COND (<IN? ,CONDUCTOR ,HERE>
+		<TELL CTHE ,CONDUCTOR " blocks your way." CR>
+		<RFALSE>)
+	       (<==? ,SCENERY-OBJ ,TUNNEL>
+		<TELL
+"It's too dark inside the tunnel to climb the ladder." CR>
+		<RFALSE>)
+	       (<AND <NOT ,TRAIN-MOVING>
+		     <NOT <TRAIN-SLOWING?>>>
+		;<ENABLE <QUEUE I-TRAIN-RESTART 1>>
+		<TELL "You clamber up the ladder to the top of the train." CR>
+		<COND (,IN-STATION <GUARD-NOTICES>)
+		      (T
+		       <TELL
+"Far in the distance you can see that the tracks enter a tunnel." CR>
+		       <SETG JUST-LOOKED T>
+		       <PREPARE-SPLAT 9>)>
+		<RETURN ,ROOF>)
+	       (<AND <NOT <TRAIN-SLOWING?>>
+		     <NOT <EQUAL? <LOC ,BOND> ,ROOF ,OTHER-ROOF>>
+		     <PROB 40>>
+		<TELL 
+"The rungs of the ladder are cold, the wind fierce, and the train bucks
+like a wild animal, but somehow you manage to make it to the roof. Your
+sense of satisfaction, however, is short-lived when you notice that the
+train is rapidly approaching a tunnel." CR>
+		<SETG JUST-LOOKED T>
+		<PREPARE-SPLAT 3>
+		<RETURN ,ROOF>)
+	       (T
+		<TELL
+"You scramble up the first couple of rungs of the ladder, but the fierce wind
+and the bucking train seem to conspire to shake you loose. As you
+reach for the final rung, ">
+		<COND (<EQUAL? <LOC ,BOND> ,ROOF ,OTHER-ROOF>
+		       <TELL
+"you can see" HIM ,BOND " struggling with someone on the roof, but ">)>
+		<TELL
+"the train lurches around a turn. You lose your
+grip and plummet back down to the vestibule floor." CR>
+		<RFALSE>)>>
+
+<ROOM OTHER-ROOF
+	(DESC "other roof")
+	(LOC ROOMS)
+	(OTHER ROOF)
+	(DOWN TO OTHER-VESTIBULE-REAR)>
+
+<ROOM ROOF
+	(FLAGS SURFACEBIT ONBIT)
+	(DESC "roof")
+	(SYNONYM ROOF TOP)
+	(LOC ROOMS)
+	(OTHER OTHER-ROOF)
+	(CORRIDOR -2)
+	(DOWN PER LADDER-ENTER-F)
+	(SOUTH PER NEXT-ROOF-TO-REAR-F)
+	(NORTH PER NEXT-ROOF-TO-FWD-F)
+	(EAST SORRY "If you want to jump, say so!")
+	(WEST SORRY "If you want to jump, say so!")
+	(GLOBAL SCENERY-LEFT LADDER)
+	(ACTION ROOF-F)>
+
+<ROUTINE ROOF-F ("OPTIONAL" (RARG <>))
+ <COND (<==? .RARG ,M-BEG>
+	<COND (,IN-STATION
+	       <GUARD-NOTICES>)>
+	<COND (<VERB? DISEMBARK>
+	       <DO-WALK ,P?DOWN>
+	       <RTRUE>)
+	      (<VERB? ANALYZE EXAMINE>
+	       <COND (<AND <DOBJ? TUNNEL>
+			   <==? <GET ,TRAIN-TABLE 1> ,TUNNEL>>
+		      <NOTHING-SPECIAL>)>)>)
+       (<==? .RARG ,M-LOOK>
+	<TELL
+"You are on the roof of the train. The wind blows your hair, and the ">
+	<COND (,TRAIN-MOVING <TELL
+"rocking, lurching train threatens to buck you right off">)
+	      (T <TELL "roof is more slippery than it looks">)>
+	<TELL
+". It occurs to you that this might not be the safest place to be right
+now." CR>)>>
+
+<ROUTINE LADDER-ENTER-F ()
+	<COND (<IN? ,BOND-OTHER ,HERE>
+	       <TELL CTHE ,BOND-OTHER " blocks your way." CR>
+	       <RFALSE>)
+	      (<EQUAL? ,CAR-HERE ,DINER-CAR>
+	       ,VESTIBULE-REAR-DINER)
+	      (<EQUAL? ,CAR-HERE ,FANCY-CAR>
+	       ,VESTIBULE-REAR-FANCY)
+	      (T ,VESTIBULE-REAR)>>
+
+<OBJECT LADDER
+	(LOC LOCAL-GLOBALS)
+	(DESC "metal ladder")
+	(SYNONYM LADDER)
+	(ADJECTIVE METAL)
+	;(FLAGS TRYTAKEBIT)
+	(ACTION LADDER-F)>
+
+<ROUTINE LADDER-F ()
+ <COND (<VERB? BOARD CLIMB-ON>
+	<COND (<EQUAL? ,HERE ,ROOF> <DO-WALK ,P?DOWN>)
+	      (T <DO-WALK ,P?UP>)>
+	<RTRUE>)
+       (<VERB? CLIMB-DOWN>
+	<DO-WALK ,P?DOWN>
+	<RTRUE>)
+       (<VERB? CLIMB-UP>
+	<DO-WALK ,P?UP>
+	<RTRUE>)
+       (<VERB? WALK-TO>
+	<PERFORM ,V?WALK-TO <V-REAR ,CAR-HERE>>
+	<RTRUE>)>>
+
+;"<OBJECT HOOK
+	(LOC VESTIBULE-REAR)
+	(OTHER OTHER-HOOK)
+	(DESC 'hook')
+	(SYNONYM HOOK)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT)
+	(ACTION HOOK-F)>
+
+<OBJECT OTHER-HOOK
+	(LOC OTHER-VESTIBULE-REAR)
+	(OTHER HOOK)
+	(DESC 'other hook')
+	(FLAGS SURFACEBIT)>
+
+<ROUTINE HOOK-F ('AUX' X)
+ <COND (<ZERO? <SET X <FIRST? ,HOOK>>>
+	<COND (<VERB? EXAMINE LOOK-ON>
+	       <TELL 'There's nothing hanging on' HIM ,HOOK '.' CR>)
+	      (<VERB? PUT>
+	       <COND (<DOBJ? COAT>
+		      <MOVE ,PRSO ,HOOK>
+		      <TELL 'Okay.' CR>)
+		     (T <TELL CHE ,PRSO ' won't fit on' HIM ,HOOK '.' CR>)>)>)
+       (<VERB? EXAMINE LOOK-ON>
+	<TELL CHE .X is ' hanging on' HIM ,HOOK '.' CR>)>>"
+
+<OBJECT RACK-1
+	(LOC COMPARTMENT-1)
+	(OTHER OTHER-RACK-1)
+	(DESC "luggage rack")
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT)
+	(CAPACITY 40)
+	(SYNONYM RACK SHELF)
+	(ADJECTIVE LUGGAGE)>
+
+<OBJECT OTHER-RACK-1
+	(LOC OTHER-COMPARTMENT-1)
+	(OTHER RACK-1)
+	(DESC "other luggage rack")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT RACK-2
+	(LOC COMPARTMENT-2)
+	(OTHER OTHER-RACK-2)
+	(DESC "luggage rack")
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT)
+	(CAPACITY 40)
+	(SYNONYM RACK SHELF)
+	(ADJECTIVE LUGGAGE)>
+
+<OBJECT OTHER-RACK-2
+	(LOC OTHER-COMPARTMENT-2)
+	(OTHER RACK-2)
+	(DESC "other luggage rack")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT RACK-3
+	(LOC COMPARTMENT-3)
+	(OTHER OTHER-RACK-3)
+	(DESC "luggage rack")
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT)
+	(CAPACITY 40)
+	(SYNONYM RACK SHELF)
+	(ADJECTIVE LUGGAGE)>
+
+<OBJECT OTHER-RACK-3
+	(LOC OTHER-COMPARTMENT-3)
+	(OTHER RACK-3)
+	(DESC "other luggage rack")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT RACK-4
+	(LOC COMPARTMENT-4)
+	(OTHER OTHER-RACK-4)
+	(DESC "luggage rack")
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT)
+	(CAPACITY 40)
+	(SYNONYM RACK SHELF)
+	(ADJECTIVE LUGGAGE)>
+
+<OBJECT OTHER-RACK-4
+	(LOC OTHER-COMPARTMENT-4)
+	(OTHER RACK-4)
+	(DESC "other luggage rack")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT RACK-5
+	(LOC COMPARTMENT-5)
+	(OTHER OTHER-RACK-5)
+	(DESC "luggage rack")
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT)
+	(CAPACITY 40)
+	(SYNONYM RACK SHELF)
+	(ADJECTIVE LUGGAGE)>
+
+<OBJECT OTHER-RACK-5
+	(LOC OTHER-COMPARTMENT-5)
+	(OTHER RACK-5)
+	(DESC "other luggage rack")
+	(FLAGS SURFACEBIT)>
+
+;<ROUTINE RACK-F ()
+	 <COND (<AND <VERB? PUT>
+		     <EQUAL? ,PRSI ,RACK>>
+		<COND (<IN? ,PRSO ,PLAYER>
+		       <MOVE ,PRSO ,RACK>
+		       <TELL "Okay," HE ,PRSO " is now on the rack." CR>)
+		      (T <TELL "You're not holding" HIM ,PRSO "." CR>)>)>>
+
+;<ROUTINE PSEUDO-RACK-F ()
+ <COND (<VERB? PUT PUT-IN>
+	<TELL "It probably wouldn't stay there after you leave." CR>)>>
+
+<OBJECT VESTIBULE-FWD-DOOR 
+	(LOC LOCAL-GLOBALS)
+	(DESC "swinging door")
+      	(FLAGS DOORBIT TRANSBIT)
+	(ADJECTIVE METAL VESTIBULE HALL SWINGING)
+	(SYNONYM DOOR)
+	(LDESC "This is a swinging metal door with a brass handle.")
+	(ACTION VESTIBULE-FWD-DOOR-F)>
+
+<ROUTINE VESTIBULE-FWD-DOOR-F () <VESTIBULE-DOOR-F ,VESTIBULE-FWD-DOOR>>
+
+<OBJECT VESTIBULE-REAR-DOOR 
+	(LOC LOCAL-GLOBALS)
+	(DESC "swinging door")
+      	(FLAGS DOORBIT TRANSBIT)
+	(ADJECTIVE METAL VESTIBULE HALL SWINGING)
+	(SYNONYM DOOR)
+	(LDESC "This is a swinging metal door with a brass handle.")
+	(ACTION VESTIBULE-REAR-DOOR-F)>
+
+<ROUTINE VESTIBULE-REAR-DOOR-F () <VESTIBULE-DOOR-F ,VESTIBULE-REAR-DOOR>>
+
+<OBJECT VESTIBULE-FWD-WINDOW 
+	(LOC LOCAL-GLOBALS)
+	(DESC "forward window")
+      	(FLAGS WINDOWBIT TRANSBIT)
+	(ADJECTIVE FORWARD GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(ACTION WINDOW-F)>
+
+<OBJECT VESTIBULE-REAR-WINDOW 
+	(LOC LOCAL-GLOBALS)
+	(DESC "rear window")
+      	(FLAGS WINDOWBIT TRANSBIT)
+	(ADJECTIVE REAR GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(ACTION WINDOW-F)>
+
+<ROUTINE VESTIBULE-DOOR-F (DR)
+ <FACE-DOOR .DR>
+ <COND (<VERB? UNLOCK LOCK>
+	<YOU-CANT>)
+       (<VERB? OPEN>
+	<COND (<NOT <FSET? .DR ,OPENBIT>>
+	       <FSET .DR ,OPENBIT>
+	       <ENABLE <QUEUE I-VESTIBULE-DOOR 2>>
+	       <TELL "The " D .DR " swings noisily open." CR>)
+	      (T <ALREADY .DR "open">)>)
+       (<VERB? CLOSE>
+	<COND (<FSET? .DR ,OPENBIT>
+	       <FCLEAR .DR ,OPENBIT>
+	       <TELL "The " D .DR " easily swings shut." CR>)
+	      (T 
+	       <ALREADY .DR "closed">)>)>>
+
+<ROUTINE I-VESTIBULE-DOOR ("OPTIONAL" (GARG <>) "AUX" FLG)
+	<COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+	       <TELL "[I-VESTIBULE-DOOR:">
+	       <COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	<I-VESTIBULE-DOOR-PART ,VESTIBULE-FWD-DOOR>
+	<SET FLG <I-VESTIBULE-DOOR-PART ,VESTIBULE-REAR-DOOR>>
+	<COND (,IDEBUG <TELL N .FLG "]" CR>)>
+	.FLG>
+
+<ROUTINE I-VESTIBULE-DOOR-PART (DR)
+	 <COND (<FSET?  .DR ,OPENBIT>
+		<FCLEAR .DR ,OPENBIT>
+		<COND (<GLOBAL-IN? .DR ,HERE>
+		       <TELL
+"The " D .DR " automatically swings shut." CR>)>)>>
+
+<OBJECT HALL-WINDOW
+	(LOC LOCAL-GLOBALS)
+	(FLAGS NDESCBIT WINDOWBIT)
+	(DESC "corridor window")
+	(SYNONYM WINDOW)
+	(ADJECTIVE CORRIDOR)
+	(ACTION WINDOW-F)>
+
+;<ROUTINE DOPEN? (OBJECT)
+	 <COND (<FSET? .OBJECT ,OPENBIT>
+		<TELL " open, ">)
+	       (T <TELL " closed, ">)>>
+
+<OBJECT STOP-CORD
+	(LOC GLOBAL-OBJECTS)
+	(CAPACITY 0)
+	(ADJECTIVE RED STOP EMERGENCY BRAKE TRAIN)
+	(SYNONYM HANDLE CORD ;STOP)
+	(FLAGS NDESCBIT)
+	(DESC "stop cord")
+	(ACTION STOP-CORD-F)>
+
+<GLOBAL PULLED-STOP-CORD <>>
+
+<ROUTINE STOP-CORD-IN? (RM)
+ <COND (<ZMEMQ ,HERE ,CAR-ROOMS-COMPS>		<RTRUE>)
+       (<ZMEMQ ,HERE ,CAR-ROOMS-COMPS-DINER>	<RTRUE>)
+       (<EQUAL? ,HERE ,SUITE-1 ,SUITE-2 ,SUITE-3>	<RTRUE>)
+       (<ZMEMQ ,HERE ,CAR-ROOMS-VESTIB>		<RTRUE>)
+       (T <RFALSE>)>>
+
+<ROUTINE STOP-CORD-F ("OPTIONAL" (ARG <>) "AUX" X)
+ <COND (<REMOTE-VERB?> <RFALSE>)
+       (<AND <ZERO? .ARG> <NOT <STOP-CORD-IN? ,HERE>>>
+	<NOT-HERE ,STOP-CORD>)
+       (<VERB? EXAMINE>
+	<NOTHING-SPECIAL>)
+       (<OR .ARG <AND <VERB? MOVE> <EQUAL? ,PRSO ,STOP-CORD>>>
+	<COND (<NOT ,TRAIN-MOVING>
+	       <TELL
+"Pulling the emergency stop cord doesn't do much when the train isn't
+moving." CR>
+	       <RTRUE>)
+	      (<ZMEMQ ,SCENERY-OBJ ,STATIONS>	;"not allowed!"
+	       <LURCH-MISS ,STOP-CORD>
+	       <RTRUE>)>
+	<SETG TRAIN-MOVING <>>
+	<DISABLE <INT I-TRAIN-SCENERY>>
+	<DISABLE <INT I-ARRIVE-WARNING>>
+	<ENABLE <QUEUE I-TRAIN-RESTART <+ 5 <RANDOM 2>>>>
+	<DISABLE <INT I-TICKETS-PLEASE>>
+	<TELL
+"The air fills with the high-pitched whine of metal on metal, and you
+are thrown violently forward as the train comes to an emergency stop." CR>
+	<COND (<AND <NOT <SPY?>> <L? ,BOND-CTR 3>>
+	       <SETG BOND-CTR 3>
+	       <QUEUE I-BOND 1>)>
+	<COND (<AND <NOT .ARG> <VISIBLE? ,CONDUCTOR>>
+	       <ARREST-PLAYER "delaying trains" <> T ,STOP-CORD>)
+	      (T
+	       <FCLEAR ,CONDUCTOR ,TOUCHBIT>
+	       <PUTP ,CONDUCTOR ,P?LDESC 20 ;"searching out the window">)>
+	<COND (<AND <NOT .ARG> <VISIBLE? ,COOK>>
+	       <ARREST-PLAYER "delaying trains" ,COOK T ,STOP-CORD>)
+	      (T
+	       <FCLEAR ,COOK ,TOUCHBIT>
+	       <MOVE-PERSON ,COOK ,HALL-5-DINER>
+	       <PUTP ,COOK ,P?LDESC 20 ;"searching out the window">)>
+	<COND (<AND <NOT .ARG> <VISIBLE? ,WAITER>>
+	       <ARREST-PLAYER "delaying trains" ,WAITER T ,STOP-CORD>)
+	      (T
+	       <FCLEAR ,WAITER ,TOUCHBIT>
+	       <PUTP ,WAITER ,P?LDESC 20 ;"searching out the window">)>
+	<COND (<NOT .ARG>
+	       <SETG PULLED-STOP-CORD T>
+	       <COND (<SET X <ANYONE-VISIBLE?>>
+		      <NEW-LDESC .X 1>)>
+	       <COND (<VISIBLE? ,BAD-SPY T>
+		      <SETG BAD-SPY-KNOWS-YOU T>
+		      <NEW-LDESC ,BAD-SPY 1>)>
+	       <COND (<==? ,SCENERY-OBJ ,CROSSING>
+		      <FINAL-SCENE>)>)>
+	<RTRUE>)>>
+
+<ROUTINE I-TRAIN-RESTART ("OPTIONAL" (GARG <>) "AUX" X)
+	 <COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+		<TELL "[I-TRAIN-RESTART:">
+		<COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	 <TELL
+"A whistle sounds, and the train briefly shudders and starts moving again."
+CR>
+	 <COND (<NOT ,ON-TRAIN>
+		<TELL "Too bad you weren't on it!" CR>
+		<FINISH>)>
+	 <SETG TRAIN-MOVING T>
+	 <ENABLE <INT I-TRAIN-SCENERY>>
+	 <SET X <INT I-ARRIVE-WARNING>>
+	 <COND (<NOT <ZERO? <GET .X ,C-TICK>>>
+		<ENABLE .X>)>
+	 <ENABLE <INT I-TICKETS-PLEASE>>
+	 <FCLEAR ,CONDUCTOR ,TOUCHBIT>
+	 <PUTP ,CONDUCTOR ,P?LDESC 19 ;"making his rounds">
+	 <MOVE-PERSON ,COOK ,GALLEY>
+	 <FCLEAR ,COOK ,TOUCHBIT>
+	 <PUTP ,COOK ,P?LDESC 1 ;"looking at you suspiciously">
+	 <FCLEAR ,WAITER ,TOUCHBIT>
+	 <PUTP ,WAITER ,P?LDESC 1 ;"looking at you suspiciously">
+	 <SETG PULLED-STOP-CORD <>>
+	 <COND (,IDEBUG <TELL "(1)]" CR>)>
+	 <RTRUE>>
+
+;<ROUTINE GENERIC-CURTAIN-F (X)
+	<COND (<EQUAL? ,HERE ,HALL-1 ,COMPARTMENT-1> ,CURTAIN-1)
+	      (<EQUAL? ,HERE ,HALL-2 ,COMPARTMENT-2> ,CURTAIN-2)
+	      (<EQUAL? ,HERE ,HALL-3 ,COMPARTMENT-3> ,CURTAIN-3)
+	      (<EQUAL? ,HERE ,HALL-4 ,COMPARTMENT-4> ,CURTAIN-4)
+	      (<EQUAL? ,HERE ,HALL-5 ,COMPARTMENT-5> ,CURTAIN-5)
+	      (T <MORE-SPECIFIC> ,NOT-HERE-OBJECT)>>
+
+<ROUTINE OPEN-CURTAINS ()
+	<OPEN-CURTAIN ,COMPARTMENT-1 ,CURTAIN-1>
+	<OPEN-CURTAIN ,COMPARTMENT-2 ,CURTAIN-2>
+	<OPEN-CURTAIN ,COMPARTMENT-3 ,CURTAIN-3>
+	<OPEN-CURTAIN ,COMPARTMENT-4 ,CURTAIN-4>
+	<OPEN-CURTAIN ,COMPARTMENT-5 ,CURTAIN-5>>
+
+<ROUTINE OPEN-CURTAIN (HERE OBJ "AUX" COR RM)
+ 	<FSET .OBJ ,OPENBIT>
+	<COND (<SET COR <ZMEMQ .HERE ,CAR-ROOMS-COMPS>>
+	       <SET RM <GETP .HERE ,P?STATION>>
+	       <SET COR <GET ,CAR-ROOMS-CORRIDS .COR>>)>
+	<PUTP .HERE ,P?CORRIDOR .COR>
+	<PUTP .RM ,P?CORRIDOR <BOR .COR <GETP .RM ,P?CORRIDOR>>>>
+
+<ROUTINE CLOSE-CURTAINS ()
+	<COND (<NOT <EQUAL? ,HERE ,COMPARTMENT-1 ,HALL-1>>
+		   <CLOSE-CURTAIN ,COMPARTMENT-1 ,CURTAIN-1>)>
+	<COND (<NOT <EQUAL? ,HERE ,COMPARTMENT-2 ,HALL-2>>
+		   <CLOSE-CURTAIN ,COMPARTMENT-2 ,CURTAIN-2>)>
+	<COND (<NOT <EQUAL? ,HERE ,COMPARTMENT-3 ,HALL-3>>
+		   <CLOSE-CURTAIN ,COMPARTMENT-3 ,CURTAIN-3>)>
+	<COND (<NOT <EQUAL? ,HERE ,COMPARTMENT-4 ,HALL-4>>
+		   <CLOSE-CURTAIN ,COMPARTMENT-4 ,CURTAIN-4>)>
+	<COND (<NOT <EQUAL? ,HERE ,COMPARTMENT-5 ,HALL-5>>
+		   <CLOSE-CURTAIN ,COMPARTMENT-5 ,CURTAIN-5>)>>
+
+<ROUTINE CLOSE-CURTAIN (HERE OBJ "AUX" COR RM)
+ 	<FCLEAR .OBJ ,OPENBIT>
+	<COND (<SET COR <ZMEMQ .HERE ,CAR-ROOMS-COMPS>>
+	       <SET RM <GETP .HERE ,P?STATION>>
+	       <SET COR <GET ,CAR-ROOMS-CORRIDS .COR>>)>
+	<PUTP .HERE ,P?CORRIDOR 0>
+	<PUTP .RM ,P?CORRIDOR <BAND <- <- 0 .COR> 1> <GETP .RM ,P?CORRIDOR>>>>
+
+<ROUTINE CURTAIN-F ("AUX" COR RM)
+ <COND (<REMOTE-VERB?> <RFALSE>)
+       (<NOT <ZMEMQ ,HERE ,CAR-ROOMS-COMPS>>
+	<NOT-HERE ,PRSO>)
+       (<VERB? OPEN RAISE>
+	<COND (<FSET? ,PRSO ,OPENBIT>
+	       <ALREADY ,PRSO "open">
+	       <RTRUE>)>
+	<OPEN-CURTAIN ,HERE ,PRSO>
+	<OKAY ,PRSO "open">)
+       (<VERB? CLOSE DROP>
+	<COND (<NOT <FSET? ,PRSO ,OPENBIT>>
+	       <ALREADY ,PRSO "closed">
+	       <RTRUE>)>
+	<CLOSE-CURTAIN ,HERE ,PRSO>
+	<OKAY ,PRSO "closed">)>>
+
+<OBJECT CURTAIN-1 
+	(LOC LOCAL-GLOBALS ;COMPARTMENT-1)
+	(ADJECTIVE RED)
+	(SYNONYM CURTAIN SHADE)
+	;(GENERIC GENERIC-CURTAIN-F)
+	(FLAGS OPENBIT NDESCBIT)
+        (DESC "curtain")
+	(ACTION CURTAIN-F)>
+
+<OBJECT CURTAIN-2 
+	(LOC LOCAL-GLOBALS ;COMPARTMENT-2)
+	(ADJECTIVE RED)
+	(SYNONYM CURTAIN SHADE)
+	;(GENERIC GENERIC-CURTAIN-F)
+	(FLAGS OPENBIT NDESCBIT)
+        (DESC "curtain")
+	(ACTION CURTAIN-F)>
+
+<OBJECT CURTAIN-3 
+	(LOC LOCAL-GLOBALS ;COMPARTMENT-3)
+	(ADJECTIVE RED)
+	(SYNONYM CURTAIN SHADE)
+	;(GENERIC GENERIC-CURTAIN-F)
+	(FLAGS OPENBIT NDESCBIT)
+        (DESC "curtain")
+	(ACTION CURTAIN-F)>
+
+<OBJECT CURTAIN-4 
+	(LOC LOCAL-GLOBALS ;COMPARTMENT-4)
+	(ADJECTIVE RED)
+	(SYNONYM CURTAIN SHADE)
+	;(GENERIC GENERIC-CURTAIN-F)
+	(FLAGS OPENBIT NDESCBIT)
+        (DESC "curtain")
+	(ACTION CURTAIN-F)>
+
+<OBJECT CURTAIN-5 
+	(LOC LOCAL-GLOBALS ;COMPARTMENT-5)
+	(ADJECTIVE RED)
+	(SYNONYM CURTAIN SHADE)
+	;(GENERIC GENERIC-CURTAIN-F)
+	(FLAGS OPENBIT NDESCBIT)
+        (DESC "curtain")
+	(ACTION CURTAIN-F)>
+
+<ROUTINE GENERIC-SEAT-F (X)
+	<COND (<EQUAL? ,HERE ,HALL-1 ,COMPARTMENT-1> ,SEAT-1)
+	      (<EQUAL? ,HERE ,HALL-2 ,COMPARTMENT-2> ,SEAT-2)
+	      (<EQUAL? ,HERE ,HALL-3 ,COMPARTMENT-3> ,SEAT-3)
+	      (<EQUAL? ,HERE ,HALL-4 ,COMPARTMENT-4> ,SEAT-4)
+	      (<EQUAL? ,HERE ,HALL-5 ,COMPARTMENT-5> ,SEAT-5)
+	      (<EQUAL? ,HERE ,HALL-1-DINER ,BOOTH-1> ,BOOTH-SEAT-1)
+	      (<EQUAL? ,HERE ,HALL-2-DINER ,BOOTH-2> ,BOOTH-SEAT-2)
+	      (<EQUAL? ,HERE ,HALL-3-DINER ,BOOTH-3> ,BOOTH-SEAT-3)
+	      ;"(<EQUAL? ,HERE ,WAITING-ROOM> ,SEAT-WAITING-ROOM)
+	      (<EQUAL? ,HERE ,CAFE> ,SEAT-CAFE)"
+	      (T <MORE-SPECIFIC> ,NOT-HERE-OBJECT)>>
+
+<OBJECT SEAT-1 
+	(LOC COMPARTMENT-1)
+	(OTHER OTHER-SEAT-1)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(GENERIC GENERIC-SEAT-F)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+	(CAPACITY 100)
+        (DESC "train seat")
+	(ACTION SEAT-1-F)>
+
+<ROUTINE SEAT-1-F () <SEAT-F ,UNDER-SEAT-1>>
+
+<GLOBAL PERSON-SAW-GUN 0>
+
+<ROUTINE SEAT-F (U "OPTIONAL" (RARG <>) "AUX" F)
+ <COND (<VERB? PUT-UNDER>
+	<PERFORM ,V?PUT ,PRSO .U>
+	<FSET ,PRSO ,NDESCBIT>
+	<SET F <ANYONE-VISIBLE?>>
+	<COND (.F
+	       <COND (<DOBJ? GUN> <SETG PERSON-SAW-GUN .F>)>
+	       <PUTP .F ,P?LDESC 1>
+	       <TELL CHE .F notice " what you've done." CR>)>
+	<RTRUE>)
+       (<VERB? LOOK-UNDER>
+	<SET F <FIRST? .U>>
+	<COND (.F <FCLEAR .F ,NDESCBIT>)>
+	<PERFORM ,V?LOOK-INSIDE .U>
+	<COND (.F <FSET .F ,NDESCBIT>)>
+	<RTRUE>)>>
+
+<OBJECT OTHER-SEAT-1
+	(LOC OTHER-COMPARTMENT-1)
+	(OTHER SEAT-1)
+	(DESC "other train seat 1")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT UNDER-SEAT-1
+	(LOC COMPARTMENT-1)
+	(OTHER OTHER-UNDER-SEAT-1)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+"<ROUTINE UNDER-SEAT-1-F () <UNDER-SEAT-N-F ,UNDER-SEAT-1>>"
+
+<OBJECT OTHER-UNDER-SEAT-1
+	(LOC OTHER-COMPARTMENT-1)
+	(OTHER UNDER-SEAT-1)
+	(DESC "other under seat 1")
+	(FLAGS CONTBIT)>
+
+<ROUTINE UNDER-SEAT-F ("OPTIONAL" (RARG <>))
+	 <COND (<==? .RARG ,M-OBJDESC>
+		<RTRUE>)
+	       (<==? .RARG ,M-CONT>
+		<COND (<VERB? TAKE>
+		       <FCLEAR ,PRSO ,NDESCBIT>
+		       <RFALSE>)>)>>
+
+<ROUTINE UNDER-SEAT-N-F ("AUX" X)
+ <COND (<VERB? LOOK-INSIDE>
+	<COND (<SET X <FIRST? ,PRSO>>
+	       <TELL "Under the seat ">
+	       <COND (<ZERO? <NEXT? .X>> <TELL "is ">) (T <TELL "are ">)>
+	       <PRINT-CONTENTS ,PRSO>
+	       <TELL "." CR>)
+	      (T <TELL "There's nothing under the seat." CR>)>)>>
+
+<OBJECT SEAT-2
+	(LOC COMPARTMENT-2)
+	(OTHER OTHER-SEAT-2)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+        (DESC "train seat")
+	(CAPACITY 100)
+        (ACTION SEAT-2-F)>
+
+<ROUTINE SEAT-2-F () <SEAT-F ,UNDER-SEAT-2>>
+
+<OBJECT OTHER-SEAT-2
+	(LOC OTHER-COMPARTMENT-2)
+	(OTHER SEAT-2)
+	(DESC "other train seat 2")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT UNDER-SEAT-2
+	(LOC COMPARTMENT-2)
+	(OTHER OTHER-UNDER-SEAT-2)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+"<ROUTINE UNDER-SEAT-2-F () <UNDER-SEAT-N-F ,UNDER-SEAT-2>>"
+
+<OBJECT OTHER-UNDER-SEAT-2
+	(LOC OTHER-COMPARTMENT-2)
+	(OTHER UNDER-SEAT-2)
+	(DESC "other under seat 2")
+	(FLAGS CONTBIT)>
+
+<OBJECT SEAT-3   
+	(LOC COMPARTMENT-3)
+	(OTHER OTHER-SEAT-3)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+        (DESC "train seat")
+	(CAPACITY 100)
+        (ACTION SEAT-3-F)>
+
+<ROUTINE SEAT-3-F () <SEAT-F ,UNDER-SEAT-3>>
+
+<OBJECT OTHER-SEAT-3
+	(LOC OTHER-COMPARTMENT-3)
+	(OTHER SEAT-3)
+	(DESC "other train seat 3")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT UNDER-SEAT-3
+	(LOC COMPARTMENT-3)
+	(OTHER OTHER-UNDER-SEAT-3)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+"<ROUTINE UNDER-SEAT-3-F () <UNDER-SEAT-N-F ,UNDER-SEAT-3>>"
+
+<OBJECT OTHER-UNDER-SEAT-3
+	(LOC OTHER-COMPARTMENT-3)
+	(OTHER UNDER-SEAT-3)
+	(DESC "other under seat 3")
+	(FLAGS CONTBIT)>
+
+<OBJECT SEAT-4   
+	(LOC COMPARTMENT-4)
+	(OTHER OTHER-SEAT-4)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+        (DESC "train seat")
+	(CAPACITY 100)
+        (ACTION SEAT-4-F)>
+
+<ROUTINE SEAT-4-F () <SEAT-F ,UNDER-SEAT-4>>
+
+<OBJECT OTHER-SEAT-4
+	(LOC OTHER-COMPARTMENT-4)
+	(OTHER SEAT-4)
+	(DESC "other train seat 4")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT UNDER-SEAT-4
+	(LOC COMPARTMENT-4)
+	(OTHER OTHER-UNDER-SEAT-4)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+"<ROUTINE UNDER-SEAT-4-F () <UNDER-SEAT-N-F ,UNDER-SEAT-4>>"
+
+<OBJECT OTHER-UNDER-SEAT-4
+	(LOC OTHER-COMPARTMENT-4)
+	(OTHER UNDER-SEAT-4)
+	(DESC "other under seat 4")
+	(FLAGS CONTBIT)>
+
+<OBJECT SEAT-5   
+	(LOC COMPARTMENT-5)
+	(OTHER OTHER-SEAT-5)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+        (DESC "train seat")
+	(CAPACITY 100)
+        (ACTION SEAT-5-F)>
+
+<ROUTINE SEAT-5-F () <SEAT-F ,UNDER-SEAT-5>>
+
+<OBJECT OTHER-SEAT-5
+	(LOC OTHER-COMPARTMENT-5)
+	(OTHER SEAT-5)
+	(DESC "other train seat 5")
+	(FLAGS SURFACEBIT)>
+
+<OBJECT UNDER-SEAT-5
+	(LOC COMPARTMENT-5)
+	(OTHER OTHER-UNDER-SEAT-5)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+"<ROUTINE UNDER-SEAT-5-F () <UNDER-SEAT-N-F ,UNDER-SEAT-5>>"
+
+<OBJECT OTHER-UNDER-SEAT-5
+	(LOC OTHER-COMPARTMENT-5)
+	(OTHER UNDER-SEAT-5)
+	(DESC "other under seat 5")
+	(FLAGS CONTBIT)>
+
+<OBJECT BOOTH-SEAT-1 
+	(LOC BOOTH-1)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(GENERIC GENERIC-SEAT-F)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+	(CAPACITY 100)
+        (DESC "train seat")
+	(ACTION BOOTH-SEAT-1-F)>
+
+<ROUTINE BOOTH-SEAT-1-F () <SEAT-F ,UNDER-BOOTH-1>>
+
+<OBJECT BOOTH-SEAT-2 
+	(LOC BOOTH-2)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(GENERIC GENERIC-SEAT-F)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+	(CAPACITY 100)
+        (DESC "train seat")
+	(ACTION BOOTH-SEAT-2-F)>
+
+<ROUTINE BOOTH-SEAT-2-F () <SEAT-F ,UNDER-BOOTH-2>>
+
+<OBJECT BOOTH-SEAT-3 
+	(LOC BOOTH-3)
+	(ADJECTIVE TRAIN SOFT PLUSH RED GREASY)
+	(SYNONYM SEAT SEATS FABRIC UPHOLSTERY LACE CHAIR COUCH)
+	(GENERIC GENERIC-SEAT-F)
+	(FLAGS SURFACEBIT OPENBIT NDESCBIT VEHBIT)
+	(CAPACITY 100)
+        (DESC "train seat")
+	(ACTION BOOTH-SEAT-3-F)>
+
+<ROUTINE BOOTH-SEAT-3-F () <SEAT-F ,UNDER-BOOTH-3>>
+
+<OBJECT UNDER-BOOTH-1
+	(LOC BOOTH-1)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+<OBJECT UNDER-BOOTH-2
+	(LOC BOOTH-2)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+<OBJECT UNDER-BOOTH-3
+	(LOC BOOTH-3)
+	(DESC "under the seat")
+	(FLAGS CONTBIT SEARCHBIT NDESCBIT OPENBIT)
+	(CAPACITY 33)
+	(DESCFCN UNDER-SEAT-F)
+	(CONTFCN UNDER-SEAT-F)
+	(ACTION UNDER-SEAT-N-F)>
+
+<OBJECT WINDOW-1
+	(LOC LOCAL-GLOBALS)
+	(DESC "first window")
+	(ADJECTIVE FIRST GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(FLAGS NDESCBIT WINDOWBIT)
+	(ACTION WINDOW-F)>
+
+<OBJECT WINDOW-2
+	(LOC LOCAL-GLOBALS)
+	(DESC "second window")
+	(ADJECTIVE SECOND GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(FLAGS NDESCBIT WINDOWBIT)
+	(ACTION WINDOW-F)>
+
+<OBJECT WINDOW-3
+	(LOC LOCAL-GLOBALS)
+	(DESC "third window")
+	(ADJECTIVE THIRD GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(FLAGS NDESCBIT WINDOWBIT)
+	(ACTION WINDOW-F)>
+
+<OBJECT WINDOW-4
+	(LOC LOCAL-GLOBALS)
+	(DESC "fourth window")
+	(ADJECTIVE FOURTH GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(FLAGS NDESCBIT WINDOWBIT)
+	(ACTION WINDOW-F)>
+
+<OBJECT WINDOW-5
+	(LOC LOCAL-GLOBALS)
+	(DESC "fifth window")
+	(ADJECTIVE FIFTH GLASS TRAIN)
+	(SYNONYM WINDOW)
+	(FLAGS NDESCBIT WINDOWBIT)
+	(ACTION WINDOW-F)>
+
+<ROUTINE WINDOW-ROOM (RM WIND "AUX" X)
+ <COND (,ON-TRAIN
+	<COND (,IN-STATION
+	       <RETURN <GET ,STATION-ROOMS ,CAR-HERE>>)
+	      (<NOT ,TRAIN-MOVING>
+	       <RETURN ,BESIDE-TRACKS>)>)
+       (<SET X <ZMEMQ .WIND ,CAR-ROOMS-WINDOWS>>
+	<COND (<EQUAL? ,CAR-HERE ,DINER-CAR>
+	       <GET ,CAR-ROOMS-COMPS-DINER .X>)
+	      (<EQUAL? ,CAR-HERE ,FANCY-CAR>
+	       <COND (<==? .X 1> ,SUITE-1)
+		     (<==? .X 2> ,SUITE-2)
+		     (<==? .X 3> ,SUITE-3)>)
+	      (T <GET ,CAR-ROOMS-COMPS .X>)>)>>
+
+<ROUTINE WINDOW-F ("AUX" RM)
+	 <COND (<VERB? EXAMINE READ>
+		<COND (<IN? ,FROY ,HERE>
+		       <PERFORM ,PRSA ,FROY>
+		       <RTRUE>)
+		      (T <TELL "Yup. That's a window, all right." CR>)>)
+	       (<VERB? OPEN>
+		<COND (<FSET? ,PRSO ,OPENBIT>
+		       <ALREADY ,PRSO "open">)
+		      (<DOBJ? VESTIBULE-FWD-WINDOW VESTIBULE-REAR-WINDOW>
+		       <FSET ,PRSO ,OPENBIT>
+		       <TELL "The window opens all the way." CR>)
+		      (<DOBJ? HALL-WINDOW>
+		       <TELL "This window is sealed shut." CR>)
+		      (T
+		       <FSET ,PRSO ,OPENBIT>
+		       <COND (<AND <==? ,CAR-HERE ,GAS-CAR>
+				   <EQUAL? ,GAS-CAR-RM
+					   ,HERE <WINDOW-ROOM ,HERE ,PRSO>>>
+			      <SETG GAS-CAR-RM <>>
+			      <SETG GAS-CAR <>>)>
+		       <TELL
+"The window opens only a bit, but it is enough to ventilate the room." CR>)>)
+	       (<VERB? CLOSE>
+		<COND (<NOT <FSET? ,PRSO ,OPENBIT>>
+		       <ALREADY ,PRSO "closed">)
+		      (T
+		       <OKAY ,PRSO "closed">)>)
+	       (<VERB? THROW-THROUGH>
+		<COND (<NOT <FSET? ,PRSI ,WINDOWBIT>>
+		       <RFALSE>)
+		      (<NOT <FSET? ,PRSI ,OPENBIT>>
+		       <SETG CLOCK-WAIT T>
+		       <TELL "(The window is closed!)" CR>)
+		      (<AND <NOT <IOBJ? VESTIBULE-FWD-WINDOW
+					VESTIBULE-REAR-WINDOW>>
+			    <OR <NOT <ZERO? <GETP ,PRSO ,P?CHARACTER>>>
+				<L? 16 <GETP ,PRSO ,P?SIZE>>>>
+		       <TOO-BAD-BUT ,PRSO "too big to fit">)
+		      (<NOT ,TRAIN-MOVING>
+		       <MOVE ,PRSO <WINDOW-ROOM ,HERE ,PRSI>>
+		       <TELL CTHE ,PRSO " drops out of sight." CR>)
+		      (T
+		       <MOVE ,PRSO ,LIMBO-FWD>
+		       <TELL CTHE ,PRSO " is gone with the wind." CR>)>)
+	       (<VERB? THROUGH>
+		<COND (<DOBJ? VESTIBULE-FWD-WINDOW VESTIBULE-REAR-WINDOW>
+		       <DO-WALK ,P?DOWN>
+		       <RTRUE>)
+		      (<FSET? ,PRSO ,OPENBIT>
+		       <TELL "It won't open far enough." CR>)>)
+	       (<VERB? LOOK-INSIDE LOOK-THROUGH LOOK-OUTSIDE>
+		<COND (,ON-TRAIN
+		       <COND (<VERB? LOOK-INSIDE>
+			      <RFALSE>)
+			     (,IN-STATION
+			      <TELL
+"From here you can survey part of the platform at the " D ,SCENERY-OBJ
+" station." CR>
+			      <ROOM-PEEK <GET ,STATION-ROOMS ,CAR-HERE> T>)
+			     (<MOTION-PREFIX>
+			      <SETG JUST-LOOKED T>
+			      <RTRUE>)>)
+		      (<SET RM <WINDOW-ROOM ,HERE ,PRSO>>
+		       <COND (<VERB? LOOK-OUTSIDE>
+			      <RFALSE>)
+			     (T <ROOM-PEEK .RM T>)>)>)>>
+
+"Here's how you go from car to car."
+
+<CONSTANT CAR-START 2>
+<GLOBAL COMPARTMENT-START 0>
+<GLOBAL CAR-HERE 2>
+<GLOBAL LAST-CAR-HERE 2>
+<GLOBAL CAR-MAX 5>	"does count diner"
+<CONSTANT CAR-MAX-MAX 7>	"longest train allowed"
+<GLOBAL TICKETS-PUNCHED? <>>
+
+<GLOBAL CAR-ROOMS
+ <PLTABLE REST-ROOM-FWD
+	COMPARTMENT-1 COMPARTMENT-2 COMPARTMENT-3 COMPARTMENT-4
+	COMPARTMENT-5 REST-ROOM-REAR
+	VESTIBULE-FWD HALL-1 HALL-2 HALL-3 HALL-4 HALL-5 VESTIBULE-REAR>>
+
+<GLOBAL CAR-ROOMS-COMPS
+ <PLTABLE COMPARTMENT-1 COMPARTMENT-2 COMPARTMENT-3 COMPARTMENT-4
+	COMPARTMENT-5>>
+
+<GLOBAL CAR-ROOMS-UNDER
+ <PLTABLE UNDER-SEAT-1 UNDER-SEAT-2 UNDER-SEAT-3 UNDER-SEAT-4 UNDER-SEAT-5>>
+
+<GLOBAL CAR-ROOMS-WINDOWS
+ <PLTABLE WINDOW-1 WINDOW-2 WINDOW-3 WINDOW-4 WINDOW-5>>
+
+<GLOBAL CAR-ROOMS-VESTIB
+ <PLTABLE VESTIBULE-FWD		VESTIBULE-REAR
+	  OTHER-VESTIBULE-FWD	OTHER-VESTIBULE-REAR
+	  VESTIBULE-FWD-DINER	VESTIBULE-REAR-DINER
+	  VESTIBULE-FWD-FANCY	VESTIBULE-REAR-FANCY>>
+
+<GLOBAL CAR-ROOMS-REST
+ <PLTABLE REST-ROOM-FWD		REST-ROOM-REAR
+	  OTHER-REST-ROOM-FWD	OTHER-REST-ROOM-REAR
+	  REST-ROOM-FWD-DINER	REST-ROOM-REAR-DINER
+	  ;REST-ROOM-FWD-FANCY	;REST-ROOM-REAR-FANCY>>
+
+<GLOBAL CAR-ROOMS-CORRID
+ <PLTABLE HALL-1 HALL-2 HALL-3 HALL-4 HALL-5 HALL-1-DINER HALL-2-DINER
+	HALL-3-DINER HALL-4-DINER HALL-5-DINER
+	HALL-1-FANCY HALL-2-FANCY HALL-3-FANCY>>
+
+<ROUTINE NEXT-ROOF-TO-FWD-F () <NEXT-CAR -1 +1>>
+
+<ROUTINE NEXT-ROOF-TO-REAR-F () <NEXT-CAR +1 +1>>
+
+<ROUTINE NEXT-CAR-TO-FWD-F () <NEXT-CAR -1>>
+
+<ROUTINE NEXT-CAR-TO-REAR-F () <NEXT-CAR +1>>
+
+<ROUTINE NEXT-CAR (WHICH "OPTIONAL" (ROOF? 0) "AUX" NCAR)
+	<COND (<AND <1? .ROOF?> <IN? ,BOND-OTHER ,ROOF ;HERE> <PROB 50>>
+	       <TELL CTHE ,BOND-OTHER " blocks your way." CR>
+	       <RFALSE>)
+	      (<AND ,CUSTOMS-SWEEP
+		    ,ON-TRAIN
+		    <NOT <1? ,CAR-HERE>>
+		    <FSET? ,PASSPORT ,LOCKED>>
+	       <SETG CLOCK-WAIT T>
+	       <TELL "(You'd do better to go directly to the platform.)" CR>
+	       <RFALSE>)>
+	<SETG PLAYER-NOT-FACING <GET ,DIR-STRINGS <+ 1 .WHICH>>>
+	<SET NCAR <+ .WHICH ,CAR-HERE>>
+	<COND (<0? .NCAR>
+	       <TELL
+"You can see the locomotive directly ahead, but there's no way to climb
+onto it." ;"The engine is off limits." CR>
+	       <RFALSE>)
+	      (<G? .NCAR ,CAR-MAX>
+	       <SETG CLOCK-WAIT T>
+	       <TELL "(This is the last car of the train.)" CR>
+	       ;<TELL
+"You can see the luggage car to the rear, but there's no way to ">
+	       ;<COND (<1? .ROOF?> <TELL "go onto">) (T <TELL "enter">)>
+	       ;<TELL " it." CR>
+	       <RFALSE>)>
+	<NEXT-CAR-SWITCHEROO ,CAR-HERE .NCAR>
+	<ROB ,TOILET ,LIMBO-FWD>
+	<OPEN-CURTAINS>
+	<COND (<1? .ROOF?>
+	       <COND (<EQUAL? <LOC ,BOND-OTHER> ,ROOF ,OTHER-ROOF>
+		      <PUTP ,BOND-OTHER ,P?CAR .NCAR>
+		      <OBJ-TO-NEXT ,BOND-OTHER .NCAR>
+		      <MOVE ,BOND-OTHER ,ROOF>
+		      <TELL CHE ,BOND-OTHER " pursues you." CR>)>
+	       <RFALSE ;,ROOF>)
+	      (<==? -1 .ROOF?>
+	       <TELL "You walk ">
+	       <COND (<1? .WHICH> <TELL "rear">) (T <TELL "for">)>
+	       <TELL "ward to the ">
+	       <COND (<EQUAL? .NCAR 1>
+		      <TELL "front of the train">)
+		     (<EQUAL? .NCAR ,CAR-MAX>
+		      <TELL "end of the train">)
+		     (T <TELL "next car">)>
+	       <TELL "." CR>
+	       <RFALSE>)
+	      (<EQUAL? .NCAR ,DINER-CAR>
+	       <COND (<1? .WHICH> <RETURN ,VESTIBULE-FWD-DINER>)
+		     (T <RETURN ,VESTIBULE-REAR-DINER>)>)
+	      (<EQUAL? .NCAR ,FANCY-CAR>
+	       <COND (<1? .WHICH> <RETURN ,VESTIBULE-FWD-FANCY>)
+		     (T <RETURN ,VESTIBULE-REAR-FANCY>)>)
+	      (T
+	       <COND (<1? .WHICH> <RETURN ,VESTIBULE-FWD>)
+		     (T <RETURN ,VESTIBULE-REAR>)>)>>
+
+<ROUTINE NEXT-CAR-SWITCHEROO (CAR CARH "AUX" CNT RM)
+	<COND (<==? .CAR .CARH> <RFALSE>)>
+	<SETG LAST-CAR-HERE ,CAR-HERE>
+	<SETG CAR-HERE .CARH>
+	<TELL "[Debugging info: you are entering "
+	      <COND (<ON-PLATFORM? ,HERE> "platform #") (T "car #")>
+	      N .CARH ".]" CR>
+	<PUTP ,PLAYER ,P?CAR .CARH>
+	<OBJ-TO-NEXT ,PLAYER .CARH>
+	<COND (T ;<NOT <EQUAL? .CAR ,DINER-CAR ,FANCY-CAR>>
+	       <ROOM-TO-OTHER .CAR ,ROOF>)>
+	<COND (T ;<NOT <EQUAL? ,CAR-HERE ,DINER-CAR ,FANCY-CAR>>
+	       <OTHER-TO-ROOM ,ROOF>)>
+	<COND (<NOT <==? ,HERE ,ROOF> ;<CORRIDOR-LOOK ,ROOF .CAR>>
+	       <FCLEAR ,ROOF ,SEENBIT>)>
+	<SET CNT <GET ,CAR-ROOMS 0>>
+	<REPEAT ()
+		<SET RM <GET ,CAR-ROOMS .CNT>>
+		<COND (<NOT <EQUAL? .CAR ,DINER-CAR ,FANCY-CAR>>
+		       <ROOM-TO-OTHER .CAR .RM>)>
+		<COND (<NOT <EQUAL? ,CAR-HERE ,DINER-CAR ,FANCY-CAR>>
+		       <OTHER-TO-ROOM .RM>)>
+		<COND (<NOT <CORRIDOR-LOOK .RM .CAR>>
+		       <FCLEAR .RM ,SEENBIT>)>
+		<COND (<DLESS? CNT 1> <RETURN>)>>>
+
+<ROUTINE ROOM-TO-OTHER (CAR RM "AUX" ORM F N C X)
+	<SET ORM <GETP .RM ,P?OTHER>>
+	<SET F <FIRST? .RM>>
+	<REPEAT ()
+	 <COND (.F <SET N <NEXT? .F>>)
+	       (T <RETURN>)>
+	 <COND (<OR <FSET? .F ,SURFACEBIT> <FSET? .F ,CONTBIT>>
+		<ROOM-TO-OTHER .CAR .F ;<GETP .F ,P?OTHER>>)>
+	 <COND (<EQUAL? .F ,PLAYER ,PAPER-FIXTURE> T)
+	       (<OR <EQUAL? .F ,TOWEL-FIXTURE-BROKEN ,TOWEL-LOOP-BROKEN>
+		    <AND <SET X <GETP .F ,P?CAR>> <L? .X ,CAR-MAX-MAX>>
+		    ;"<FSET? .F ,TAKEBIT>
+		    <FSET? .F ,TRYTAKEBIT>
+		    <FSET? .F ,PERSONBIT>">
+		<PUTP .F ,P?CAR .CAR>
+		<MOVE .F .ORM>
+		<COND (<SET C <GETP .F ,P?CHARACTER>>
+		       <COND (<AND <SET X <ZMEMQ .F ,EXTRA-TABLE>>
+				   <NOT <IN? .F ,HERE>>
+				   <NOT <CORRIDOR-LOOK .F ;.CAR>>>
+			      <PUT ,EXTRA-SEEN-TABLE
+				   .X
+				   <- 0 <GET ,EXTRA-SEEN-TABLE .X>>>
+			      <FCLEAR .F ,TOUCHBIT>
+			      <FCLEAR .F ,SEENBIT>
+			      <PUTP .F ,P?LDESC 0>)>
+		       <FIX-GOAL .F>)>)>
+	 <SET F .N>>>
+
+<ROUTINE OTHER-TO-ROOM (RM "AUX" ORM F N C X)
+	<COND (<SET N <FIND-FLAG-LG .RM ,WINDOWBIT>>
+	       <FCLEAR .N ,OPENBIT>)>
+	<SET F <FIND-FLAG-LG .RM ,DOORBIT>>
+	<COND (<==? .RM ,GAS-CAR-RM>
+	       <COND (<==? ,CAR-HERE ,GAS-CAR>
+		      <FSET .F ,LOCKED>)
+		     (T <FCLEAR .F ,LOCKED>)>)
+	      (<ZMEMQ .RM ,CAR-ROOMS-REST>
+	       <COND (<OCCUPIED? .RM ,CAR-HERE>
+		      <FSET .F ,LOCKED>)
+		     (T <FCLEAR .F ,LOCKED>)>)>
+	<SET ORM <GETP .RM ,P?OTHER>>
+	<SET F <FIRST? .ORM>>
+	<REPEAT ()
+	 <COND (.F <SET N <NEXT? .F>>)
+	       (T <RETURN>)>
+	 <COND (<OR <FSET? .F ,SURFACEBIT> <FSET? .F ,CONTBIT>>
+		<OTHER-TO-ROOM <GETP .F ,P?OTHER> ;.F>)>
+	 <COND (<OR <EQUAL? .F ,TOWEL-FIXTURE-BROKEN ,TOWEL-LOOP-BROKEN>
+		    <AND <SET X <GETP .F ,P?CAR>> <L? .X ,CAR-MAX-MAX>>
+		    ;"<FSET? .F ,TAKEBIT>
+		    <FSET? .F ,TRYTAKEBIT>
+		    <FSET? .F ,PERSONBIT>">
+		<COND (<EQUAL? ,CAR-HERE <GETP .F ,P?CAR>>
+		       <MOVE .F .RM>
+		       <COND (<SET C <GETP .F ,P?CHARACTER>>
+			      <FIX-GOAL .F>)>)>)>
+	 <SET F .N>>>
+
+<ROUTINE FIX-GOAL (PER "AUX" GT)
+ <COND (<IN-MOTION? .PER T>
+	<SET GT <GET ,GOAL-TABLES <GETP .PER ,P?CHARACTER>>>
+	<COND (T ;<AND .GT <GET .GT ,GOAL-S>>
+	       <PUT .GT ,GOAL-F <GETP <GET .GT ,GOAL-F> ,P?OTHER>>
+	       <PUT .GT ,GOAL-S <GETP <GET .GT ,GOAL-S> ,P?OTHER>>)>)>>
+
+<ROOM OTHER-BESIDE-TRACKS
+	(DESC "other beside the tracks")
+	(LOC ROOMS)
+	(OTHER BESIDE-TRACKS)
+	(UP TO OTHER-VESTIBULE-REAR)>
+
+<ROOM BESIDE-TRACKS
+	(LOC ROOMS)
+	(OTHER OTHER-BESIDE-TRACKS)
+	(CORRIDOR -3)
+	(FLAGS ONBIT ;RLANDBIT NARTICLEBIT)
+	(DESC "beside the tracks")
+	;(ADJECTIVE BESIDE)
+	;(SYNONYM TRACKS)
+	(UP PER EMBARK-F)
+	(IN PER EMBARK-F)
+	(EAST PER EMBARK-F)
+	(NORTH PER ALONG-TRAIN-FWD-F)
+	(SOUTH PER ALONG-TRAIN-REAR-F)
+	(GLOBAL SCENERY-LEFT WINDOW-1 WINDOW-2 WINDOW-3
+		WINDOW-4 WINDOW-5)
+	(DESCFCN BESIDE-TRACKS-F)
+	(ACTION BESIDE-TRACKS-F)>
+
+<ROUTINE BESIDE-TRACKS-F ("OPTIONAL" (RARG <>))
+ <COND (<EQUAL? .RARG ,M-ENTER>
+	<COND (<==? ,SCENERY-OBJ ,MEADOW>
+	       <COND (<FSET? ,FLOWER-1 ,NDESCBIT>
+		      <MOVE ,FLOWER-1 ,HERE>)
+		     (<FSET? ,FLOWER-2 ,NDESCBIT>
+		      <MOVE ,FLOWER-2 ,HERE>)>
+	       <RFALSE>)>)
+       (<EQUAL? .RARG ,M-LOOK>
+	<TELL "You are standing beside ">
+	<COND (<==? ,CAR-HERE 1>
+	       <TELL "the first car of ">)
+	      (<==? ,CAR-HERE ,CAR-MAX>
+	       <TELL "the last car of ">)>
+	<TELL "the train. " <GETP ,SCENERY-OBJ ,P?TEXT>>
+	<COND (<AND <==? ,SCENERY-OBJ ,MEADOW>
+		    <ZERO? ,PULLED-STOP-CORD>>
+	       <TELL
+" There's a cow on the tracks in front of the locomotive,
+with several people trying to push her out of the way.">)>
+	<CRLF>)
+       (.RARG <RFALSE>)
+       (<AND <VERB? WALK-TO> <DOBJ? BESIDE-TRACKS>>
+	<COND (,ON-TRAIN
+	       <PERFORM ,V?LEAVE ,TRAIN>
+	       <RTRUE>)
+	      (T <HAR-HAR>)>
+	<RTRUE>)>>
+
+<ROUTINE ALONG-TRAIN-FWD-F ()  <NEXT-CAR -1 -1> ;<ALONG-TRAIN -1>>
+
+<ROUTINE ALONG-TRAIN-REAR-F () <NEXT-CAR +1 -1> ;<ALONG-TRAIN +1>>
+
+;<ROUTINE ALONG-TRAIN (WHICH "AUX" NCAR)
+	<SET NCAR <+ .WHICH ,CAR-HERE>>
+	<COND (<OR <0? .NCAR> <G? .NCAR ,CAR-MAX>>
+	       <TELL "This is the end of the train." CR>
+	       <RFALSE>)>
+	<NEXT-CAR-SWITCHEROO ,CAR-HERE .NCAR>
+	<TELL "You walk ">
+	<COND (<1? .WHICH> <TELL "rear">) (T <TELL "for">)>
+	<TELL "ward to the ">
+	<COND (<EQUAL? .NCAR 1>
+	       <TELL "front of the train">)
+	      (<EQUAL? .NCAR ,CAR-MAX>
+	       <TELL "end of the train">)
+	      (T <TELL "next car">)>
+	<TELL "." CR>
+	<RFALSE>>
+
+<ROUTINE I-TRAIN-ARREST ("OPTIONAL" (GARG <>))
+	 <COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+		<TELL "[I-TRAIN-ARREST:">
+		<COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	 <COND (<EQUAL? ,HERE ,ROOF>
+		<ENABLE <QUEUE I-TRAIN-ARREST 5>>
+		<COND (,IDEBUG <TELL "(0)]" CR>)>
+		<RFALSE>)
+	       (T ;,ON-TRAIN
+		<TELL CR CTHE ,CONDUCTOR>
+		<COND (<EQUAL? ,HERE ,UNCONSCIOUS>
+		       <TELL " shakes you awake. He is">)
+		      (T <TELL " approaches,">)>
+		<TELL " accompanied by two grim-faced soldiers
+armed with machine guns. They take things like "
+,ARREST-REASON ;"improper tickets and rash behavior"
+" very seriously here. He isn't smiling as he says, ">
+		<PRODUCE-GIBBERISH>
+		<TELL
+"|
+After your arrest and a little gentle persuasion with beatings, cigarette
+burns and starvation, you
+confess to the crime of espionage. Within days your confession is
+front-page news around the world. And the Cold War gets a little bit
+hotter..."
+;"|
+Epilogue:|
+On a cold winter's day about a year after your capture,
+a pair of blips, moving at extremely high speed, appeared on a radar
+screen in Germany. Minutes later a low-yield nuclear device destroyed
+much of Munich. The Soviets revealed the existence of a number of new
+missiles along the border, and demanded the immediate surrender of
+Western Europe. America responded with missiles of its own, initiating a
+full-scale nuclear war. A week later the earth was quiet; because of the dust
+in the upper atmosphere the sunsets were more beautiful than ever before. And
+almost nobody was left to see them."
+CR>
+		<FINISH ;JIGS-UP>)>>
+
+;<ROUTINE I-TRAIN-SOUNDS ("OPTIONAL" (GARG <>))
+	 <COND (<OR ,IDEBUG <==? .GARG ,G-DEBUG>>
+		<TELL "[I-TRAIN-SOUNDS:">
+		<COND (<==? .GARG ,G-DEBUG> <RFALSE>)>)>
+	 <COND (<NOT ,IN-STATION> <RTRUE>)>
+	 <COND (<NOT ,TRAIN-MOVING> <RTRUE>)>
+	 <COND (<PROB 25>
+	        <TELL "Chuga, chuga, chuga, chuga..." CR>)>
+	 <COND (<PROB 10>
+		<TELL
+"From far off comes the sound of a train whistle." CR>)>>
+
+<ROUTINE NOISY? (RM)
+ <COND (<EQUAL? .RM ,UNCONSCIOUS>	<RTRUE>)
+       (<NOT ,ON-TRAIN>			<RFALSE>)
+       (<NOT ,TRAIN-MOVING>		<RFALSE>)
+       (<OR <EQUAL? .RM ,VESTIBULE-FWD-DINER ,VESTIBULE-REAR-DINER>
+	    <EQUAL? .RM ,VESTIBULE-FWD-FANCY ,VESTIBULE-REAR-FANCY>
+	    <EQUAL? .RM ,VESTIBULE-FWD ,VESTIBULE-REAR ,ROOF>>
+	<RTRUE>)>>
+
+<ROUTINE L-FWD (CAR)
+	<COND (<==? .CAR ,DINER-CAR>	,LIMBO-FWD-DINER)
+	      (<==? .CAR ,FANCY-CAR>	,LIMBO-FWD-FANCY)
+	      (<==? .CAR ,CAR-HERE>	,LIMBO-FWD)
+	      (T			,OTHER-LIMBO-FWD)>>
+
+<ROUTINE L-REAR (CAR)
+	<COND (<==? .CAR ,DINER-CAR>	,LIMBO-REAR-DINER)
+	      (<==? .CAR ,FANCY-CAR>	,LIMBO-REAR-FANCY)
+	      (<==? .CAR ,CAR-HERE>	,LIMBO-REAR)
+	      (T			,OTHER-LIMBO-REAR)>>
+
+<ROUTINE V-FWD (CAR)
+	<COND (<==? .CAR ,DINER-CAR>	,VESTIBULE-FWD-DINER)
+	      (<==? .CAR ,FANCY-CAR>	,VESTIBULE-FWD-FANCY)
+	      (<==? .CAR ,CAR-HERE>	,VESTIBULE-FWD)
+	      (T			,OTHER-VESTIBULE-FWD)>>
+
+<ROUTINE V-REAR (CAR)
+	<COND (<==? .CAR ,DINER-CAR>	,VESTIBULE-REAR-DINER)
+	      (<==? .CAR ,FANCY-CAR>	,VESTIBULE-REAR-FANCY)
+	      (<==? .CAR ,CAR-HERE>	,VESTIBULE-REAR)
+	      (T			,OTHER-VESTIBULE-REAR)>>
