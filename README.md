@@ -37,3 +37,5 @@ After finishing Seastalker, (Galley) had the idea to write a Cold War espionage 
 
 * The working title was "Spy", and this was also the working title of Border Zone. Therefore it is often reported that Border Zone is a refashioning of Spy/Checkpoint, but Marc Blank's cold-war thriller game was written entirely separate.
 * Stu Galley turned his attention from this project to a game that would eventually become "Moonmist".
+
+The compiled code in this repository (spy.zip and COMPILED/spy.z5) is not the checkpoint game, but rather a early version of Journey. The code here can be compiled if you would like to try the actual game.
